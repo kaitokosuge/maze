@@ -12,6 +12,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        admin_code:''
     });
 
     useEffect(() => {
@@ -93,6 +94,23 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="new-password"
                         onChange={(e) => setData('password_confirmation', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.password_confirmation} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="admin_code" value="admin_code" />
+
+                    <TextInput
+                        id="admin_code"
+                        type="password"
+                        name="admin_code"
+                        value={data.admin_code}
+                        className="mt-1 block w-full"
+                        autoComplete="admin_code"
+                        onChange={(e) => setData('admin_code', e.target.value)}
                         required
                     />
 
