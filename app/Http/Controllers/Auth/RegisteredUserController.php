@@ -37,7 +37,8 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        if ($request->admin_code == "Wearemazer1031") {
+        $passcode = config('passcode.passcode');
+        if ($request->admin_code == $passcode) {
             $user = User::create([
                 'name' => $request->name,
                 'isAdmin' => true,
