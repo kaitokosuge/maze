@@ -111,7 +111,6 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="admin_code"
                         onChange={(e) => setData('admin_code', e.target.value)}
-                        required
                     />
 
                     <InputError message={errors.password_confirmation} className="mt-2" />
