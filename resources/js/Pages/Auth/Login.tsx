@@ -49,7 +49,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
-
+                
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
 
