@@ -1,4 +1,4 @@
-import { useEffect, FormEventHandler } from 'react';
+import { useEffect, FormEventHandler, useState } from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
@@ -14,7 +14,7 @@ export default function Register() {
         password_confirmation: '',
         admin_code:''
     });
-
+    
     useEffect(() => {
         return () => {
             reset('password', 'password_confirmation');
@@ -26,7 +26,10 @@ export default function Register() {
 
         post(route('register'));
     };
-
+    const [ isShowModal , setIsShowModal ] = useState(false);
+    const handleClickAdminModal = () => {
+        setIsShowModal(!isShowModal);
+    }
     return (
         <GuestLayout>
             <Head title="Register" />
@@ -101,19 +104,20 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="admin_code" value="admin_code" />
-
-                    <TextInput
-                        id="admin_code"
-                        type="password"
-                        name="admin_code"
-                        value={data.admin_code}
-                        className="mt-1 block w-full"
-                        autoComplete="admin_code"
-                        onChange={(e) => setData('admin_code', e.target.value)}
-                    />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
+                    <p className="cursor-pointer"onClick={handleClickAdminModal}>become admin</p>
+                    <div className={isShowModal ? "opacity-100 duration-300":"opacity-0 duration-300"}>
+                        <InputLabel htmlFor="admin_code" value="admin_code" />
+                        <TextInput
+                            id="admin_code"
+                            type="password"
+                            name="admin_code"
+                            value={data.admin_code}
+                            className="mt-1 block w-full"
+                            autoComplete="admin_code"
+                            onChange={(e) => setData('admin_code', e.target.value)}
+                        />
+                        <InputError message={errors.password_confirmation} className="mt-2" />
+                    </div>
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
