@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('category');
             $table->text('category_desc');
             $table->text('category_img');
-            $table->timestamps();
         });
     }
 
