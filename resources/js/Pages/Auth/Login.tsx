@@ -32,7 +32,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-            <form onSubmit={submit}>
+            <form onSubmit={submit} className="bg-[#140034] w-[60%] m-auto px-[80px] pt-[40px] pb-[40px] rounded-[20px] mt-[200px]">
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
 
@@ -77,19 +77,23 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                     </label>
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
+                <div className="flex items-center justify-between mt-10">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="underline text-[10px] text-gray-600 hover:text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                            Forgot your password?
+                            パスワードを忘れた方はこちら
                         </Link>
                     )}
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
+                    <button
+                        className={
+                            `bg-blue-800 hover:bg-blue-600 duration-300 rounded-[10px] px-[25px] font-bold p-[10px] text-[15px] text-gray-300 uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition ease-in-out }`
+                        }
+                        disabled={processing}
+                    >
+                        ログイン
+                    </button>
                 </div>
             </form>
         </GuestLayout>
