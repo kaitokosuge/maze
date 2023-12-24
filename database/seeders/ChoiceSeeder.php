@@ -25,5 +25,20 @@ class ChoiceSeeder extends Seeder
         DB::table('choices')->insert([
             'choice' => 'click',
         ]);
+        DB::table('choices')->insert([
+            'choice' => '梅干し',
+        ]);
+        DB::table('choices')->insert([
+            'choice' => 'カレー',
+        ]);
+        DB::table('choices')->insert([
+            'choice' => '寿司',
+        ]);
+        DB::table('choices')->insert([
+            'choice' => '草',
+        ]);
+        DB::table('choices')->insert([
+            'choice' => '羊肉',
+        ]);
     }
 }

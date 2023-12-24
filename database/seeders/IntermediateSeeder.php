@@ -37,5 +37,45 @@ class IntermediateSeeder extends Seeder
             'category_id' => 1,
             'quiz_id' => 1
         ]);
+
+
+        DB::table('choice_quiz')->insert([
+            'choice_id' => 5,
+            'quiz_id' => 2
+        ]);
+        DB::table('choice_quiz')->insert([
+            'choice_id' => 6,
+            'quiz_id' => 2
+        ]);
+        DB::table('choice_quiz')->insert([
+            'choice_id' => 7,
+            'quiz_id' => 2
+        ]);
+        DB::table('choice_quiz')->insert([
+            'choice_id' => 8,
+            'quiz_id' => 2
+        ]);
+        DB::table('choice_quiz')->insert([
+            'choice_id' => 9,
+            'quiz_id' => 2
+        ]);
+
+        DB::table('true_quiz')->insert([
+            'true_id' => 2,
+            'quiz_id' => 2
+        ]);
+        DB::table('true_quiz')->insert([
+            'true_id' => 3,
+            'quiz_id' => 2
+        ]);
+
+        DB::table('category_quiz')->insert([
+            'category_id' => 1,
+            'quiz_id' => 2
+        ]);
+        DB::table('category_quiz')->insert([
+            'category_id' => 2,
+            'quiz_id' => 2
+        ]);
     }
 }

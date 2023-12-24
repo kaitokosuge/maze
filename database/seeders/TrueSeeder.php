@@ -17,5 +17,11 @@ class TrueSeeder extends Seeder
         DB::table('trues')->insert([
             'true_num' => 1,
         ]);
+        DB::table('trues')->insert([
+            'true_num' => 2,
+        ]);
+        DB::table('trues')->insert([
+            'true_num' => 3,
+        ]);
     }
 }
