@@ -29,8 +29,8 @@ class IntermediateSeeder extends Seeder
             'choice_id' => 4,
             'quiz_id' => 1
         ]);
-        DB::table('true_quiz')->insert([
-            'true_id' => 1,
+        DB::table('truenums')->insert([
+            'choice_id' => 1,
             'quiz_id' => 1
         ]);
         DB::table('category_quiz')->insert([
@@ -59,16 +59,14 @@ class IntermediateSeeder extends Seeder
             'choice_id' => 9,
             'quiz_id' => 2
         ]);
-
-        DB::table('true_quiz')->insert([
-            'true_id' => 2,
+        DB::table('truenums')->insert([
+            'choice_id' => 5,
             'quiz_id' => 2
         ]);
-        DB::table('true_quiz')->insert([
-            'true_id' => 3,
+        DB::table('truenums')->insert([
+            'choice_id' => 6,
             'quiz_id' => 2
         ]);
-
         DB::table('category_quiz')->insert([
             'category_id' => 1,
             'quiz_id' => 2

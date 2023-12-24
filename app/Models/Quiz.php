@@ -14,7 +14,7 @@ class Quiz extends Model
     }
     public function trues()
     {
-        return $this->belongsToMany(TrueNum::class, 'true_quiz', 'quiz_id', 'true_id');
+        return $this->belongsToMany(TrueNum::class, 'truenums', 'quiz_id', 'choice_id');
     }
     public function choices()
     {
