@@ -19,5 +19,11 @@ class QuizSeeder extends Seeder
             'user_id' => 1,
             'created_at' => now(),
         ]);
+        DB::table('quizzes')->insert([
+            'quiz' => '小菅海斗の好きな食べ物はなんでしょう？',
+            'answer' => 'カレー、寿司が好きです',
+            'user_id' => 1,
+            'created_at' => now(),
+        ]);
     }
 }
