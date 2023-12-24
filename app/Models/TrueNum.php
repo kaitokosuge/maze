@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class TrueNum extends Model
 {
     use HasFactory;
-    //protected $table = '';
+    protected $table = 'truenums';
 }
