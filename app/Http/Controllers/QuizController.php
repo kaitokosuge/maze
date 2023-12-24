@@ -12,6 +12,6 @@ class QuizController extends Controller
     public function index(User $user, Quiz $quiz)
     {
         $user = \Auth::user();
-        return Inertia::render('Container/TopContainer')->with(['user' => $user, 'quiz' => $quiz->get()]);
+        return Inertia::render('Container/TopContainer')->with(['user' => $user, 'quiz' => $quiz->with("trues")->with("categories")->with("choices")->with("user")->get()]);
     }
 }

@@ -12,7 +12,7 @@ interface TopContainerProps {
     quiz:Quiz,
 }
 
-export default function TopContainer( {user , quiz}:TopContainerProps ) {
+export default function TopContainer( { user , quiz }: TopContainerProps ) {
     console.log('user',user)
     console.log('quiz',quiz)
     return (
