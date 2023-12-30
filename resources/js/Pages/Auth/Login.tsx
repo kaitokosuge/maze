@@ -32,7 +32,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-            <form onSubmit={submit} className="bg-[#140034] w-[60%] m-auto px-[80px] pt-[40px] pb-[40px] rounded-[20px] mt-[200px]">
+            <form onSubmit={submit} className="auth--card bg-[#140034] w-[60%] m-auto px-[80px] pt-[40px] pb-[40px] rounded-[20px] mt-[200px]">
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
 

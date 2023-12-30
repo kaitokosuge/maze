@@ -6,6 +6,11 @@ interface Quiz {
     answer: string;
     image: string;
     user_id: number;
+    choices: Array<Choices>
+}
+interface Choices {
+    id: number;
+    choice: string;
 }
 interface Category {
     id:number;
@@ -14,19 +19,34 @@ interface Category {
     category_img:string;
 }
 interface TopContainerProps {
-    user:User,
-    quiz:Quiz,
-    categories:Category;
+    user:User;
+    quiz:Array<Quiz>;
+    categories:Array<Category>;
 }
 
 export default function TopContainer( { user , quiz , categories }: TopContainerProps ) {
-    console.log('user',user)
-    console.log('quiz',quiz)
-    console.log('categories',categories)
+    console.log(quiz);
     return (
-        <div>
+        <>
             <p>{ user.name }</p>
-            <p>hi</p>
-        </div>
+            <p>{categories.map((category) => (
+                <>
+                    <p>{ category.category }</p>
+                </>
+            ))}</p>
+            {quiz.map((question) => (
+                <>
+                    <p>{ question.quiz }</p>
+                    <p>{ question.answer }</p>
+                    <div>
+                        { question.choices.map((choice) => (
+                            <>
+                                <p>{ choice.choice }</p>
+                            </>
+                        )) }
+                    </div>
+                </>
+            ))}
+        </>
     )
 }

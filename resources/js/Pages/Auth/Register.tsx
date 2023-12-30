@@ -35,7 +35,7 @@ export default function Register() {
             <div onClick={handleClickAdminModal} className={isShowModal === true ? 'opacity-80 bg-black w-[100vw] h-full duration-500 fixed z-50' : 'opacity-0 bg-black w-screen h-full fixed -z-10' }></div>
             <Head title="Register" /> 
 
-            <form onSubmit={submit} className="bg-[#140034] w-[60%] m-auto px-[80px] pt-[40px] pb-[40px] rounded-[20px] mt-[120px]">
+            <form onSubmit={submit} className="auth--card bg-[#140034] w-[60%] m-auto px-[80px] pt-[40px] pb-[40px] rounded-[20px] mt-[120px]">
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 

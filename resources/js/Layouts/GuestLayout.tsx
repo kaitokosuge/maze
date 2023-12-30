@@ -6,7 +6,7 @@ export default function Guest({ children }: PropsWithChildren) {
     return (
         <div className="min-h-screen flex sm:justify-center bg-[#00142C] overflow-hidden">
             <div className="w-[50%] bg-colorfull-100 h-screen relative z-10 overflow-hidden">
-                <h1 className='maze--title text-white font-bold text-[180px] m-auto mt-[120px] w-fit'>MAZE</h1>
+                <h1 className='auth--text maze--title text-white font-bold text-[180px] m-auto mt-[120px] w-fit'>MAZE</h1>
                 <div className="maze--line line01"></div>
                 <div className="maze--line line02"></div>
                 <div className="maze--line line03"></div>
