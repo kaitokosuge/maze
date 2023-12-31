@@ -176,3 +176,9 @@
         left:100px;
     }
 }
+.auth--text{
+    text-shadow:0 0 50px rgba(204, 204, 204, 0.5)
+}
+.auth--card{
+    box-shadow:0 0 10px rgba(255, 238, 0, 0.5);
+}

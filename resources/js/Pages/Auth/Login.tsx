@@ -32,9 +32,9 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
-            <form onSubmit={submit} className="bg-[#140034] w-[60%] m-auto px-[80px] pt-[40px] pb-[40px] rounded-[20px] mt-[200px]">
+            <form onSubmit={submit} className="auth--card bg-[#140034] w-[60%] m-auto px-[80px] pt-[40px] pb-[40px] rounded-[20px] mt-[200px]">
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value="Email -メールアドレス" />
 
                     <TextInput
                         id="email"
@@ -51,7 +51,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                 </div>
                 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value="Password -パスワード" />
 
                     <TextInput
                         id="password"
@@ -73,7 +73,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                             checked={data.remember}
                             onChange={(e) => setData('remember', e.target.checked)}
                         />
-                        <span className="ms-2 text-sm text-gray-600">Remember me</span>
+                        <span className="ms-2 text-[10px] text-gray-600">次回ログイン時に入力を省略する</span>
                     </label>
                 </div>
 

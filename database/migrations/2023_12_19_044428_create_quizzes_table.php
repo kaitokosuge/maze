@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->string('quiz');
+            $table->boolean('isToday');
             $table->text('answer');
             $table->text('image')->nullable();
             $table->foreignId('user_id')->constrained();

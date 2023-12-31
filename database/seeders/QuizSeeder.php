@@ -18,12 +18,14 @@ class QuizSeeder extends Seeder
             'answer' => 'Javascriptではinputイベントが入力の変更を検知し、イベント発火されます',
             'user_id' => 1,
             'created_at' => now(),
+            'isToday' => true,
         ]);
         DB::table('quizzes')->insert([
             'quiz' => '小菅海斗の好きな食べ物はなんでしょう？',
             'answer' => 'カレー、寿司が好きです',
             'user_id' => 1,
             'created_at' => now(),
+            'isToday' => false,
         ]);
     }
 }
