@@ -15,7 +15,7 @@ export default function Page({ user , quizzes , categories }: TopContainerProps)
             <Sidebar categories={ categories } />
         </div>
         <div className=''>
-            <Main />
+            <Main quizzes={ quizzes }/>
         </div>
     </div>
   )

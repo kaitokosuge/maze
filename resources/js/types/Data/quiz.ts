@@ -1,5 +1,10 @@
 import { Choices } from "./choices";
 
+
+export interface Quizzes {
+    quizzes: Array<Quiz>
+}
+
 export interface Quiz {
     id: number;
     quiz: string;
