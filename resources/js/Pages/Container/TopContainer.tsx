@@ -1,5 +1,6 @@
 import React from 'react'
 import { User } from '@/types';
+import Page from '../Presentation/Page';
 interface Quiz {
     id: number;
     quiz: string;
@@ -18,35 +19,19 @@ interface Category {
     category_desc:string;
     category_img:string;
 }
-interface TopContainerProps {
+export interface TopContainerProps {
     user:User;
-    quiz:Array<Quiz>;
+    quizzes:Array<Quiz>;
     categories:Array<Category>;
 }
 
-export default function TopContainer( { user , quiz , categories }: TopContainerProps ) {
-    console.log(quiz);
+export default function TopContainer( { user , quizzes , categories }: TopContainerProps ) {
+    console.log('quiz',quizzes);
+    console.log('user',user);
+    console.log('categories',categories);
     return (
         <>
-            <p>{ user.name }</p>
-            <p>{categories.map((category) => (
-                <>
-                    <p>{ category.category }</p>
-                </>
-            ))}</p>
-            {quiz.map((question) => (
-                <>
-                    <p>{ question.quiz }</p>
-                    <p>{ question.answer }</p>
-                    <div>
-                        { question.choices.map((choice) => (
-                            <>
-                                <p>{ choice.choice }</p>
-                            </>
-                        )) }
-                    </div>
-                </>
-            ))}
+            <Page user={ user } quizzes={ quizzes } categories={ categories }/>
         </>
     )
 }
