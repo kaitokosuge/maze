@@ -12,13 +12,9 @@ class Quiz extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function trues()
-    {
-        return $this->hasMany(TrueNum::class);
-    }
     public function choices()
     {
-        return $this->belongsToMany(Choice::class, 'choice_quiz', 'quiz_id', 'choice_id');
+        return $this->hasMany(Choice::class);
     }
     public function categories()
     {
