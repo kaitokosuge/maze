@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('choice');
             $table->boolean('isTrue');
+            $table->foreignId('quiz_id')->constrained();
             $table->timestamps();
         });
     }
