@@ -1,9 +1,10 @@
 import React from 'react'
 
 export default function Header() {
+      console.log('hi')
   return (
-    <div>
-        
-    </div>
+      <div>
+          header
+      </div>
   )
 }

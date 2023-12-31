@@ -2,18 +2,20 @@ import { Quizzes } from '@/types/Data/quiz'
 import React from 'react'
 
 export default function Main({ quizzes }: Quizzes) {
-    return (
+  return (
       <div>
-          {quizzes.map((quiz) => (
-            <>
-                <p>{quiz.quiz}</p>
-                <p>{quiz.choices.map((choice) => (
-                  <>
-                    <p>{ choice.choice }</p>
-                  </>
-                ))}</p>
-            </>
-          ))}
+            {quizzes.map((quiz) => (
+              <>
+                  <p>{quiz.quiz}</p>
+                  <div>
+                      {quiz.choices.map((choice,index) => (
+                      <div key={choice.id}>
+                        <p>{index + 1}{ choice.choice }</p>
+                      </div>
+                      ))}
+                  </div>
+              </>
+            ))}
       </div>
   )
 }
