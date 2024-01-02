@@ -5,18 +5,19 @@ import Header from './Header';
 import Main from './Main';
 
 
-export default function Page({ user , quizzes , categories }: TopContainerProps) {
-  return (
-    <div>
-        <div className=''>
-            <Header />
+export default function Page({ user , quizzes , categories  }: TopContainerProps ) {
+    
+    return (
+        <div>
+            <div className=''>
+                <Header />
+            </div>
+            <div className=''>
+                <Sidebar categories={ categories } />
+            </div>
+            <div className=''>
+                <Main quizzes={ quizzes }/>
+            </div>
         </div>
-        <div className=''>
-            <Sidebar categories={ categories } />
-        </div>
-        <div className=''>
-            <Main quizzes={ quizzes }/>
-        </div>
-    </div>
-  )
+    )
 }

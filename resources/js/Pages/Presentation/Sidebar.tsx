@@ -3,13 +3,12 @@ import { TopContainerProps } from '@/types/TopContainerProps'
 import React from 'react'
 
 
-export default function Sidebar({ categories }: CategoriesProps) {
-    console.log(categories)
+export default function Sidebar({ categories }: CategoriesProps , { fetchCategoryQuizzes }: any) {
     return (
         <div>
             {categories.map((category) => (
                 <>
-                    <p>{category.category}</p>
+                    <p onClick={ fetchCategoryQuizzes }>{category.category}</p>
                 </>
             ))}
         </div>
