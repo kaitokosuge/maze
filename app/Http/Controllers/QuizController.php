@@ -16,8 +16,11 @@ class QuizController extends Controller
         $user = \Auth::user();
         return Inertia::render('Container/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(), 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->get()]);
     }
+
     public function showCategory(Category $category)
     {
-        dd($category);
+        //dd($category);
+        $categoryQuiz = $category->quizzes;
+        return Inertia::render('Category/CategoryContainer')->with(['category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
 }

@@ -19,6 +19,7 @@ export default function TopContainer( { user , quizzes , categories }: TopContai
             setQuizzes(categoryQuizzes)
         }
     }
+    
     return (
         <>
             <Page 
