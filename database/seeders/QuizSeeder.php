@@ -27,5 +27,12 @@ class QuizSeeder extends Seeder
             'created_at' => now(),
             'isToday' => false,
         ]);
+        DB::table('quizzes')->insert([
+            'quiz' => '小菅海斗の好きなスポーツはなんでしょう？',
+            'answer' => 'バスケ部でした！！',
+            'user_id' => 1,
+            'created_at' => now(),
+            'isToday' => false,
+        ]);
     }
 }
