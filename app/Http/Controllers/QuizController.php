@@ -17,10 +17,11 @@ class QuizController extends Controller
         return Inertia::render('Container/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(), 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->get()]);
     }
 
-    public function showCategory(Category $category)
+    public function showCategory(Category $category, Quiz $quiz)
     {
-        //dd($category);
-        $categoryQuiz = $category->quizzes;
+        $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
+            $query->where('id', $category->id);
+        })->with("choices")->get();
         return Inertia::render('Category/CategoryContainer')->with(['category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
 }

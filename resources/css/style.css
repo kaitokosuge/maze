@@ -1,3 +1,6 @@
+body{
+    font-family: sans-serif;
+}
 .bg-colorfull-100{
     background:linear-gradient(#000238,#000238,#370035,#370035);
     background-size: 100% 250%;

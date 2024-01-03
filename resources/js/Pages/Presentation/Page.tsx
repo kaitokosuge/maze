@@ -9,14 +9,14 @@ export default function Page({ user , quizzes , categories  }: TopContainerProps
     
     return (
         <div>
-            <div className=''>
-                <Header />
-            </div>
-            <div className=''>
-                <Sidebar categories={ categories } />
-            </div>
-            <div className=''>
-                <Main quizzes={ quizzes }/>
+            <div className='flex'>
+                <div className='w-[15%] h-screen relative'>
+                    <Sidebar categories={ categories } />
+                </div>
+                <div className='w-[85%]'>
+                    <Header />
+                    <Main quizzes={ quizzes }/>
+                </div>
             </div>
         </div>
     )
