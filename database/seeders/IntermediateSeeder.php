@@ -41,5 +41,9 @@ class IntermediateSeeder extends Seeder
             'category_id' => 4,
             'quiz_id' => 3
         ]);
+        DB::table('user_quiz')->insert([
+            'user_id' => 1,
+            'quiz_id' => 1
+        ]);
     }
 }
