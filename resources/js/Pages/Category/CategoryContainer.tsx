@@ -13,7 +13,7 @@ export default function CategoryContainer( props: any ) {
           <div className='w-[15%]'>
               <Sidebar categories={ categories } />
           </div>
-          <div className='bg-[#00142C] bg-test w-[85%]'>
+          <div className={`bg-[#00142C] bg-${category.category_color} w-[85%] min-h-screen`}>
             <Header />
             <div className='pt-[100px] pb-[100px] pl-[40px] pr-[50px]'>
               <div className='flex'>
