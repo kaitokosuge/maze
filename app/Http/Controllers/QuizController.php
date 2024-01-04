@@ -21,7 +21,7 @@ class QuizController extends Controller
     {
         $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
             $query->where('id', $category->id);
-        })->with("choices")->get();
+        })->with("choices")->with('user')->get();
         return Inertia::render('Category/CategoryContainer')->with(['category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
 }

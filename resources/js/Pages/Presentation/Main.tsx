@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Main({ quizzes }: Quizzes) {
   return (
-      <div className='bg-[#00142C]'>
+      <div className='bg-[#00142C] pt-[100px]'>
             {quizzes.map((quiz) => (
               <>
                   <p>{quiz.quiz}</p>

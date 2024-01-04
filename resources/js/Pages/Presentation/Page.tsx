@@ -11,7 +11,7 @@ export default function Page({ user , quizzes , categories  }: TopContainerProps
         <div>
             <div className='flex'>
                 <div className='w-[15%] h-screen relative'>
-                    <Sidebar categories={ categories } />
+                    <Sidebar categories={ categories } user={ user }/>
                 </div>
                 <div className='w-[85%]'>
                     <Header />

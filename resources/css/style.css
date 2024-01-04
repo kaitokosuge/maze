@@ -1,10 +1,22 @@
 body{
     font-family: sans-serif;
+    color:white;
+    background: #000238;
 }
 .bg-colorfull-100{
     background:linear-gradient(#000238,#000238,#370035,#370035);
     background-size: 100% 250%;
     animation: 10s infinite bggradient;
+}
+.bg-test{
+    /* background: linear-gradient(#008f9f,#00142C,#00142C,#00142C,#00142C); */
+    background: linear-gradient(#877e00,#00142C,#00142C,#00142C,#00142C);
+}
+.text-limit{
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 @keyframes bggradient {
     0%{
