@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('category');
-            $table->text('category_desc');
-            $table->text('category_img');
-            $table->string('category_color')->nullable();
+        Schema::create('user_quiz', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('quiz_id')->constrained();
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('user_quiz');
     }
 };

@@ -8,9 +8,12 @@ body{
     background-size: 100% 250%;
     animation: 10s infinite bggradient;
 }
-.bg-test{
+.bg-js-color{
     /* background: linear-gradient(#008f9f,#00142C,#00142C,#00142C,#00142C); */
     background: linear-gradient(#877e00,#00142C,#00142C,#00142C,#00142C);
+}
+.bg-react-color{
+    background: linear-gradient(#008f9f,#00142C,#00142C,#00142C,#00142C);
 }
 .text-limit{
     width: 50%;
