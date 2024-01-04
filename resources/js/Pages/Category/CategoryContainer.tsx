@@ -28,6 +28,9 @@ export default function CategoryContainer( props: any ) {
                     <p className='font-bold text-[16px] text-limit'>{ index + 1 } { quiz.quiz }</p>
                     <data className='font-bold text-[12px]'>{ quiz.created_at.slice(0,-17) }</data>
                     <p className='font-bold text-[12px]'>{ quiz.user.name }</p>
+                    {/* <div>
+                      {quiz.}
+                    </div> */}
                     <p className='rounded-[10px] bg-[#002E64] w-[100px] text-center px-5 py-[7px] font-bold cursor-pointer'>open</p>
                     {/* <div>
                       { quiz.choices.map((choice: any,index: number) => (
