@@ -13,9 +13,9 @@ export default function CategoryContainer( props: any ) {
           <div className='w-[15%]'>
               <Sidebar categories={ categories } />
           </div>
-          <div className='bg-[#00142C] bg-test w-[85%] h-screen'>
+          <div className='bg-[#00142C] bg-test w-[85%]'>
             <Header />
-            <div className='pt-[100px] pl-[40px] pr-5'>
+            <div className='pt-[100px] pb-[100px] pl-[40px] pr-[50px]'>
               <div className='flex'>
                 <img src={ category.category_img } className="w-[100px] h-[100px]"/>
                 <div className='ml-5'>
