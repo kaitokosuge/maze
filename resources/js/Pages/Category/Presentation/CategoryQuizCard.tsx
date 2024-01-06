@@ -32,13 +32,14 @@ export default function CategoryQuizCard(props: any) {
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
         try {
+            const csrfToken: string | null = document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content");
             const res = await fetch(`/quiz/answer/${id}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document
-                        .querySelector('meta[name="csrf-token"]')
-                        .getAttribute("content"),
+                    "X-CSRF-TOKEN": `${csrfToken}`,
                 },
                 body: JSON.stringify(isChoiceClick),
             });
