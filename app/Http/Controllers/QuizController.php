@@ -19,10 +19,11 @@ class QuizController extends Controller
 
     public function showCategory(Category $category, Quiz $quiz)
     {
+        $user= \Auth::user();
         $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
             $query->where('id', $category->id);
         })->with("choices")->with('user')->with('isUserTrue')->get();
         //dd($categoryQuiz);
-        return Inertia::render('Category/CategoryContainer')->with(['category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
+        return Inertia::render('Category/CategoryContainer')->with(['user'=>$user,'category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
 }
