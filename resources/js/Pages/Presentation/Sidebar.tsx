@@ -13,13 +13,17 @@ export default function Sidebar({ categories }: CategoriesProps) {
             <div className="border-t border-gray-500 w-[85%] m-auto py-5">
                 <Link
                     href="/profile"
-                    className="flex items-center font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 rounded-[10px]"
+                    className="flex items-start font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 rounded-[10px]"
                 >
-                    <span className="block w-[30px] h-[30px] rounded-full bg-gray-400 mr-5"></span>
+                    <span className="block w-[30px] h-[30px] rounded-full bg-gray-400 mr-5 mt-1"></span>
                     <span className="block text-[12px]">
                         kaitokosuge
                         <br />
-                        <span className="text-yellow-600 text-[15px]">ss</span>
+                        <span className="text-yellow-600 text-[18px]">★s</span>
+                        <br />
+                        <span className="text-purple-700 text-[18px] font-bold">
+                            mazer
+                        </span>
                     </span>
                 </Link>
                 <Link

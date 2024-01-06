@@ -1,6 +1,6 @@
 import { User } from "@/types";
 import { userInfo } from "os";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function CategoryQuizCard(props: any) {
     const { quizzes, user } = props;
@@ -12,6 +12,36 @@ export default function CategoryQuizCard(props: any) {
         } else {
             setIsClick(index);
         }
+        setIsChoiceClick([]);
+    };
+    const [isChoiceClick, setIsChoiceClick] = useState<number[]>([]);
+    const handleChangeQuizData = (e: any, choiceId: number) => {
+        e.preventDefault();
+        console.log(choiceId);
+        setIsChoiceClick(() => {
+            if (isChoiceClick.some((id) => id === choiceId) === true) {
+                return isChoiceClick.filter((id) => id !== choiceId);
+            }
+            return [...isChoiceClick, choiceId];
+        });
+    };
+    useEffect(() => {
+        console.log("isChoiceClick", isChoiceClick);
+    }, [isChoiceClick]);
+
+    const handleAnswerQuiz = async (e: any, id: number) => {
+        e.preventDefault();
+        try {
+            const res = await fetch(`/quiz/answer/${id}`, {
+                method: "POST",
+                body: JSON.stringify(isChoiceClick),
+            });
+            if (res.ok) {
+                console.log("send-ok", isChoiceClick);
+            } else {
+                console.log("error");
+            }
+        } catch (error) {}
     };
     return (
         <div className="mt-10">
@@ -59,7 +89,7 @@ export default function CategoryQuizCard(props: any) {
                         className={
                             isClick === index
                                 ? "fixed top-[20%] duration-300 w-[75%] opacity-100 px-[50px] py-[60px] bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
-                                : "fixed top-[20%] duration-500 w-[75%] bg-[#001E41] px-[50px] py-[30px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
+                                : "fixed top-[20%] duration-500 w-[75%] bg-[#001E41] px-[50px] py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
                         }
                     >
                         <p className="font-bold">{quiz.quiz}</p>
@@ -86,15 +116,29 @@ export default function CategoryQuizCard(props: any) {
                                             </p>
                                         </div>
                                     ) : (
-                                        <div className="hover:bg-[#000238] duration-300 rounded-[10px] border border-gray-600 p-5 cursor-pointer">
-                                            <p key={choice.id}>
-                                                <span className="mr-5">
-                                                    {index + 1}
-                                                </span>
-                                                <span className="font-bold text-[18px]">
-                                                    {choice.choice}
-                                                </span>
-                                            </p>
+                                        <div
+                                            data-choice-id={choice.id}
+                                            onClick={(e) =>
+                                                handleChangeQuizData(
+                                                    e,
+                                                    choice.id
+                                                )
+                                            }
+                                            key={choice.id}
+                                            className={
+                                                isChoiceClick.some(
+                                                    (num) => num === choice.id
+                                                ) === true
+                                                    ? "active:scale-90 bg-[#000238] duration-300 rounded-[10px] border border-gray-600 p-5 cursor-pointer"
+                                                    : "active:scale-90 hover:bg-[#1a0a2f] duration-300 rounded-[10px] border border-gray-600 p-5 cursor-pointer"
+                                            }
+                                        >
+                                            <span className="mr-5">
+                                                {index + 1}
+                                            </span>
+                                            <span className="font-bold text-[18px]">
+                                                {choice.choice}
+                                            </span>
                                         </div>
                                     )}
                                 </>
@@ -114,7 +158,12 @@ export default function CategoryQuizCard(props: any) {
                                     </p>
                                 </>
                             ) : (
-                                <button className="hover:bg-[#2825bf] duration-300 rounded-[10px] block m-auto mt-10 bg-[#030086] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer">
+                                <button
+                                    onClick={(e) =>
+                                        handleAnswerQuiz(e, quiz.id)
+                                    }
+                                    className="hover:bg-[#2825bf] duration-300 rounded-[10px] block m-auto mt-10 bg-[#030086] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
+                                >
                                     answer
                                 </button>
                             )}
