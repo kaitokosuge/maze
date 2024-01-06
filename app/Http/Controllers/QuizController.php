@@ -26,8 +26,17 @@ class QuizController extends Controller
         //dd($categoryQuiz);
         return Inertia::render('Category/CategoryContainer')->with(['user'=>$user,'category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
-    public function quizTry(Request $request)
+    public function quizTry(Request $requests, Quiz $quiz)
     {
-        dd($request);
+        $tryArray = $requests->toArray();
+        $answerArray = array();
+        foreach ($quiz->choices->where('isTrue',true) as $choice){
+            array_push($answerArray,$choice->id);
+        }
+        if(count($answerArray) === count($tryArray) && array_diff($answerArray, $tryArray) === array_diff($tryArray, $answerArray)){
+            dd('ok');
+        }else{
+            dd('no');
+        }
     }
 }
