@@ -34,6 +34,12 @@ export default function CategoryQuizCard(props: any) {
         try {
             const res = await fetch(`/quiz/answer/${id}`, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
                 body: JSON.stringify(isChoiceClick),
             });
             if (res.ok) {

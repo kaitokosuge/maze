@@ -26,4 +26,8 @@ class QuizController extends Controller
         //dd($categoryQuiz);
         return Inertia::render('Category/CategoryContainer')->with(['user'=>$user,'category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
+    public function quizTry(Request $request)
+    {
+        dd($request);
+    }
 }
