@@ -26,7 +26,7 @@ class QuizController extends Controller
         //dd($categoryQuiz);
         return Inertia::render('Category/CategoryContainer')->with(['user'=>$user,'category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
-    public function quizTry(Request $requests, Quiz $quiz)
+    public function quizTry(Request $requests, Quiz $quiz , User $user)
     {
         $tryArray = $requests->toArray();
         $answerArray = array();
@@ -36,6 +36,8 @@ class QuizController extends Controller
         if(count($answerArray) === count($tryArray) && array_diff($answerArray, $tryArray) === array_diff($tryArray, $answerArray)){
             //dd('ok');
             //return ['isTrue' => 'true'];
+            $user = \Auth::user();
+            $quiz->isUserTrue()->attach($user->id);
             return response()->json([
                 'isTrue' => 'true',
             ]);
