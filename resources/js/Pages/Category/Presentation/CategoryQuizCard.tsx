@@ -28,7 +28,7 @@ export default function CategoryQuizCard(props: any) {
     useEffect(() => {
         console.log("isChoiceClick", isChoiceClick);
     }, [isChoiceClick]);
-
+    const [isUserQuizAnswer, setIsUserQuizAnswer] = useState("");
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
         try {
@@ -44,7 +44,9 @@ export default function CategoryQuizCard(props: any) {
                 body: JSON.stringify(isChoiceClick),
             });
             if (res.ok) {
-                console.log("send-ok", isChoiceClick);
+                const data = await res.json();
+                setIsUserQuizAnswer(data.isTrue);
+                console.log("send-ok", data);
             } else {
                 console.log("error");
             }
@@ -165,15 +167,55 @@ export default function CategoryQuizCard(props: any) {
                                     </p>
                                 </>
                             ) : (
-                                <button
-                                    onClick={(e) =>
-                                        handleAnswerQuiz(e, quiz.id)
-                                    }
-                                    className="hover:bg-[#2825bf] duration-300 rounded-[10px] block m-auto mt-10 bg-[#030086] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
-                                >
-                                    answer
-                                </button>
+                                <>
+                                    {isUserQuizAnswer === "" && (
+                                        <button
+                                            onClick={(e) =>
+                                                handleAnswerQuiz(e, quiz.id)
+                                            }
+                                            className="hover:bg-[#2825bf] duration-300 rounded-[10px] block m-auto mt-10 bg-[#030086] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
+                                        >
+                                            answer
+                                        </button>
+                                    )}
+                                </>
                             )}
+                        </div>
+                        <div
+                            className={
+                                isUserQuizAnswer !== "" ? "block" : "hidden"
+                            }
+                        >
+                            <div className="">
+                                {isUserQuizAnswer === "true" ? (
+                                    <div>
+                                        <p className="text-[26px] font-bold text-[#00FFA3]">
+                                            正解です！！！
+                                        </p>
+                                        <p className="mt-1">{quiz.answer}</p>
+                                        <p className="text-[11px] text-gray-500">
+                                            by {quiz.user.name}
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <p className="text-[26px] font-bold text-[#B10000]">
+                                            不正解です
+                                        </p>
+                                        <p className="text-[11px] text-gray-500">
+                                            by {quiz.user.name}
+                                        </p>
+                                        <button
+                                            onClick={() =>
+                                                setIsUserQuizAnswer("")
+                                            }
+                                            className="hover:bg-[#34ee5c] duration-300 rounded-[10px] block m-auto mt-10 bg-[#009020] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
+                                        >
+                                            retry
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </>

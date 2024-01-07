@@ -34,9 +34,14 @@ class QuizController extends Controller
             array_push($answerArray,$choice->id);
         }
         if(count($answerArray) === count($tryArray) && array_diff($answerArray, $tryArray) === array_diff($tryArray, $answerArray)){
-            dd('ok');
+            //dd('ok');
+            //return ['isTrue' => 'true'];
+            return response()->json([
+                'isTrue' => 'true',
+            ]);
         }else{
-            dd('no');
+            //dd('no');
+            return ['isTrue' => 'false'];
         }
     }
 }
