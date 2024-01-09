@@ -46,4 +46,13 @@ class QuizController extends Controller
             return ['isTrue' => 'false'];
         }
     }
+    public function quizGet(Category $category ,Quiz $quiz) 
+    {
+        $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
+            $query->where('id', $category->id);
+        })->with("choices")->with('user')->with('isUserTrue')->get();
+        return response()->json([
+            'newQuizzes' => $categoryQuiz
+        ]);
+    }
 }

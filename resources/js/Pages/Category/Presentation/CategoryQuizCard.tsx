@@ -68,12 +68,12 @@ export default function CategoryQuizCard(props: any) {
         if (res.ok) {
             const data = await res.json();
             console.log(data);
-            setShowQuizzes(data);
+            setShowQuizzes(data.newQuizzes);
         }
     };
     return (
         <div className="mt-10">
-            {quizzes.map((quiz: any, index: number) => (
+            {showQuizzes.map((quiz: any, index: number) => (
                 <>
                     <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
                         <div
