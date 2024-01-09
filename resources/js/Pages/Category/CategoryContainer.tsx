@@ -32,7 +32,11 @@ export default function CategoryContainer(props: any) {
                             </p>
                         </div>
                     </div>
-                    <CategoryQuizCard quizzes={quizzes} user={user} />
+                    <CategoryQuizCard
+                        quizzes={quizzes}
+                        user={user}
+                        categoryID={category.id}
+                    />
                 </div>
             </div>
         </div>

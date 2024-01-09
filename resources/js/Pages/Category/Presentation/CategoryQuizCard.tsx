@@ -3,7 +3,7 @@ import { userInfo } from "os";
 import React, { useEffect, useState } from "react";
 
 export default function CategoryQuizCard(props: any) {
-    const { quizzes, user } = props;
+    const { quizzes, user, categoryID } = props;
     console.log(quizzes);
     const [isClick, setIsClick] = useState(-1);
     const handleQuizShow = (index: number) => {
@@ -31,15 +31,19 @@ export default function CategoryQuizCard(props: any) {
     const [isUserQuizAnswer, setIsUserQuizAnswer] = useState("");
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
+        // let csrfToken: string | null = document.head.querySelector(
+        //     'meta[name="csrf-token"]'
+        // ).content;
+        const csrfMetaTag: Element | null = document.head.querySelector(
+            'meta[name="csrf-token"]'
+        );
         try {
-            const csrfToken: string | null = document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute("content");
+            console.log(csrfMetaTag.content);
             const res = await fetch(`/quiz/answer/${id}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": `${csrfToken}`,
+                    "X-CSRF-TOKEN": `${csrfMetaTag.content}`,
                 },
                 body: JSON.stringify(isChoiceClick),
             });
@@ -47,10 +51,25 @@ export default function CategoryQuizCard(props: any) {
                 const data = await res.json();
                 setIsUserQuizAnswer(data.isTrue);
                 console.log("send-ok", data);
+            } else if (res.status === 419) {
+                alert("ページをリロードしてください");
             } else {
                 console.log("error");
             }
-        } catch (error) {}
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const [showQuizzes, setShowQuizzes] = useState(quizzes);
+    const fetchQuizzes = async () => {
+        const res = await fetch(`/quiz/new/${categoryID}`, {
+            method: "GET",
+        });
+        if (res.ok) {
+            const data = await res.json();
+            console.log(data);
+            setShowQuizzes(data);
+        }
     };
     return (
         <div className="mt-10">
@@ -63,7 +82,11 @@ export default function CategoryQuizCard(props: any) {
                                     ? "duration-300 bg-black opacity-90 w-screen h-screen fixed left-0 top-0 cursor-pointer"
                                     : "duration-500 bg-black opacity-0 w-screen h-screen fixed left-0 top-0 -z-10"
                             }
-                            onClick={() => handleQuizShow(-1)}
+                            onClick={() => {
+                                handleQuizShow(-1);
+                                setIsUserQuizAnswer("");
+                                fetchQuizzes();
+                            }}
                         ></div>
                         <p className="font-bold text-[16px] text-limit">
                             {index + 1} {quiz.quiz}
@@ -107,7 +130,8 @@ export default function CategoryQuizCard(props: any) {
                                 <>
                                     {quiz.is_user_true.some(
                                         (ob: any) => ob.id === user.id
-                                    ) === true ? (
+                                    ) === true ||
+                                    isUserQuizAnswer === "true" ? (
                                         <div
                                             className={
                                                 choice.isTrue === 0
