@@ -35,22 +35,8 @@ class QuizSeeder extends Seeder
             'isToday' => false,
         ]);
         DB::table('quizzes')->insert([
-            'quiz' => '小菅海斗の好きなスポーツはなんでしょう？',
-            'answer' => 'バスケ部でした！！',
-            'user_id' => 1,
-            'created_at' => now(),
-            'isToday' => false,
-        ]);
-        DB::table('quizzes')->insert([
-            'quiz' => '小菅海斗の好きなスポーツはなんでしょう？',
-            'answer' => 'バスケ部でした！！',
-            'user_id' => 1,
-            'created_at' => now(),
-            'isToday' => false,
-        ]);
-        DB::table('quizzes')->insert([
-            'quiz' => '小菅海斗の好きなスポーツはなんでしょう？',
-            'answer' => 'バスケ部でした！！',
+            'quiz' => '小菅海斗の好きな映画はなんでしょう？',
+            'answer' => 'どうも！',
             'user_id' => 1,
             'created_at' => now(),
             'isToday' => false,

@@ -12,7 +12,6 @@ class Quiz extends Model
     {
         return $this->belongsTo(User::class);
     }
-
     public function isUserTrue()
     {
         return $this->belongsToMany(User::class, 'user_quiz', 'quiz_id', 'user_id');

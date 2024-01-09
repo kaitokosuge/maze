@@ -31,9 +31,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/top', [QuizController::class, 'index']);
-Route::get('/quiz/{category}', [QuizController::class, 'showCategory']);
 
 Route::middleware('auth')->group(function () {
+    Route::get('/quiz/{category}', [QuizController::class, 'showCategory']);
+    Route::post('/quiz/answer/{quiz}',[QuizController::class,'quizTry']);
+
+    Route::get('/quiz/new/{category}',[QuizController::class,'quizGet']);
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

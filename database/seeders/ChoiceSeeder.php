@@ -73,5 +73,20 @@ class ChoiceSeeder extends Seeder
             'isTrue' => false,
             'quiz_id' => 3,
         ]);
+        DB::table('choices')->insert([
+            'choice' => 'mission impossible',
+            'isTrue' => true,
+            'quiz_id' => 4,
+        ]);
+        DB::table('choices')->insert([
+            'choice' => 'jurassic word',
+            'isTrue' => true,
+            'quiz_id' => 4,
+        ]);
+        DB::table('choices')->insert([
+            'choice' => 'avater',
+            'isTrue' => true,
+            'quiz_id' => 4,
+        ]);
     }
 }
