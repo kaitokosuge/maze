@@ -1,9 +1,12 @@
 import React from "react";
+import AdminCalender from "./Presentation/AdminCalender";
+import AdminForm from "./Presentation/AdminForm";
 
 export default function AdminContainer() {
     return (
         <div>
-            <p>admin</p>
+            <AdminCalender />
+            <AdminForm />
         </div>
     );
 }

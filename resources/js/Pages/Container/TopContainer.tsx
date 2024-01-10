@@ -7,12 +7,18 @@ export default function TopContainer({
     user,
     quizzes,
     categories,
-}: TopContainerProps) {
+    todayQuiz,
+}: any) {
     const [stateQuizzes, setQuizzes] = useState(quizzes);
 
     return (
         <>
-            <Page user={user} quizzes={stateQuizzes} categories={categories} />
+            <Page
+                user={user}
+                todayQuiz={todayQuiz}
+                quizzes={stateQuizzes}
+                categories={categories}
+            />
         </>
     );
 }

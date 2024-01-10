@@ -1,11 +1,12 @@
-import { Quizzes } from "@/types/Data/quiz";
+import { Quiz, Quizzes } from "@/types/Data/quiz";
 import React from "react";
 
-export default function Main({ quizzes }: Quizzes) {
+export default function Main({ quizzes, todayQuiz }: any) {
     console.log("main quiz", quizzes);
     return (
         <div className="bg-[#00142C] pt-[100px]">
-            {quizzes.map((quiz) => (
+            {todayQuiz.quiz}
+            {quizzes.map((quiz: Quiz) => (
                 <>
                     <p>{quiz.quiz}</p>
                     <div>

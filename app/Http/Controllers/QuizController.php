@@ -16,9 +16,8 @@ class QuizController extends Controller
         $todayQuiz = $quiz->with("categories")->with("choices")->with("user")->orderBy('id','desc')->get()->filter(function ($item) {
             return $item->isToday === 1;
         })->first();
-        dd($todayQuiz);
         $user = \Auth::user();
-        return Inertia::render('Container/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(), 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->get()]);
+        return Inertia::render('Container/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->get()]);
     }
 
     public function showCategory(Category $category, Quiz $quiz)
