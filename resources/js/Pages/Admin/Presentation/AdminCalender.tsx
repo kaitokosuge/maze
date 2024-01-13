@@ -4,7 +4,7 @@ export default function AdminCalender() {
     return (
         <div className="mt-[100px] ">
             <h2>｜Today's Quiz schedule</h2>
-            <div className="border border-pink-900 mt-[20px] rounded-[20px] p-5 flex justify-between">
+            <div className="border border-pink-950 mt-[20px] rounded-[20px] p-5 flex justify-between">
                 <div className="w-[12%] border-r border-pink-950">
                     <p className="font-bold text-gray-300 text-4xl text-center">
                         1/15

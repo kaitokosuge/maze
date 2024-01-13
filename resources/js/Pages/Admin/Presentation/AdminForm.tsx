@@ -8,7 +8,7 @@ export default function AdminForm() {
         setIsTodayTab(num);
     };
     return (
-        <div>
+        <div className="pb-[100px]">
             <div className="mt-[50px]">
                 <h2>｜Quiz making area</h2>
             </div>
@@ -34,7 +34,7 @@ export default function AdminForm() {
                     Normal
                 </div>
             </div>
-            <div className="bg-[#001E41]">
+            <div className="bg-[#001E41] p-10 rounded-b-2xl rounded-r-2xl pb-[100px]">
                 {isTodayTab === 0 ? (
                     <>
                         <AdminFormToday />
