@@ -13,8 +13,11 @@ class QuizController extends Controller
 {
     public function index(User $user, Quiz $quiz, Category $category)
     {
+        $todayQuiz = $quiz->with("categories")->with("choices")->with("user")->orderBy('id','desc')->get()->filter(function ($item) {
+            return $item->isToday === 1;
+        })->first();
         $user = \Auth::user();
-        return Inertia::render('Container/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(), 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->get()]);
+        return Inertia::render('Container/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->get()]);
     }
 
     public function showCategory(Category $category, Quiz $quiz)
@@ -23,9 +26,9 @@ class QuizController extends Controller
         $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
             $query->where('id', $category->id);
         })->with("choices")->with('user')->with('isUserTrue')->get();
-        //dd($categoryQuiz);
         return Inertia::render('Category/CategoryContainer')->with(['user'=>$user,'category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
+    
     public function quizTry(Request $requests, Quiz $quiz , User $user)
     {
         $tryArray = $requests->toArray();
@@ -34,15 +37,12 @@ class QuizController extends Controller
             array_push($answerArray,$choice->id);
         }
         if(count($answerArray) === count($tryArray) && array_diff($answerArray, $tryArray) === array_diff($tryArray, $answerArray)){
-            //dd('ok');
-            //return ['isTrue' => 'true'];
             $user = \Auth::user();
             $quiz->isUserTrue()->attach($user->id);
             return response()->json([
                 'isTrue' => 'true',
             ]);
         }else{
-            //dd('no');
             return ['isTrue' => 'false'];
         }
     }

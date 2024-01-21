@@ -29,21 +29,25 @@ class CategorySeeder extends Seeder
             'category' => 'Laravel',
             'category_desc' => 'JavaScript (JS) is a lightweight, interpreted or runtime-compiled programming language with first-class functions. It is known as the most commonly used scripting language for web pages and is also used in many non-browser environments, such as Node.js, Apache CouchDB, and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language that supports object-oriented, imperative, and declarative (e.g. functional programming) styles.',
             'category_img' => 'https://kaiton-blog.space/img/tonr.png',
+            'category_color' => 'laravel-color'
         ]);
         DB::table('categories')->insert([
             'category' => 'PHP',
             'category_desc' => 'JavaScript (JS) is a lightweight, interpreted or runtime-compiled programming language with first-class functions. It is known as the most commonly used scripting language for web pages and is also used in many non-browser environments, such as Node.js, Apache CouchDB, and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language that supports object-oriented, imperative, and declarative (e.g. functional programming) styles.',
             'category_img' => 'https://kaiton-blog.space/img/tonp.png',
+            'category_color' => 'php-color'
         ]);
         DB::table('categories')->insert([
             'category' => 'Next.js',
             'category_desc' => 'JavaScript (JS) is a lightweight, interpreted or runtime-compiled programming language with first-class functions. It is known as the most commonly used scripting language for web pages and is also used in many non-browser environments, such as Node.js, Apache CouchDB, and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language that supports object-oriented, imperative, and declarative (e.g. functional programming) styles.',
             'category_img' => 'https://kaiton-blog.space/img/ton.png',
+            'category_color' => 'next-color'
         ]);
         DB::table('categories')->insert([
             'category' => 'Python',
             'category_desc' => 'JavaScript (JS) is a lightweight, interpreted or runtime-compiled programming language with first-class functions. It is known as the most commonly used scripting language for web pages and is also used in many non-browser environments, such as Node.js, Apache CouchDB, and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language that supports object-oriented, imperative, and declarative (e.g. functional programming) styles.',
             'category_img' => 'https://kaiton-blog.space/img/pen.png',
+            'category_color' => 'python-color'
         ]);
     }
 }

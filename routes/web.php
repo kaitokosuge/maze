@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
 use Illuminate\Foundation\Application;
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/quiz/answer/{quiz}',[QuizController::class,'quizTry']);
 
     Route::get('/quiz/new/{category}',[QuizController::class,'quizGet']);
+
+    Route::get('/mazer',[AdminController::class,'index']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

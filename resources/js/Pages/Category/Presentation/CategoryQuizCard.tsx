@@ -101,8 +101,8 @@ export default function CategoryQuizCard(props: any) {
                             {quiz.is_user_true.some(
                                 (ob: User) => ob.id === user.id
                             ) === true ? (
-                                <p className="font-bold text-[#00FFA3]">
-                                    done!!!
+                                <p className="font-bold text-[#00FFA3] duration-700">
+                                    done ！！
                                 </p>
                             ) : (
                                 <p className="font-bold text-[#1b5841]">
@@ -136,7 +136,7 @@ export default function CategoryQuizCard(props: any) {
                                             className={
                                                 choice.isTrue === 0
                                                     ? "rounded-[10px] border border-gray-600 p-5 cursor-pointer"
-                                                    : "before:content('正解') rounded-[10px] bg-[#00ad6e] border border-gray-600 p-5 cursor-pointer"
+                                                    : "before:content('正解') rounded-[10px] bg-[#00ad6e] p-5 cursor-pointer duration-300"
                                             }
                                         >
                                             <p key={choice.id}>
@@ -162,8 +162,8 @@ export default function CategoryQuizCard(props: any) {
                                                 isChoiceClick.some(
                                                     (num) => num === choice.id
                                                 ) === true
-                                                    ? "active:scale-90 bg-[#000238] duration-300 rounded-[10px] border border-gray-600 p-5 cursor-pointer"
-                                                    : "active:scale-90 hover:bg-[#1a0a2f] duration-300 rounded-[10px] border border-gray-600 p-5 cursor-pointer"
+                                                    ? "active:scale-90 bg-[#03063e] duration-300 rounded-[10px] border border-gray-600 p-5 cursor-pointer"
+                                                    : "active:scale-90 hover:bg-[#340a38] duration-300 rounded-[10px] border border-gray-600 p-5 cursor-pointer"
                                             }
                                         >
                                             <span className="mr-5">
@@ -213,7 +213,7 @@ export default function CategoryQuizCard(props: any) {
                             <div className="">
                                 {isUserQuizAnswer === "true" ? (
                                     <div>
-                                        <p className="text-[26px] font-bold text-[#00FFA3]">
+                                        <p className="text-[26px] font-bold text-[#00FFA3] duration-700">
                                             正解です！！！
                                         </p>
                                         <p className="mt-1">{quiz.answer}</p>
