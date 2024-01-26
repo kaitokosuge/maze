@@ -9,12 +9,16 @@ export default function AdminFormToday(props: any) {
             console.log(error);
         }
     };
+    //const [isClickDay, setIsClickDay] = useState<boolean>();
     const [postQuiz, setPostQuiz] = useState({
         quiz: "",
         day: "",
     });
     const handleClickDay = (e: any) => {
-        console.log(e.target.id);
+        setPostQuiz({
+            ...postQuiz,
+            day: e.target.id,
+        });
     };
     const handleChangeTodayQuiz = () => {};
     const handleSubmitTodayQuiz = () => {};
@@ -33,14 +37,19 @@ export default function AdminFormToday(props: any) {
                     </button>
                 </div>
                 <p className="font-bold text-[20px] mt-[50px]">
-                    Day<span className="font-normal text-[10px]"> 日時</span>
+                    Day
+                    <span className="font-normal text-[10px]"> 公開日時</span>
                 </p>
                 <div className="mt-[20px] flex">
                     {days.map((day: string) => (
                         <div
                             id={day}
                             onClick={handleClickDay}
-                            className="text-xl font-bold p-5 border border-gray-500 duration-300 cursor-pointer hover:bg-[#340a38]"
+                            className={
+                                day === postQuiz.day
+                                    ? "text-xl font-bold p-5 border border-gray-500 duration-300 cursor-pointer bg-[#03063e]"
+                                    : "text-xl font-bold p-5 border border-gray-500 duration-300 cursor-pointer hover:bg-[#340a38]"
+                            }
                         >
                             {day}
                         </div>
