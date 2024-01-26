@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function AdminFormToday() {
+export default function AdminFormToday(props: any) {
+    const { days } = props;
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
@@ -8,6 +9,15 @@ export default function AdminFormToday() {
             console.log(error);
         }
     };
+    const [postQuiz, setPostQuiz] = useState({
+        quiz: "",
+        day: "",
+    });
+    const handleClickDay = (e: any) => {
+        console.log(e.target.id);
+    };
+    const handleChangeTodayQuiz = () => {};
+    const handleSubmitTodayQuiz = () => {};
     return (
         <>
             <form onSubmit={handleSubmit} className="mt-[0px]">
@@ -15,7 +25,10 @@ export default function AdminFormToday() {
                     <div className="font-bold text-xl text-gray-300">
                         Today's quiz を作成
                     </div>
-                    <button className="block rounded-[10px] bg-[#2522e6] px-[30px] py-[10px] font-bold">
+                    <button
+                        onClick={handleSubmitTodayQuiz}
+                        className="block rounded-[10px] bg-[#2522e6] px-[30px] py-[10px] font-bold"
+                    >
                         保存
                     </button>
                 </div>
@@ -23,30 +36,15 @@ export default function AdminFormToday() {
                     Day<span className="font-normal text-[10px]"> 日時</span>
                 </p>
                 <div className="mt-[20px] flex">
-                    <div className="text-xl font-bold p-5 border border-gray-500">
-                        1/15
-                    </div>
-                    <div className="text-xl font-bold p-5 border border-gray-500">
-                        1/15
-                    </div>
-                    <div className="text-xl font-bold p-5 border border-gray-500">
-                        1/15
-                    </div>
-                    <div className="text-xl font-bold p-5 border border-gray-500">
-                        1/15
-                    </div>
-                    <div className="text-xl font-bold p-5 border border-gray-500">
-                        1/15
-                    </div>
-                    <div className="text-xl font-bold p-5 border border-gray-500">
-                        1/15
-                    </div>
-                    <div className="text-xl font-bold p-5 border border-gray-500">
-                        1/15
-                    </div>
-                    <div className="text-xl font-bold p-5 border border-gray-500">
-                        1/15
-                    </div>
+                    {days.map((day: string) => (
+                        <div
+                            id={day}
+                            onClick={handleClickDay}
+                            className="text-xl font-bold p-5 border border-gray-500 duration-300 cursor-pointer hover:bg-[#340a38]"
+                        >
+                            {day}
+                        </div>
+                    ))}
                 </div>
                 <label className="font-bold text-[20px] mt-[50px] block">
                     quiz

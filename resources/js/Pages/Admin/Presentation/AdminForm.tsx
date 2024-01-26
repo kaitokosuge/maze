@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import AdminFormNormal from "./AdminFormNormal";
 import AdminFormToday from "./AdminFormToday";
 
-export default function AdminForm() {
+export default function AdminForm(props: any) {
+    const { days } = props;
     const [isTodayTab, setIsTodayTab] = useState<number>(0);
     const handleTabClick = (num: number) => {
         setIsTodayTab(num);
@@ -37,7 +38,7 @@ export default function AdminForm() {
             <div className="bg-[#001E41] p-10 rounded-b-2xl rounded-r-2xl pb-[100px]">
                 {isTodayTab === 0 ? (
                     <>
-                        <AdminFormToday />
+                        <AdminFormToday days={days} />
                     </>
                 ) : (
                     <>
