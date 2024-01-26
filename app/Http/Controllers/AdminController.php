@@ -15,7 +15,7 @@ class AdminController extends Controller
         $today = Carbon::now();
         $days = [];
         for($i = 0;$i<9;$i++){
-            $days[] = $today->copy()->addDays($i)->format('m/d');
+            $days[] = $today->copy()->addDays($i)->toDateString();
         }
         //dd($days);
         return Inertia::render('Admin/AdminContainer')->with(['categories' => $category->get(),'days' => $days]); 
