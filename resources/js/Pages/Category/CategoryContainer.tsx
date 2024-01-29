@@ -19,10 +19,7 @@ export default function CategoryContainer(props: any) {
                 <Header />
                 <div className="pt-[100px] pb-[100px] pl-[40px] pr-[50px]">
                     <div className="flex">
-                        <img
-                            src={category.category_img}
-                            className="w-[100px] h-[100px]"
-                        />
+                        {category.category_img}
                         <div className="ml-5">
                             <h2 className="font-bold text-4xl">
                                 {category.category}

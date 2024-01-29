@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function AdminFormToday(props: any) {
-    const { days } = props;
+    const { days, categories } = props;
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
@@ -13,6 +13,8 @@ export default function AdminFormToday(props: any) {
     const [postQuiz, setPostQuiz] = useState({
         quiz: "",
         day: "",
+        category: [],
+        answer: "",
     });
     const handleClickDay = (e: any) => {
         setPostQuiz({
@@ -20,7 +22,40 @@ export default function AdminFormToday(props: any) {
             day: e.target.id,
         });
     };
-    const handleChangeTodayQuiz = () => {};
+
+    const handleChangeTodayQuiz = (e: any) => {
+        if (e.target.name === "category") {
+            console.log(e);
+            // setPostQuiz({
+            //     ...postQuiz,
+            //     [e.target.name]: [...postQuiz.category, e.target.value],
+            // });
+            setPostQuiz((prev) => {
+                //console.log("prev", prev);
+                return {
+                    ...prev,
+                    [e.target.name]: [
+                        ...postQuiz.category,
+                        Number(e.target.value),
+                    ],
+                };
+            });
+        } else {
+            setPostQuiz({
+                ...postQuiz,
+                [e.target.name]: e.target.value,
+            });
+        }
+    };
+    console.log("postquiz", postQuiz);
+    console.log(Number("7"));
+    const handleClickCategory = (e: any) => {
+        setPostQuiz({
+            ...postQuiz,
+            category: e.target.id,
+        });
+    };
+    console.log(categories);
     const handleSubmitTodayQuiz = () => {};
     return (
         <>
@@ -60,6 +95,7 @@ export default function AdminFormToday(props: any) {
                     <span className="font-normal text-[10px]"> クイズ</span>
                 </label>
                 <textarea
+                    onChange={handleChangeTodayQuiz}
                     name="quiz"
                     className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                 ></textarea>
@@ -71,38 +107,39 @@ export default function AdminFormToday(props: any) {
                     </span>
                 </label>
                 <div className="">
-                    <span>1</span>
+                    <span className="rounded-[20px] border">1</span>
                     <input
                         type="text"
                         className="mt-[20px] p-5 border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                     />
-                    <span className="w-[50px] h-[50px]">○</span>
+                    <select className=" bg-inherit text-white rounded-[10px]">
+                        <option className="text-white" value="◯">
+                            ○
+                        </option>
+                        <option className="text-white" value="false">
+                            ×
+                        </option>
+                    </select>
                 </div>
+                <div className="cursor-pointer">add</div>
                 <p className="font-bold text-[20px] mt-[50px] block">
                     categories
                     <span className="font-normal text-[10px]"> カテゴリー</span>
                 </p>
                 <div className="flex mt-[20px]">
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="category"
-                            id="JavaScript"
-                        />
-                        <label htmlFor="JavaScript" className="text-yellow-500">
-                            JavaScript
-                        </label>
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="category"
-                            id="JavaScript"
-                        />
-                        <label htmlFor="JavaScript" className="text-blue-500">
-                            Python
-                        </label>
-                    </div>
+                    {categories.map((category: any) => (
+                        <div key={category.id}>
+                            <input
+                                onChange={handleChangeTodayQuiz}
+                                type="checkbox"
+                                name="category"
+                                value={category.id}
+                            />
+                            <label className="text-white">
+                                {category.category}
+                            </label>
+                        </div>
+                    ))}
                 </div>
                 <div className="">
                     <p className="font-bold text-[20px] mt-[50px] block">
@@ -110,6 +147,7 @@ export default function AdminFormToday(props: any) {
                         <span className="font-normal text-[10px]"> 解説</span>
                     </p>
                     <textarea
+                        onChange={handleChangeTodayQuiz}
                         name="answer"
                         className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                     ></textarea>
