@@ -14,6 +14,7 @@ export default function AdminFormToday(props: any) {
         quiz: "",
         day: "",
         category: [],
+        choices: [],
         answer: "",
     });
     const handleClickDay = (e: any) => {
@@ -22,24 +23,31 @@ export default function AdminFormToday(props: any) {
             day: e.target.id,
         });
     };
+    const [choices, setChoices] = useState([0, 1]);
 
     const handleChangeTodayQuiz = (e: any) => {
         if (e.target.name === "category") {
-            console.log(e);
-            // setPostQuiz({
-            //     ...postQuiz,
-            //     [e.target.name]: [...postQuiz.category, e.target.value],
-            // });
-            setPostQuiz((prev) => {
-                //console.log("prev", prev);
-                return {
-                    ...prev,
-                    [e.target.name]: [
-                        ...postQuiz.category,
-                        Number(e.target.value),
-                    ],
-                };
-            });
+            if (e.target.checked) {
+                setPostQuiz((prev) => {
+                    return {
+                        ...prev,
+                        [e.target.name]: [
+                            ...postQuiz.category,
+                            Number(e.target.value),
+                        ],
+                    };
+                });
+            } else {
+                setPostQuiz((prev) => {
+                    console.log("done");
+                    return {
+                        ...prev,
+                        [e.target.name]: [...postQuiz.category].filter(
+                            (value) => value !== Number(e.target.value)
+                        ),
+                    };
+                });
+            }
         } else {
             setPostQuiz({
                 ...postQuiz,
@@ -48,14 +56,6 @@ export default function AdminFormToday(props: any) {
         }
     };
     console.log("postquiz", postQuiz);
-    console.log(Number("7"));
-    const handleClickCategory = (e: any) => {
-        setPostQuiz({
-            ...postQuiz,
-            category: e.target.id,
-        });
-    };
-    console.log(categories);
     const handleSubmitTodayQuiz = () => {};
     return (
         <>
@@ -107,19 +107,23 @@ export default function AdminFormToday(props: any) {
                     </span>
                 </label>
                 <div className="">
-                    <span className="rounded-[20px] border">1</span>
-                    <input
-                        type="text"
-                        className="mt-[20px] p-5 border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
-                    />
-                    <select className=" bg-inherit text-white rounded-[10px]">
-                        <option className="text-white" value="◯">
-                            ○
-                        </option>
-                        <option className="text-white" value="false">
-                            ×
-                        </option>
-                    </select>
+                    {choices.map((choice, index) => (
+                        <>
+                            <span className="rounded-[20px]">{index + 1}</span>
+                            <input
+                                type="text"
+                                className="mt-[20px] p-5 border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
+                            />
+                            <select className=" bg-inherit text-white rounded-[10px]">
+                                <option className="text-white" value="◯">
+                                    ○
+                                </option>
+                                <option className="text-white" value="false">
+                                    ×
+                                </option>
+                            </select>
+                        </>
+                    ))}
                 </div>
                 <div className="cursor-pointer">add</div>
                 <p className="font-bold text-[20px] mt-[50px] block">
