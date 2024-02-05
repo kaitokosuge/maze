@@ -4,6 +4,7 @@ import Sidebar from "../Presentation/Sidebar";
 import { Quizzes } from "@/types/Data/quiz";
 import Header from "../Presentation/Header";
 import CategoryQuizCard from "./Presentation/CategoryQuizCard";
+import parse from "html-react-parser";
 
 export default function CategoryContainer(props: any) {
     const { category, quizzes, categories, user } = props;
@@ -18,11 +19,13 @@ export default function CategoryContainer(props: any) {
             >
                 <Header />
                 <div className="pt-[100px] pb-[100px] pl-[40px] pr-[50px]">
-                    <div className="flex">
-                        <img
-                            src={category.category_img}
-                            className="w-[100px] h-[100px]"
-                        />
+                    <div className="flex items-start">
+                        <div className="w-[100px] h-[100px]">
+                            <>
+                                <img src={`${category.category_img}`} />
+                                {console.log(category.category_img)}
+                            </>
+                        </div>
                         <div className="ml-5">
                             <h2 className="font-bold text-4xl">
                                 {category.category}

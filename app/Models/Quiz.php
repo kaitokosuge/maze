@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Quiz extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'quiz',
+        'isToday',
+        'answer',
+        'showDay',
+        'image',
+        'user_id',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);

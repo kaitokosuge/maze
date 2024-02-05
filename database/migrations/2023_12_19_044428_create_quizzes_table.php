@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('quiz');
             $table->boolean('isToday');
             $table->text('answer');
+            $table->string('showDay')->nullable();
             $table->text('image')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

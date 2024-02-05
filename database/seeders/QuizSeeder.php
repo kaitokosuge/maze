@@ -19,6 +19,7 @@ class QuizSeeder extends Seeder
             'user_id' => 1,
             'created_at' => now(),
             'isToday' => true,
+            'showDay' => '2024-02-01'
         ]);
         DB::table('quizzes')->insert([
             'quiz' => '小菅海斗の好きな食べ物はなんでしょう？',
@@ -47,6 +48,7 @@ class QuizSeeder extends Seeder
             'user_id' => 1,
             'created_at' => now(),
             'isToday' => true,
+            'showDay' => '2024-02-01'
         ]);
     }
 }
