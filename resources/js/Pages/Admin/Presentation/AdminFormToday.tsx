@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { count } from "console";
+import { v4 as uuidv4 } from "uuid";
+import React, { useEffect, useState } from "react";
 
 export default function AdminFormToday(props: any) {
     const { days, categories } = props;
@@ -9,12 +11,21 @@ export default function AdminFormToday(props: any) {
             console.log(error);
         }
     };
-    //const [isClickDay, setIsClickDay] = useState<boolean>();
-    const [postQuiz, setPostQuiz] = useState({
+    const [choices, handleChoices] = useState<Choices[]>([
+        { uuid: uuidv4(), choice: "", istrue: "true" },
+    ]);
+    interface PostQuiz {
+        quiz: string;
+        day: string;
+        category: number[];
+        choices: Choices[];
+        answer: string;
+    }
+    const [postQuiz, setPostQuiz] = useState<PostQuiz>({
         quiz: "",
         day: "",
         category: [],
-        choices: [],
+        choices: [{ uuid: uuidv4(), choice: "", istrue: "true" }],
         answer: "",
     });
     const handleClickDay = (e: any) => {
@@ -23,9 +34,29 @@ export default function AdminFormToday(props: any) {
             day: e.target.id,
         });
     };
-    const [choices, setChoices] = useState([0, 1]);
+    interface Choices {
+        uuid: string;
+        choice: string;
+        istrue: string;
+    }
 
-    const handleChangeTodayQuiz = (e: any) => {
+    const handleClickAddChoice = () => {
+        const newChoice = { uuid: uuidv4(), choice: "", istrue: "true" };
+        console.log("newChoice", newChoice);
+        setPostQuiz({
+            ...postQuiz,
+            choices: [...postQuiz.choices, newChoice],
+        });
+        console.log("postQuiz", postQuiz);
+    };
+
+    const handleClickDeletechoice = (id: string) => {
+        setPostQuiz({
+            ...postQuiz,
+            choices: postQuiz.choices.filter((choice) => choice.uuid !== id),
+        });
+    };
+    const handleChangeTodayQuiz = (e: any, id?: string) => {
         if (e.target.name === "category") {
             if (e.target.checked) {
                 setPostQuiz((prev) => {
@@ -39,7 +70,6 @@ export default function AdminFormToday(props: any) {
                 });
             } else {
                 setPostQuiz((prev) => {
-                    console.log("done");
                     return {
                         ...prev,
                         [e.target.name]: [...postQuiz.category].filter(
@@ -48,6 +78,28 @@ export default function AdminFormToday(props: any) {
                     };
                 });
             }
+        } else if (e.target.name === "choice" || e.target.name === "istrue") {
+            console.log("choicess", choices);
+            console.log(e.target.value);
+            setPostQuiz((prev) => ({
+                ...prev,
+                choices: prev.choices.map((choiceObj) => {
+                    if (choiceObj.uuid === id) {
+                        if (e.target.name === "choice") {
+                            return {
+                                ...choiceObj,
+                                choice: e.target.value,
+                            };
+                        } else if (e.target.name === "istrue") {
+                            return {
+                                ...choiceObj,
+                                istrue: e.target.value,
+                            };
+                        }
+                    }
+                    return choiceObj;
+                }),
+            }));
         } else {
             setPostQuiz({
                 ...postQuiz,
@@ -107,25 +159,45 @@ export default function AdminFormToday(props: any) {
                     </span>
                 </label>
                 <div className="">
-                    {choices.map((choice, index) => (
-                        <>
-                            <span className="rounded-[20px]">{index + 1}</span>
+                    {postQuiz.choices.map((choiceEl, index) => (
+                        <div key={choiceEl.uuid}>
+                            <div>{index + 1}</div>
                             <input
-                                type="text"
                                 className="mt-[20px] p-5 border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
+                                type="text"
+                                name="choice"
+                                onChange={(e) => {
+                                    handleChangeTodayQuiz(e, choiceEl.uuid);
+                                }}
                             />
-                            <select className=" bg-inherit text-white rounded-[10px]">
-                                <option className="text-white" value="◯">
-                                    ○
-                                </option>
-                                <option className="text-white" value="false">
-                                    ×
-                                </option>
+                            <select
+                                onChange={(e) =>
+                                    handleChangeTodayQuiz(e, choiceEl.uuid)
+                                }
+                                className="bg-transparent"
+                                name="istrue"
+                            >
+                                <option value="true">○</option>
+                                <option value="false">×</option>
                             </select>
-                        </>
+                            {postQuiz.choices.length > 1 && (
+                                <button
+                                    onClick={() =>
+                                        handleClickDeletechoice(choiceEl.uuid)
+                                    }
+                                >
+                                    delete
+                                </button>
+                            )}
+                        </div>
                     ))}
                 </div>
-                <div className="cursor-pointer">add</div>
+                <div
+                    onClick={handleClickAddChoice}
+                    className="w-[200px] cursor-pointer"
+                >
+                    add
+                </div>
                 <p className="font-bold text-[20px] mt-[50px] block">
                     categories
                     <span className="font-normal text-[10px]"> カテゴリー</span>
