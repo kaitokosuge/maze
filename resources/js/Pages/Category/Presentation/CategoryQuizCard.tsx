@@ -38,7 +38,6 @@ export default function CategoryQuizCard(props: any) {
             'meta[name="csrf-token"]'
         );
         try {
-            console.log(csrfMetaTag.content);
             const res = await fetch(`/quiz/answer/${id}`, {
                 method: "POST",
                 headers: {

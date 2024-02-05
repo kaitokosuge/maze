@@ -6,7 +6,22 @@ export default function AdminFormToday(props: any) {
     const { days, categories } = props;
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+
         try {
+            const csrf_token = document.head.querySelector(
+                'meta[name="csrf-token"]'
+            ).content;
+            const res = await fetch("/mazer/store/quiz", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": csrf_token,
+                },
+                body: JSON.stringify(postQuiz),
+            });
+            if (res.ok) {
+                console.log("postQuiz", postQuiz);
+            }
         } catch (error) {
             console.log(error);
         }

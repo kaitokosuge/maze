@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/quiz/new/{category}',[QuizController::class,'quizGet']);
 
     Route::get('/mazer',[AdminController::class,'index']);
+    Route::post("/mazer/store/quiz",[AdminController::class,'storeQuiz']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
