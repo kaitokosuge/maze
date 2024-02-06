@@ -4,7 +4,7 @@ import TopNews from "./TopNews";
 
 export default function TopMedia() {
     return (
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-5">
             <TopNews />
             <TopMazerBtn />
         </div>

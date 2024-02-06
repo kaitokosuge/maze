@@ -12,14 +12,22 @@ use Carbon\Carbon;
 
 class AdminController extends Controller
 {
-    public function index(Category $category)
+    public function index(Category $category,Quiz $quiz)
     {
         $today = Carbon::now();
         $days = [];
         for($i = 0;$i<9;$i++){
             $days[] = $today->copy()->addDays($i)->toDateString();
         }
-        return Inertia::render('Admin/AdminContainer')->with(['categories' => $category->get(),'days' => $days]); 
+        $todayQuiz = $quiz->with("categories")->with("choices")->with("user")->orderBy('id','desc')->with('isUserTrue')->get()->filter(function ($item) {
+            return $item->isToday === 1;
+        })->first();
+        $user=\Auth::user();
+        if($user->isAdmin === 1){
+            return Inertia::render('Admin/AdminContainer')->with(['categories' => $category->get(),'days' => $days]); 
+        }else{
+            return Inertia::render('Top/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->get()]);
+        };
     } 
     public function toBoolean(string $str) {
         return ($str === 'true');
@@ -35,7 +43,7 @@ class AdminController extends Controller
         foreach($request->choices as $reqChoice){
             $choice = new Choice();
             $choice->choice = $reqChoice["choice"];
-            $choice->isTrue = boolval($reqChoice["istrue"]);
+            $choice->isTrue = filter_var($reqChoice["istrue"], FILTER_VALIDATE_BOOLEAN);
             $choice->quiz_id = $quiz->id;
             $choice->save();
         }

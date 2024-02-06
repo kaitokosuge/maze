@@ -21,7 +21,14 @@ export default function AdminFormToday(props: any) {
                 body: JSON.stringify(postQuiz),
             });
             if (res.ok) {
-                console.log("postQuiz", postQuiz);
+                console.log("postQuizzzzz", postQuiz);
+                setPostQuiz({
+                    quiz: "",
+                    day: "",
+                    category: [],
+                    choices: [{ uuid: uuidv4(), choice: "", istrue: "true" }],
+                    answer: "",
+                });
             }
         } catch (error) {
             console.log(error);

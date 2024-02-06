@@ -2,9 +2,11 @@ import { Quiz, Quizzes } from "@/types/Data/quiz";
 import React, { useState } from "react";
 import TopAllQuiz from "./TopAllQuiz";
 import TopMedia from "./TopMedia";
+import parse from "html-react-parser";
 
-export default function Main({ quizzes, todayQuiz, user }: any) {
+export default function TopMain({ quizzes, todayQuiz, user }: any) {
     console.log("main quiz", quizzes);
+    console.log("topquiz", todayQuiz);
     const [isUserQuizAnswer, setIsUserQuizAnswer] = useState("");
     const [isChoiceClick, setIsChoiceClick] = useState<number[]>([]);
     const handleChangeQuizData = (e: any, choiceId: number) => {
@@ -46,8 +48,27 @@ export default function Main({ quizzes, todayQuiz, user }: any) {
     };
     return (
         <div className="bg-[#00142C] pt-[100px] pb-[100px] pl-[40px] pr-[50px]">
-            <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
-                <p>{todayQuiz.quiz}</p>
+            <div className="px-10 py-[30px] bg-[#001E41] rounded-[20px] mt-5">
+                <div className="flex items-center">
+                    <p className="font-bold text-[30px] text-gray-400">
+                        Today's Quiz
+                    </p>
+                    <div className="ml-10 flex">
+                        {todayQuiz.categories.map((category: any) => (
+                            <>
+                                <div className="font-bold text-[12px] ml-5 flex items-center">
+                                    <div className="w-[15px] h-[15px]">
+                                        {parse(category.category_img)}
+                                    </div>
+                                    <p className="ml-1 text-gray-400">
+                                        {category.category}
+                                    </p>
+                                </div>
+                            </>
+                        ))}
+                    </div>
+                </div>
+                <p className="font-bold mt-5">{todayQuiz.quiz}</p>
                 <div className="mt-10 grid grid-cols-3 gap-5">
                     {todayQuiz.choices.map((choice: any, index: number) => (
                         <>
@@ -154,7 +175,7 @@ export default function Main({ quizzes, todayQuiz, user }: any) {
                 </div>
             </div>
             <TopMedia />
-            <TopAllQuiz quizzes={quizzes} />
+            <TopAllQuiz quizzes={quizzes} user={user} />
         </div>
     );
 }

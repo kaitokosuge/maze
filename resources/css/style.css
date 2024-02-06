@@ -39,6 +39,9 @@ body {
 .bg-colorfull-200 {
     background: linear-gradient(#001432, #002f32);
 }
+.bg-colorfull-300 {
+    background: linear-gradient(#002d62, #00686f);
+}
 .bg-c-none {
     background-color: rgba(0, 0, 0, 0) !important;
 }

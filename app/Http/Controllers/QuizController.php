@@ -17,7 +17,7 @@ class QuizController extends Controller
             return $item->isToday === 1;
         })->first();
         $user = \Auth::user();
-        return Inertia::render('Top/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->get()]);
+        return Inertia::render('Top/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->get()]);
     }
 
     public function showCategory(Category $category, Quiz $quiz)
@@ -45,6 +45,14 @@ class QuizController extends Controller
         }else{
             return ['isTrue' => 'false'];
         }
+    }
+
+    public function allQuizGet(Quiz $quiz) 
+    {
+        $AllQuiz = $quiz->with("choices")->with('user')->with('isUserTrue')->with('categories')->get();
+        return response()->json([
+            'allQuiz' => $AllQuiz
+        ]);
     }
     public function quizGet(Category $category ,Quiz $quiz) 
     {
