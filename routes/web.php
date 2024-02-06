@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/quiz/{category}', [QuizController::class, 'showCategory']);
     Route::post('/quiz/answer/{quiz}',[QuizController::class,'quizTry']);
 
+    Route::get('/get/quiz',[QuizController::class,'allQuizGet']);
     Route::get('/quiz/new/{category}',[QuizController::class,'quizGet']);
 
     Route::get('/mazer',[AdminController::class,'index']);

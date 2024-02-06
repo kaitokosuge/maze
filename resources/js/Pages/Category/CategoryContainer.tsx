@@ -19,14 +19,11 @@ export default function CategoryContainer(props: any) {
             >
                 <Header />
                 <div className="pt-[100px] pb-[100px] pl-[40px] pr-[50px]">
-                    <div className="flex items-start">
+                    <div className="flex justify-between">
                         <div className="w-[100px] h-[100px]">
-                            <>
-                                <img src={`${category.category_img}`} />
-                                {console.log(category.category_img)}
-                            </>
+                            {parse(category.category_img)}
                         </div>
-                        <div className="ml-5">
+                        <div className="ml-5 w-[87%]">
                             <h2 className="font-bold text-4xl">
                                 {category.category}
                             </h2>

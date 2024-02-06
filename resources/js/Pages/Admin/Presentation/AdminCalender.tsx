@@ -10,7 +10,7 @@ export default function AdminCalender(props: any) {
                 {days.map((day: string) => (
                     <div className="w-[12%] border-r border-pink-950 last:border-none">
                         <p className="font-bold text-gray-400 text-3xl text-center">
-                            {day}
+                            {day.slice(5)}
                         </p>
                         <p className="text-center text-gray-500 font-bold mt-[30px]">
                             empty

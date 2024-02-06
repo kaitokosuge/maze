@@ -1,10 +1,9 @@
 import { User } from "@/types";
-import { userInfo } from "os";
-import React, { useEffect, useState } from "react";
+import { Quiz } from "@/types/Data/quiz";
+import React, { useState } from "react";
 
-export default function CategoryQuizCard(props: any) {
-    const { quizzes, user, categoryID } = props;
-    console.log(quizzes);
+export default function TopAllQuiz(props: any) {
+    const { quizzes, user } = props;
     const [isClick, setIsClick] = useState(-1);
     const handleQuizShow = (index: number) => {
         if (index === isClick) {
@@ -25,9 +24,6 @@ export default function CategoryQuizCard(props: any) {
             return [...isChoiceClick, choiceId];
         });
     };
-    useEffect(() => {
-        console.log("isChoiceClick", isChoiceClick);
-    }, [isChoiceClick]);
     const [isUserQuizAnswer, setIsUserQuizAnswer] = useState("");
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
@@ -58,17 +54,19 @@ export default function CategoryQuizCard(props: any) {
     };
     const [showQuizzes, setShowQuizzes] = useState(quizzes);
     const fetchQuizzes = async () => {
-        const res = await fetch(`/quiz/new/${categoryID}`, {
+        const res = await fetch("/get/quiz", {
             method: "GET",
         });
         if (res.ok) {
             const data = await res.json();
             console.log(data);
-            setShowQuizzes(data.newQuizzes);
+            setShowQuizzes(data.allQuiz);
+        } else {
+            console.log("error");
         }
     };
     return (
-        <div className="mt-10">
+        <div>
             {showQuizzes.map((quiz: any, index: number) => (
                 <>
                     <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
