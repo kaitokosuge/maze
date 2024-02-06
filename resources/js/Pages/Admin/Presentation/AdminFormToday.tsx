@@ -1,6 +1,7 @@
 import { count } from "console";
 import { v4 as uuidv4 } from "uuid";
 import React, { useEffect, useState } from "react";
+import parse from "html-react-parser";
 
 export default function AdminFormToday(props: any) {
     const { days, categories } = props;
@@ -149,11 +150,11 @@ export default function AdminFormToday(props: any) {
                             onClick={handleClickDay}
                             className={
                                 day === postQuiz.day
-                                    ? "text-xl font-bold p-5 border border-gray-500 duration-300 cursor-pointer bg-[#03063e]"
-                                    : "text-xl font-bold p-5 border border-gray-500 duration-300 cursor-pointer hover:bg-[#340a38]"
+                                    ? "active:scale-90 text-xl font-bold p-5 border border-gray-500 duration-300 cursor-pointer bg-[#03063e]"
+                                    : "active:scale-90 text-xl font-bold p-5 border border-gray-500 duration-300 cursor-pointer hover:bg-[#340a38]"
                             }
                         >
-                            {day}
+                            {day.slice(5)}
                         </div>
                     ))}
                 </div>
@@ -175,10 +176,15 @@ export default function AdminFormToday(props: any) {
                 </label>
                 <div className="">
                     {postQuiz.choices.map((choiceEl, index) => (
-                        <div key={choiceEl.uuid}>
-                            <div>{index + 1}</div>
+                        <div
+                            key={choiceEl.uuid}
+                            className="flex items-center mt-5"
+                        >
+                            <div className="font-bold text-[30px] w-[30px]">
+                                {index + 1}
+                            </div>
                             <input
-                                className="mt-[20px] p-5 border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
+                                className="ml-[20px] p-5 min-w-[300px] border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                                 type="text"
                                 name="choice"
                                 onChange={(e) => {
@@ -189,19 +195,22 @@ export default function AdminFormToday(props: any) {
                                 onChange={(e) =>
                                     handleChangeTodayQuiz(e, choiceEl.uuid)
                                 }
-                                className="bg-transparent"
+                                className="bg-transparent ml-10 rounded-[10px]"
                                 name="istrue"
                             >
-                                <option value="true">○</option>
+                                <option value="true" className="">
+                                    ○
+                                </option>
                                 <option value="false">×</option>
                             </select>
                             {postQuiz.choices.length > 1 && (
                                 <button
+                                    className="text-[12px] font-bold ml-5 border rounded-[5px] duration-300 hover:bg-red-500 border-red-500 px-5 py-[8px]"
                                     onClick={() =>
                                         handleClickDeletechoice(choiceEl.uuid)
                                     }
                                 >
-                                    delete
+                                    delete choice
                                 </button>
                             )}
                         </div>
@@ -209,9 +218,9 @@ export default function AdminFormToday(props: any) {
                 </div>
                 <div
                     onClick={handleClickAddChoice}
-                    className="w-[200px] cursor-pointer"
+                    className="w-[200px] cursor-pointer border hover:bg-emerald-400 duration-300 border-emerald-400 rounded-[10px] mt-10 px-5 py-[8px] text-center"
                 >
-                    add
+                    add choice
                 </div>
                 <p className="font-bold text-[20px] mt-[50px] block">
                     categories
@@ -219,15 +228,25 @@ export default function AdminFormToday(props: any) {
                 </p>
                 <div className="flex mt-[20px]">
                     {categories.map((category: any) => (
-                        <div key={category.id}>
+                        <div key={category.id} className="ml-10 flex">
                             <input
                                 onChange={handleChangeTodayQuiz}
                                 type="checkbox"
                                 name="category"
                                 value={category.id}
+                                id={category.id}
+                                className="duration-500 bg-zinc-400  text-emerald-500 focus:ring-0 rounded-[2px] w-[25px] h-[25px]"
                             />
-                            <label className="text-white">
-                                {category.category}
+                            <label
+                                className="text-white cursor-pointer flex items-center ml-1"
+                                htmlFor={category.id}
+                            >
+                                <div className="w-[15px] h-[15px]">
+                                    {parse(category.category_img)}
+                                </div>
+                                <p className="font-bold ml-1">
+                                    {category.category}
+                                </p>
                             </label>
                         </div>
                     ))}

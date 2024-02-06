@@ -19,7 +19,6 @@ class AdminController extends Controller
         for($i = 0;$i<9;$i++){
             $days[] = $today->copy()->addDays($i)->toDateString();
         }
-        //dd($days);
         return Inertia::render('Admin/AdminContainer')->with(['categories' => $category->get(),'days' => $days]); 
     } 
     public function toBoolean(string $str) {
@@ -27,7 +26,6 @@ class AdminController extends Controller
     }
     public function storeQuiz(Request $request,Quiz $quiz)
     {
-        //dd($request);
         $quiz->quiz = $request->quiz;
         $quiz->answer = $request->answer;
         $quiz->user_id = \Auth::user()->id;

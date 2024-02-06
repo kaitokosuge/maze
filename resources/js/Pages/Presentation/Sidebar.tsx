@@ -59,7 +59,7 @@ export default function Sidebar({ categories }: CategoriesProps) {
                                 <div className="w-[20px] h-[20px]">
                                     {parse(category.category_img)}
                                 </div>
-                                <span className="block">
+                                <span className="block ml-5">
                                     {category.category}
                                 </span>
                             </>

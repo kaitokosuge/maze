@@ -31,9 +31,6 @@ export default function CategoryQuizCard(props: any) {
     const [isUserQuizAnswer, setIsUserQuizAnswer] = useState("");
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
-        // let csrfToken: string | null = document.head.querySelector(
-        //     'meta[name="csrf-token"]'
-        // ).content;
         const csrfMetaTag: Element | null = document.head.querySelector(
             'meta[name="csrf-token"]'
         );
