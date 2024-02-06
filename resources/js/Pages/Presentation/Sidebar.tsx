@@ -22,9 +22,6 @@ export default function Sidebar({ categories }: CategoriesProps) {
                         <br />
                         <span className="text-yellow-600 text-[18px]">★s</span>
                         <br />
-                        <span className="text-purple-700 text-[18px] font-bold">
-                            mazer
-                        </span>
                     </span>
                 </Link>
                 <Link
@@ -42,7 +39,7 @@ export default function Sidebar({ categories }: CategoriesProps) {
                     className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
                 >
                     <img
-                        src="/home.png"
+                        src="/news--logo.png"
                         className="w-[20px] h-[20px] mr-5 rounded-[5px]"
                     />
                     <span className="block">NEWS</span>
