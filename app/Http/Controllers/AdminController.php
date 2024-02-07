@@ -23,14 +23,17 @@ class AdminController extends Controller
             return $item->isToday === 1;
         })->first();
         $user=\Auth::user();
+        $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
+            $day = new Carbon();
+            $today = $day->toDateString();
+            return $item->showDay < $today;
+        })->values()->toArray();
         if($user->isAdmin === 1){
             return Inertia::render('Admin/AdminContainer')->with(['categories' => $category->get(),'days' => $days]); 
         }else{
-            return Inertia::render('Top/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->get()]);
+            return redirect("/top");
+            //return Inertia::render('Top/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
         };
-    } 
-    public function toBoolean(string $str) {
-        return ($str === 'true');
     }
     public function storeQuiz(Request $request,Quiz $quiz)
     {
@@ -57,7 +60,7 @@ class AdminController extends Controller
         $quiz->isToday = false;
         $day = new Carbon();
         $today = $day->toDateString();
-        $quiz->showDay = $today;
+        $quiz->showDay = "2024-02-06";
         $quiz->save();
         $quiz->categories()->attach($request->category);
         foreach($request->choices as $reqChoice){

@@ -35,6 +35,16 @@ export default function Sidebar({ categories }: CategoriesProps) {
                     <span className="block">HOME</span>
                 </Link>
                 <Link
+                    href="/history"
+                    className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
+                >
+                    <img
+                        src="/history--logo.png"
+                        className="w-[20px] h-[20px] mr-5 rounded-[5px]"
+                    />
+                    <span className="block">HISTORY</span>
+                </Link>
+                <Link
                     href="/news"
                     className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
                 >

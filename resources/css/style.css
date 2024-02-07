@@ -15,6 +15,36 @@ body {
 .bg-react-color {
     background: linear-gradient(#008f9f, #00142c, #00142c, #00142c, #00142c);
 }
+.bg-laravel-color {
+    background: linear-gradient(#af5757, #00142c, #00142c, #00142c, #00142c);
+}
+.bg-php-color {
+    background: linear-gradient(#8c49cc, #00142c, #00142c, #00142c, #00142c);
+}
+.bg-next-color {
+    background: linear-gradient(
+        #676767,
+        #171717,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c
+    );
+}
+.bg-python-color {
+    background: linear-gradient(
+        #604a00,
+        #00114f,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c
+    );
+}
 .text-limit {
     width: 50%;
     white-space: nowrap;

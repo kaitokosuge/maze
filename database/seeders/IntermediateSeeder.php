@@ -47,10 +47,6 @@ class IntermediateSeeder extends Seeder
         ]);
         DB::table('category_quiz')->insert([
             'category_id' => 1,
-            'quiz_id' => 4
-        ]);
-        DB::table('category_quiz')->insert([
-            'category_id' => 1,
             'quiz_id' => 5
         ]);
         DB::table('user_quiz')->insert([

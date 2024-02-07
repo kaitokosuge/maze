@@ -1,5 +1,5 @@
 import { Quiz, Quizzes } from "@/types/Data/quiz";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TopAllQuiz from "./TopAllQuiz";
 import TopMedia from "./TopMedia";
 import parse from "html-react-parser";
@@ -46,35 +46,200 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
             console.log(error);
         }
     };
+    const [isEyeClick, setIsEyeClick] = useState<boolean>(false);
+    const handleClickEye = () => {
+        setIsEyeClick(!isEyeClick);
+    };
+    const [addClass, setAddClass] = useState<boolean>(false);
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setAddClass(true);
+        }, 1000);
+        return () => clearTimeout(timeoutId);
+    }, []);
     return (
         <div className="bg-[#00142C] pt-[100px] pb-[100px] pl-[40px] pr-[50px]">
-            <div className="px-10 py-[30px] bg-[#001E41] rounded-[20px] mt-5">
-                <div className="flex items-center justify-between">
-                    <div className="w-[70%] flex items-center">
-                        <p className="font-bold text-[30px] text-gray-400">
-                            Today's Quiz
-                        </p>
-                        <div className="ml-5 flex">
-                            {todayQuiz.categories.map((category: any) => (
-                                <>
-                                    <div className="font-bold text-[12px] ml-5 flex items-center">
-                                        <div className="w-[15px] h-auto">
-                                            {parse(category.category_img)}
-                                        </div>
-                                        <p className="ml-1 text-gray-400">
-                                            {category.category}
-                                        </p>
-                                    </div>
-                                </>
-                            ))}
-                        </div>
+            <div className="flex justify-between items-center">
+                <h2 className="font-bold text-[50px]">HOME</h2>
+                <div className="flex items-center">
+                    <div className="ml-5 flex items-center">
+                        <img
+                            //onClick={handleClickEye}
+                            className="w-[30px] cursor-pointer"
+                            src="/heart--logo.png"
+                        />
+                        <p className="ml-5 font-bold">38</p>
                     </div>
-                    <p className="text-[28px] ml-10 text-gray-200 font-bold">
-                        {todayQuiz.showDay}
-                    </p>
+                    <div className="ml-5 flex items-center">
+                        <img
+                            //onClick={handleClickEye}
+                            className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
+                            src="/voice--logo.png"
+                        />
+                        <p className="ml-5 font-bold">20</p>
+                    </div>
+
+                    <div className="ml-5">
+                        {isEyeClick === true ? (
+                            <>
+                                <img
+                                    onClick={handleClickEye}
+                                    className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
+                                    src="/eye--logo.png"
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <img
+                                    onClick={handleClickEye}
+                                    className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
+                                    src="/eyeclose--logo.png"
+                                />
+                            </>
+                        )}
+                    </div>
                 </div>
-                <p className="font-bold mt-5">{todayQuiz.quiz}</p>
-                <div className="mt-10 grid grid-cols-3 gap-5">
+            </div>
+
+            <div
+                className={
+                    addClass === true
+                        ? "px-10 py-[30px] bg-[#001E41] rounded-[20px] mt-1 duration-300"
+                        : "px-10 py-[30px] bg-[#001E41] rounded-[20px] mt-1 duration-300"
+                }
+            >
+                {isEyeClick === true ? (
+                    <>
+                        <div className="flex items-center justify-between opacity-0 duration-300">
+                            <div className="w-[70%] flex items-center">
+                                <p className="font-bold text-[30px] text-gray-400">
+                                    Today's Quiz
+                                </p>
+                                <div className="ml-5 flex">
+                                    {todayQuiz.categories.map(
+                                        (category: any) => (
+                                            <>
+                                                <div className="font-bold text-[12px] ml-5 flex items-center">
+                                                    <div className="w-[15px] h-auto">
+                                                        {parse(
+                                                            category.category_img
+                                                        )}
+                                                    </div>
+                                                    <p className="ml-1 text-gray-400">
+                                                        {category.category}
+                                                    </p>
+                                                </div>
+                                            </>
+                                        )
+                                    )}
+                                </div>
+                                <div className="flex text-[12px] ml-10 text-gray-300 font-bold">
+                                    <span>
+                                        <img
+                                            className="block w-[15px] h-[15px] "
+                                            src="/pen--logo.png"
+                                        />
+                                    </span>
+                                    <p className="ml-[7px]">
+                                        {todayQuiz.user.name}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-center text-[28px] text-gray-200 font-bold">
+                                <span>
+                                    <img
+                                        className="block w-[20px] h-[20px] "
+                                        src="/calendar--logo.png"
+                                    />
+                                </span>
+                                <p className="ml-[10px]">{todayQuiz.showDay}</p>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="flex items-center justify-between opacity-100 duration-300">
+                            <div className="w-[70%] flex items-center">
+                                <p className="font-bold text-[30px] text-gray-400">
+                                    Today's Quiz
+                                </p>
+                                <div
+                                    className={
+                                        addClass === true
+                                            ? "ml-5 flex duration-100 opacity-100"
+                                            : "ml-5 flex duration-100 opacity-0"
+                                    }
+                                >
+                                    {todayQuiz.categories.map(
+                                        (category: any) => (
+                                            <>
+                                                <div className="font-bold text-[12px] ml-5 flex items-center">
+                                                    <div className="w-[15px] h-auto">
+                                                        {parse(
+                                                            category.category_img
+                                                        )}
+                                                    </div>
+                                                    <p className="ml-1 text-gray-400">
+                                                        {category.category}
+                                                    </p>
+                                                </div>
+                                            </>
+                                        )
+                                    )}
+                                </div>
+                                <div
+                                    className={
+                                        addClass === true
+                                            ? "flex text-[12px] ml-10 text-gray-300 font-bold duration-500 opacity-100"
+                                            : "flex text-[12px] ml-10 text-gray-300 font-bold duration-500 opacity-0"
+                                    }
+                                >
+                                    <span>
+                                        <img
+                                            className="block w-[15px] h-[15px] "
+                                            src="/pen--logo.png"
+                                        />
+                                    </span>
+                                    <p className="ml-[7px]">
+                                        {todayQuiz.user.name}
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                className={
+                                    addClass === true
+                                        ? "flex items-center text-[28px] text-gray-200 font-bold duration-700 opacity-100"
+                                        : "flex items-center text-[28px] text-gray-200 font-bold duration-700 opacity-0"
+                                }
+                            >
+                                <span>
+                                    <img
+                                        className="block w-[20px] h-[20px] "
+                                        src="/calendar--logo.png"
+                                    />
+                                </span>
+                                <p className="ml-[10px]">{todayQuiz.showDay}</p>
+                            </div>
+                        </div>
+                    </>
+                )}
+
+                <p
+                    className={
+                        addClass === true
+                            ? "font-bold mt-5 duration-700 opacity-100"
+                            : "font-bold mt-5 duration-700 opacity-0"
+                    }
+                >
+                    {todayQuiz.quiz}
+                </p>
+                <div
+                    className={
+                        addClass === true
+                            ? "mt-10 grid grid-cols-3 gap-5 duration-1000 opacity-100"
+                            : "mt-10 grid grid-cols-3 gap-0 duration-1000 opacity-0"
+                    }
+                >
                     {todayQuiz.choices.map((choice: any, index: number) => (
                         <>
                             {todayQuiz.is_user_true.some(
@@ -140,9 +305,9 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                                     onClick={(e) =>
                                         handleAnswerQuiz(e, todayQuiz.id)
                                     }
-                                    className="hover:bg-[#2825bf] duration-300 rounded-[10px] block m-auto mt-10 bg-[#030086] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
+                                    className="flex items-center hover:bg-[#2825bf] duration-300 rounded-[10px] m-auto mt-10 bg-[#030086] w-[150px] text-[20px] px-10 py-[10px] font-bold cursor-pointer"
                                 >
-                                    answer
+                                    <p className="ml-1">answer</p>
                                 </button>
                             )}
                         </>
@@ -179,7 +344,8 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                     </div>
                 </div>
             </div>
-            <TopMedia />
+            <TopMedia user={user} />
+            <h2 className="font-bold text-[20px] mt-10">All Quiz</h2>
             <TopAllQuiz quizzes={quizzes} user={user} />
         </div>
     );

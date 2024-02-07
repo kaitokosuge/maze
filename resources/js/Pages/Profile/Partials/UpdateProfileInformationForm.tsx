@@ -33,7 +33,7 @@ export default function UpdateProfileInformation({
     return (
         <section className={className}>
             <header>
-                <h2 className="font-bold text-gray-100 text-[50px]">Profile</h2>
+                <h2 className="font-bold text-gray-100 text-[50px]">PROFILE</h2>
 
                 <p className="mt-1 text-sm text-gray-500"></p>
             </header>
@@ -48,7 +48,6 @@ export default function UpdateProfileInformation({
                         value={data.name}
                         onChange={(e) => setData("name", e.target.value)}
                         required
-                        isFocused
                         autoComplete="name"
                     />
 

@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 
 export default function AdminFormNormal(props: any) {
     const { categories } = props;
-    const handleSubmit = async (e: any) => {
+    const handleNormalSubmit = async (e: any) => {
         e.preventDefault();
         try {
             const csrf_token = document.head.querySelector(
@@ -19,7 +19,7 @@ export default function AdminFormNormal(props: any) {
                 body: JSON.stringify(postQuiz),
             });
             if (res.ok) {
-                console.log("postQuizzzzz", postQuiz);
+                console.log("postnormalQuizzzzz", postQuiz);
                 setPostQuiz({
                     quiz: "",
                     category: [],
@@ -54,12 +54,12 @@ export default function AdminFormNormal(props: any) {
 
     const handleClickAddChoice = () => {
         const newChoice = { uuid: uuidv4(), choice: "", istrue: "true" };
-        console.log("newChoice", newChoice);
+        console.log("newnormalChoice", newChoice);
         setPostQuiz({
             ...postQuiz,
             choices: [...postQuiz.choices, newChoice],
         });
-        console.log("postQuiz", postQuiz);
+        console.log("postnormalQuiz", postQuiz);
     };
 
     const handleClickDeletechoice = (id: string) => {
@@ -68,7 +68,7 @@ export default function AdminFormNormal(props: any) {
             choices: postQuiz.choices.filter((choice) => choice.uuid !== id),
         });
     };
-    const handleChangeTodayQuiz = (e: any, id?: string) => {
+    const handleChangeNormalQuiz = (e: any, id?: string) => {
         if (e.target.name === "category") {
             if (e.target.checked) {
                 setPostQuiz((prev) => {
@@ -91,8 +91,6 @@ export default function AdminFormNormal(props: any) {
                 });
             }
         } else if (e.target.name === "choice" || e.target.name === "istrue") {
-            console.log("choicess", choices);
-            console.log(e.target.value);
             setPostQuiz((prev) => ({
                 ...prev,
                 choices: prev.choices.map((choiceObj) => {
@@ -119,10 +117,10 @@ export default function AdminFormNormal(props: any) {
             });
         }
     };
-    console.log("postquiz", postQuiz);
+    console.log("postnprmalquiz", postQuiz);
     return (
         <div>
-            <form onSubmit={handleSubmit} className="mt-[0px]">
+            <form onSubmit={handleNormalSubmit} className="mt-[0px]">
                 <div className="flex justify-between">
                     <div className="font-bold text-xl text-gray-300">
                         quiz を作成
@@ -136,7 +134,7 @@ export default function AdminFormNormal(props: any) {
                     <span className="font-normal text-[10px]"> クイズ</span>
                 </label>
                 <textarea
-                    onChange={handleChangeTodayQuiz}
+                    onChange={handleChangeNormalQuiz}
                     name="quiz"
                     className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                 ></textarea>
@@ -161,12 +159,12 @@ export default function AdminFormNormal(props: any) {
                                 type="text"
                                 name="choice"
                                 onChange={(e) => {
-                                    handleChangeTodayQuiz(e, choiceEl.uuid);
+                                    handleChangeNormalQuiz(e, choiceEl.uuid);
                                 }}
                             />
                             <select
                                 onChange={(e) =>
-                                    handleChangeTodayQuiz(e, choiceEl.uuid)
+                                    handleChangeNormalQuiz(e, choiceEl.uuid)
                                 }
                                 className="bg-transparent ml-10 rounded-[10px]"
                                 name="istrue"
@@ -203,7 +201,7 @@ export default function AdminFormNormal(props: any) {
                     {categories.map((category: any) => (
                         <div key={category.id} className="ml-10 flex">
                             <input
-                                onChange={handleChangeTodayQuiz}
+                                onChange={handleChangeNormalQuiz}
                                 type="checkbox"
                                 name="category"
                                 value={category.id}
@@ -230,7 +228,7 @@ export default function AdminFormNormal(props: any) {
                         <span className="font-normal text-[10px]"> 解説</span>
                     </p>
                     <textarea
-                        onChange={handleChangeTodayQuiz}
+                        onChange={handleChangeNormalQuiz}
                         name="answer"
                         className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                     ></textarea>
