@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 export default function TopAllQuiz(props: any) {
     const { quizzes, user } = props;
+    console.log("quizzes", quizzes);
     const [isClick, setIsClick] = useState(-1);
     const handleQuizShow = (index: number) => {
         if (index === isClick) {

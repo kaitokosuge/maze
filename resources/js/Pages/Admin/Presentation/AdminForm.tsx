@@ -42,7 +42,7 @@ export default function AdminForm(props: any) {
                     </>
                 ) : (
                     <>
-                        <AdminFormNormal />
+                        <AdminFormNormal categories={categories} />
                     </>
                 )}
             </div>

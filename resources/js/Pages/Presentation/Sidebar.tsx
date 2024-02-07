@@ -53,7 +53,7 @@ export default function Sidebar({ categories }: CategoriesProps) {
                             className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#000458] duration-300 rounded-[10px] flex items-center"
                         >
                             <>
-                                <div className="w-[20px] h-[20px]">
+                                <div className="w-[20px] h-auto">
                                     {parse(category.category_img)}
                                 </div>
                                 <span className="block ml-5">

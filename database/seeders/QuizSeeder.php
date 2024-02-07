@@ -26,7 +26,9 @@ class QuizSeeder extends Seeder
             'answer' => 'カレー、寿司が好きです',
             'user_id' => 1,
             'created_at' => now(),
-            'isToday' => false,
+            'isToday' => true,
+            'showDay' => 'no',
+            'showDay' => '2024-02-05'
         ]);
         DB::table('quizzes')->insert([
             'quiz' => '小菅海斗の好きなスポーツはなんでしょう？',
@@ -34,6 +36,7 @@ class QuizSeeder extends Seeder
             'user_id' => 1,
             'created_at' => now(),
             'isToday' => false,
+            'showDay' => 'no'
         ]);
         DB::table('quizzes')->insert([
             'quiz' => '小菅海斗の好きな映画はなんでしょう？',
@@ -41,6 +44,7 @@ class QuizSeeder extends Seeder
             'user_id' => 1,
             'created_at' => now(),
             'isToday' => false,
+            'showDay' => 'no'
         ]);
         DB::table('quizzes')->insert([
             'quiz' => '小菅海斗の好きな漫画はなんでしょう？',
@@ -48,7 +52,7 @@ class QuizSeeder extends Seeder
             'user_id' => 1,
             'created_at' => now(),
             'isToday' => true,
-            'showDay' => '2024-02-01'
+            'showDay' => '2024-02-07'
         ]);
     }
 }

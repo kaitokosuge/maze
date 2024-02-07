@@ -49,24 +49,29 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
     return (
         <div className="bg-[#00142C] pt-[100px] pb-[100px] pl-[40px] pr-[50px]">
             <div className="px-10 py-[30px] bg-[#001E41] rounded-[20px] mt-5">
-                <div className="flex items-center">
-                    <p className="font-bold text-[30px] text-gray-400">
-                        Today's Quiz
-                    </p>
-                    <div className="ml-10 flex">
-                        {todayQuiz.categories.map((category: any) => (
-                            <>
-                                <div className="font-bold text-[12px] ml-5 flex items-center">
-                                    <div className="w-[15px] h-[15px]">
-                                        {parse(category.category_img)}
+                <div className="flex items-center justify-between">
+                    <div className="w-[70%] flex items-center">
+                        <p className="font-bold text-[30px] text-gray-400">
+                            Today's Quiz
+                        </p>
+                        <div className="ml-5 flex">
+                            {todayQuiz.categories.map((category: any) => (
+                                <>
+                                    <div className="font-bold text-[12px] ml-5 flex items-center">
+                                        <div className="w-[15px] h-auto">
+                                            {parse(category.category_img)}
+                                        </div>
+                                        <p className="ml-1 text-gray-400">
+                                            {category.category}
+                                        </p>
                                     </div>
-                                    <p className="ml-1 text-gray-400">
-                                        {category.category}
-                                    </p>
-                                </div>
-                            </>
-                        ))}
+                                </>
+                            ))}
+                        </div>
                     </div>
+                    <p className="text-[28px] ml-10 text-gray-200 font-bold">
+                        {todayQuiz.showDay}
+                    </p>
                 </div>
                 <p className="font-bold mt-5">{todayQuiz.quiz}</p>
                 <div className="mt-10 grid grid-cols-3 gap-5">

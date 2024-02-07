@@ -131,7 +131,7 @@ export default function AdminFormToday(props: any) {
         }
     };
     console.log("postquiz", postQuiz);
-    const handleSubmitTodayQuiz = () => {};
+
     return (
         <>
             <form onSubmit={handleSubmit} className="mt-[0px]">
@@ -139,10 +139,7 @@ export default function AdminFormToday(props: any) {
                     <div className="font-bold text-xl text-gray-300">
                         Today's quiz を作成
                     </div>
-                    <button
-                        onClick={handleSubmitTodayQuiz}
-                        className="block rounded-[10px] bg-[#2522e6] px-[30px] py-[10px] font-bold"
-                    >
+                    <button className="block rounded-[10px] bg-[#2522e6] px-[30px] py-[10px] font-bold">
                         保存
                     </button>
                 </div>
@@ -242,13 +239,13 @@ export default function AdminFormToday(props: any) {
                                 name="category"
                                 value={category.id}
                                 id={category.id}
-                                className="duration-500 bg-zinc-400  text-emerald-500 focus:ring-0 rounded-[2px] w-[25px] h-[25px]"
+                                className="relative duration-500 bg-zinc-700  text-emerald-600 focus:ring-0 rounded-[2px] w-[120px] h-[25px] p-1"
                             />
                             <label
-                                className="text-white cursor-pointer flex items-center ml-1"
+                                className="absolute text-white cursor-pointer flex items-center ml-1"
                                 htmlFor={category.id}
                             >
-                                <div className="w-[15px] h-[15px]">
+                                <div className="w-[15px] h-auto">
                                     {parse(category.category_img)}
                                 </div>
                                 <p className="font-bold ml-1">

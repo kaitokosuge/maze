@@ -38,6 +38,26 @@ class AdminController extends Controller
         $quiz->answer = $request->answer;
         $quiz->user_id = \Auth::user()->id;
         $quiz->isToday = true;
+        $quiz->showDay = $request->day;
+        $quiz->save();
+        $quiz->categories()->attach($request->category);
+        foreach($request->choices as $reqChoice){
+            $choice = new Choice();
+            $choice->choice = $reqChoice["choice"];
+            $choice->isTrue = filter_var($reqChoice["istrue"], FILTER_VALIDATE_BOOLEAN);
+            $choice->quiz_id = $quiz->id;
+            $choice->save();
+        }
+    }
+    public function storeNormalQuiz(Request $request,Quiz $quiz)
+    {
+        $quiz->quiz = $request->quiz;
+        $quiz->answer = $request->answer;
+        $quiz->user_id = \Auth::user()->id;
+        $quiz->isToday = false;
+        $day = new Carbon();
+        $today = $day->toDateString();
+        $quiz->showDay = $today;
         $quiz->save();
         $quiz->categories()->attach($request->category);
         foreach($request->choices as $reqChoice){
