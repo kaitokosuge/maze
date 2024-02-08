@@ -3,6 +3,16 @@ import React, { useEffect, useState } from "react";
 import TopAllQuiz from "./TopAllQuiz";
 import TopMedia from "./TopMedia";
 import parse from "html-react-parser";
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/shadcn-ui/ui/drawer";
 
 export default function TopMain({ quizzes, todayQuiz, user }: any) {
     console.log("main quiz", quizzes);
@@ -54,11 +64,11 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setAddClass(true);
-        }, 1000);
+        }, 700);
         return () => clearTimeout(timeoutId);
     }, []);
     return (
-        <div className="bg-[#00142C] pt-[100px] pb-[100px] pl-[40px] pr-[50px]">
+        <div className="bg-[#00142C] pt-[60px] pb-[100px] pl-[40px] pr-[50px] min-h-screen">
             <div className="flex justify-between items-center">
                 <h2 className="font-bold text-[50px]">HOME</h2>
                 <div className="flex items-center">
@@ -71,14 +81,34 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                         <p className="ml-5 font-bold">38</p>
                     </div>
                     <div className="ml-5 flex items-center">
-                        <img
-                            //onClick={handleClickEye}
-                            className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
-                            src="/voice--logo.png"
-                        />
-                        <p className="ml-5 font-bold">20</p>
+                        <Drawer>
+                            <DrawerTrigger className="text-yello-300">
+                                <div className="flex items-center">
+                                    <img
+                                        //onClick={handleClickEye}
+                                        className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
+                                        src="/voice--logo.png"
+                                    />
+                                    <p className="ml-5 font-bold">20</p>
+                                </div>
+                            </DrawerTrigger>
+                            <DrawerContent className="bg-[#000238] border-none min-h-[400px] px-[100px] pb-10">
+                                <DrawerHeader>
+                                    <DrawerTitle className="mt-10 text-[20px]">
+                                        Comment
+                                    </DrawerTitle>
+                                    <DrawerDescription>
+                                        This action cannot be undone.
+                                    </DrawerDescription>
+                                </DrawerHeader>
+                                <DrawerFooter>
+                                    <DrawerClose>
+                                        <p>back</p>
+                                    </DrawerClose>
+                                </DrawerFooter>
+                            </DrawerContent>
+                        </Drawer>
                     </div>
-
                     <div className="ml-5">
                         {isEyeClick === true ? (
                             <>
@@ -344,9 +374,31 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                     </div>
                 </div>
             </div>
-            <TopMedia user={user} />
-            <h2 className="font-bold text-[20px] mt-10">All Quiz</h2>
-            <TopAllQuiz quizzes={quizzes} user={user} />
+            {isEyeClick === true ? (
+                <>
+                    <div className="opacity-0 duration-1000">
+                        <TopMedia user={user} />
+                    </div>
+                    <div className="mt-[250px] duration-1000">
+                        <h2 className="font-bold text-[20px] mt-10">
+                            All Quiz
+                        </h2>
+                        <TopAllQuiz quizzes={quizzes} user={user} />
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div className="opacity-100 duration-1000">
+                        <TopMedia user={user} />
+                    </div>
+                    <div className="mt-0 duration-1000">
+                        <h2 className="font-bold text-[20px] mt-10">
+                            All Quiz
+                        </h2>
+                        <TopAllQuiz quizzes={quizzes} user={user} />
+                    </div>
+                </>
+            )}
         </div>
     );
 }

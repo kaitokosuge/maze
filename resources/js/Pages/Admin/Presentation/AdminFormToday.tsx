@@ -239,7 +239,7 @@ export default function AdminFormToday(props: any) {
                                 name="category"
                                 value={category.id}
                                 id={category.id}
-                                className="relative duration-500 bg-zinc-700  text-emerald-600 focus:ring-0 rounded-[2px] w-[120px] h-[25px] p-1"
+                                className="block relative duration-500 bg-zinc-700  text-emerald-600 focus:ring-0 hover:bg-emerald-600 rounded-[2px] w-[120px] h-[25px] p-1"
                             />
                             <label
                                 className="absolute text-white cursor-pointer flex items-center ml-1"

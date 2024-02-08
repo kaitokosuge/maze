@@ -2,6 +2,7 @@ body {
     font-family: sans-serif;
     color: white;
     background: #000238;
+    min-height: 100vh;
 }
 .bg-colorfull-100 {
     background: linear-gradient(#000238, #000238, #370035, #370035);
