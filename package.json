@@ -27,7 +27,14 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@radix-ui/react-dialog": "^1.0.5",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.1.0",
         "html-react-parser": "^5.1.1",
-        "uuid": "^9.0.1"
+        "lucide-react": "^0.323.0",
+        "tailwind-merge": "^2.2.1",
+        "tailwindcss-animate": "^1.0.7",
+        "uuid": "^9.0.1",
+        "vaul": "^0.9.0"
     }
 }
