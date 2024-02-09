@@ -12,9 +12,15 @@ export default function AdminContainer(props: any) {
                 <div className="w-[15%]">
                     <Sidebar categories={categories} />
                 </div>
-                <div className={`bg-[#00142C] w-[85%] min-h-screen`}>
+                <div className={`bg-[#00142C] w-[85%] min-h-screen]`}>
                     <Header />
-                    <div className="pl-[40px] pr-[50px]">
+                    <div className="pl-[40px] pr-[50px] pt-[60px]">
+                        <h2 className="text-[50px] font-bold">
+                            <span className="maze--title maze--title--gra">
+                                MAZE
+                            </span>{" "}
+                            <span className="text-[20px]">ADMIN</span>
+                        </h2>
                         <AdminCalender
                             reserveQuizzes={reserveQuizzes}
                             days={days}

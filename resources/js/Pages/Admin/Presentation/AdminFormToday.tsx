@@ -27,14 +27,17 @@ export default function AdminFormToday(props: any) {
                     setPostQuiz(postQuiz);
                     alert(`${result.alreadyReserve}`);
                 } else if (result.successReserve !== null) {
-                    setPostQuiz({
-                        quiz: "",
-                        day: "",
-                        category: [],
-                        choices: [
-                            { uuid: uuidv4(), choice: "", istrue: "true" },
-                        ],
-                        answer: "",
+                    setPostQuiz((prev) => {
+                        return {
+                            ...prev,
+                            quiz: "",
+                            day: "",
+                            category: [],
+                            choices: [
+                                { uuid: uuidv4(), choice: "", istrue: "true" },
+                            ],
+                            answer: "",
+                        };
                     });
                 }
             }

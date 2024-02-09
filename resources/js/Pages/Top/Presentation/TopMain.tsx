@@ -17,6 +17,7 @@ import {
 export default function TopMain({ quizzes, todayQuiz, user }: any) {
     console.log("main quiz", quizzes);
     console.log("topquiz", todayQuiz);
+    const [showQuizzes, setShowQuizzes] = useState(quizzes);
     const [isUserQuizAnswer, setIsUserQuizAnswer] = useState("");
     const [isChoiceClick, setIsChoiceClick] = useState<number[]>([]);
     const handleChangeQuizData = (e: any, choiceId: number) => {
@@ -56,7 +57,7 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
             if (res.ok) {
                 const data = await res.json();
                 setIsUserQuizAnswer(data.isTrue);
-                console.log("send-ok", data);
+                await fetchQuizzes();
             } else if (res.status === 419) {
                 alert("ページをリロードしてください");
             } else {
@@ -77,6 +78,18 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
         }, 700);
         return () => clearTimeout(timeoutId);
     }, []);
+    const fetchQuizzes = async () => {
+        const res = await fetch("/get/quiz", {
+            method: "GET",
+        });
+        if (res.ok) {
+            const data = await res.json();
+            console.log(data);
+            setShowQuizzes(data.allQuiz);
+        } else {
+            console.log("error");
+        }
+    };
     return (
         <div className="bg-[#00142C] pt-[60px] pb-[100px] pl-[40px] pr-[50px] min-h-screen">
             <div className="flex justify-between items-center">
@@ -122,15 +135,33 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                                     <p className="ml-5 font-bold">20</p>
                                 </div>
                             </DrawerTrigger>
-                            <DrawerContent className="bg-[#1d2089] border-none min-h-[500px] px-[100px] pb-10">
+                            <DrawerContent className="bg-profile-card border-none min-h-[70%] px-[100px] pb-10">
                                 <DrawerHeader>
                                     <DrawerTitle className="mt-10 text-[30px]">
-                                        COMMENT
+                                        REVIEWS
                                     </DrawerTitle>
-                                    <DrawerDescription>
-                                        today's quiz comment
-                                    </DrawerDescription>
                                 </DrawerHeader>
+                                <div className="flex justify-between">
+                                    <div className="w-[45%] text-gray-400">
+                                        <div className="font-bold mt-5 flex items-center">
+                                            <img
+                                                className="w-[15px] h-[15px]"
+                                                src="/pen--logo.png"
+                                            />
+                                            <p className="ml-1 ">
+                                                {todayQuiz.user.name}
+                                            </p>
+                                        </div>
+                                        <p className="font-bold mt-5 text-[12px]">
+                                            <span className="text-[20px]">
+                                                ?
+                                            </span>
+                                            {""}
+                                            {todayQuiz.quiz}
+                                        </p>
+                                    </div>
+                                    <div className="w-[50%] bg-black min-h-[100%]"></div>
+                                </div>
                                 <DrawerFooter>
                                     <DrawerClose>
                                         <p>back</p>
@@ -425,7 +456,7 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                         <h2 className="font-bold text-[20px] mt-10">
                             All Quiz
                         </h2>
-                        <TopAllQuiz quizzes={quizzes} user={user} />
+                        <TopAllQuiz quizzes={showQuizzes} user={user} />
                     </div>
                 </>
             )}

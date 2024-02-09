@@ -11,7 +11,8 @@ export default function TopMazerBtn(props: any) {
                         href={"/mazer"}
                         className="font-bold px-5 py-[10px] bg-colorfull-300 rounded-[10px] block w-full"
                     >
-                        MAZE admin
+                        <span className="maze--title font-bold">MAZE </span>
+                        admin
                     </Link>
                 </>
             ) : (

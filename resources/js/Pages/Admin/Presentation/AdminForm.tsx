@@ -11,7 +11,7 @@ export default function AdminForm(props: any) {
     return (
         <div className="pb-[100px]">
             <div className="mt-[50px]">
-                <h2>｜Quiz making area</h2>
+                <h3>｜Quiz making area</h3>
             </div>
             <div className="flex mt-[20px]">
                 <div

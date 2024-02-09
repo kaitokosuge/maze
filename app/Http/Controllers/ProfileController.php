@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Category;
+use App\Models\Quiz;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,15 +17,23 @@ use Inertia\Response;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request,Category $category): Response
+    public function edit(Request $request,Category $category,Quiz $quiz,User $user): Response
     {
+        $today = new Carbon();
+        $user = \Auth::user();
+        $allQuizNum = $quiz->where(function ($query) use ($today) {
+            $query->where('showDay', '<=', $today);
+                })->get()->count();
+        $trueQuizNum = $user->isUserTrue()->count();
+        $allRate = round($trueQuizNum / $allQuizNum, 2)*100;
+
         return Inertia::render('Profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
-            'categories' => $category->get()
+            'categories' => $category->get(),
+            'trueQuizNum' => $trueQuizNum,
+            'allQuizNum' => $allQuizNum,
+            'allRate' => $allRate,
         ]);
     }
 

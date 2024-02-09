@@ -38,7 +38,7 @@ export default function UpdateProfileInformation({
 
                     <TextInput
                         id="name"
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full maze--title"
                         value={data.name}
                         onChange={(e) => setData("name", e.target.value)}
                         required

@@ -11,9 +11,8 @@ export default function AdminCalender(props: any) {
     });
     console.log("showQuisses", showQuizzes);
     return (
-        <div className="mt-[100px] ">
+        <div className="mt-[50px] ">
             <h2>｜Today's Quiz schedule</h2>
-
             <div className="border border-pink-950 mt-[20px] rounded-[20px] p-5 flex justify-between">
                 {days.map((day: string) => (
                     <div className="w-[12%] border-r border-pink-950 last:border-none">
