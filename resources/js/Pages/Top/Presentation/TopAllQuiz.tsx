@@ -1,9 +1,11 @@
 import { User } from "@/types";
 import { Quiz } from "@/types/Data/quiz";
 import React, { useState } from "react";
+import parse from "html-react-parser";
 
 export default function TopAllQuiz(props: any) {
     const { quizzes, user } = props;
+    console.log("quizzes", quizzes);
     const [isClick, setIsClick] = useState(-1);
     const handleQuizShow = (index: number) => {
         if (index === isClick) {
@@ -85,6 +87,18 @@ export default function TopAllQuiz(props: any) {
                         <p className="font-bold text-[16px] text-limit">
                             {index + 1} {quiz.quiz}
                         </p>
+                        <p className="font-bold text-[12px] text-gray-500">
+                            {quiz.categories.map((category) => (
+                                <div className="flex items-center mt-[7px]">
+                                    <div className="w-[15px] h-auto">
+                                        {parse(category.category_img)}
+                                    </div>
+                                    <p className="font-bold ml-1">
+                                        {category.category}
+                                    </p>
+                                </div>
+                            ))}
+                        </p>
                         <data className="font-bold text-[12px] text-gray-500">
                             {quiz.created_at.slice(0, -17)}
                         </data>
@@ -104,12 +118,15 @@ export default function TopAllQuiz(props: any) {
                                 </p>
                             )}
                         </div>
-                        <p
+                        <div
                             onClick={() => handleQuizShow(index)}
-                            className="hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] w-[100px] text-center px-5 py-[7px] font-bold cursor-pointer"
+                            className="text-center hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] w-[100px]  px-5 py-[15px] font-bold cursor-pointer"
                         >
-                            open
-                        </p>
+                            <img
+                                className="block m-auto w-[20px]"
+                                src="/open--logo.png"
+                            />
+                        </div>
                     </div>
                     <div
                         className={

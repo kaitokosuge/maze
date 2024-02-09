@@ -7,17 +7,25 @@ use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Quiz;
 use App\Models\Category;
-
+use Carbon\Carbon;
 
 class QuizController extends Controller
 {
     public function index(User $user, Quiz $quiz, Category $category)
     {
+        
         $todayQuiz = $quiz->with("categories")->with("choices")->with("user")->orderBy('id','desc')->with('isUserTrue')->get()->filter(function ($item) {
-            return $item->isToday === 1;
+            $day = new Carbon();
+            $today = $day->toDateString();
+            return $item->showDay === $today && $item->isToday === 1;
         })->first();
         $user = \Auth::user();
-        return Inertia::render('Top/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->get()]);
+        $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
+            $day = new Carbon();
+            $today = $day->toDateString();
+            return $item->showDay <= $today;
+        })->values()->toArray();
+        return Inertia::render('Top/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
     }
 
     public function showCategory(Category $category, Quiz $quiz)
@@ -25,7 +33,11 @@ class QuizController extends Controller
         $user= \Auth::user();
         $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
             $query->where('id', $category->id);
-        })->with("choices")->with('user')->with('isUserTrue')->get();
+        })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
+            $day = new Carbon();
+            $today = $day->toDateString();
+            return $item->showDay <= $today;
+        })->values()->toArray();
         return Inertia::render('Category/CategoryContainer')->with(['user'=>$user,'category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
     
@@ -33,7 +45,7 @@ class QuizController extends Controller
     {
         $tryArray = $requests->toArray();
         $answerArray = array();
-        foreach ($quiz->choices->where('isTrue',true) as $choice){
+        foreach ($quiz->choices->where('isTrue',true) as $choice) {
             array_push($answerArray,$choice->id);
         }
         if(count($answerArray) === count($tryArray) && array_diff($answerArray, $tryArray) === array_diff($tryArray, $answerArray)){
@@ -49,7 +61,11 @@ class QuizController extends Controller
 
     public function allQuizGet(Quiz $quiz) 
     {
-        $AllQuiz = $quiz->with("choices")->with('user')->with('isUserTrue')->with('categories')->get();
+        $AllQuiz = $quiz->with("choices")->with('user')->with('isUserTrue')->with('categories')->orderBy('id','desc')->get()->filter( function ($item) {
+            $day = new Carbon();
+            $today = $day->toDateString();
+            return $item->showDay <= $today;
+        })->values()->toArray();
         return response()->json([
             'allQuiz' => $AllQuiz
         ]);
@@ -58,7 +74,11 @@ class QuizController extends Controller
     {
         $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
             $query->where('id', $category->id);
-        })->with("choices")->with('user')->with('isUserTrue')->get();
+        })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
+            $day = new Carbon();
+            $today = $day->toDateString();
+            return $item->showDay <= $today;
+        })->values()->toArray();
         return response()->json([
             'newQuizzes' => $categoryQuiz
         ]);

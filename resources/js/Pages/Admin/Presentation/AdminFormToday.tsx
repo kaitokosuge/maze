@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 
 export default function AdminFormToday(props: any) {
-    const { days, categories } = props;
+    const { days, categories, showDays } = props;
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
@@ -21,17 +21,28 @@ export default function AdminFormToday(props: any) {
                 body: JSON.stringify(postQuiz),
             });
             if (res.ok) {
-                console.log("postQuizzzzz", postQuiz);
-                setPostQuiz({
-                    quiz: "",
-                    day: "",
-                    category: [],
-                    choices: [{ uuid: uuidv4(), choice: "", istrue: "true" }],
-                    answer: "",
-                });
+                const result = await res.json();
+                console.log("result", result);
+                if (result.alreadyReserve !== null) {
+                    setPostQuiz(postQuiz);
+                    alert(`${result.alreadyReserve}`);
+                } else if (result.successReserve !== null) {
+                    setPostQuiz((prev) => {
+                        return {
+                            ...prev,
+                            quiz: "",
+                            day: "",
+                            category: [],
+                            choices: [
+                                { uuid: uuidv4(), choice: "", istrue: "true" },
+                            ],
+                            answer: "",
+                        };
+                    });
+                }
             }
         } catch (error) {
-            console.log(error);
+            console.log("error", error);
         }
     };
     const [choices, handleChoices] = useState<Choices[]>([
@@ -131,7 +142,7 @@ export default function AdminFormToday(props: any) {
         }
     };
     console.log("postquiz", postQuiz);
-    const handleSubmitTodayQuiz = () => {};
+
     return (
         <>
             <form onSubmit={handleSubmit} className="mt-[0px]">
@@ -139,10 +150,7 @@ export default function AdminFormToday(props: any) {
                     <div className="font-bold text-xl text-gray-300">
                         Today's quiz を作成
                     </div>
-                    <button
-                        onClick={handleSubmitTodayQuiz}
-                        className="block rounded-[10px] bg-[#2522e6] px-[30px] py-[10px] font-bold"
-                    >
+                    <button className="block rounded-[10px] bg-[#2522e6] px-[30px] py-[10px] font-bold">
                         保存
                     </button>
                 </div>
@@ -151,7 +159,7 @@ export default function AdminFormToday(props: any) {
                     <span className="font-normal text-[10px]"> 公開日時</span>
                 </p>
                 <div className="mt-[20px] flex">
-                    {days.map((day: string) => (
+                    {showDays.map((day: string) => (
                         <div
                             id={day}
                             onClick={handleClickDay}
@@ -242,13 +250,13 @@ export default function AdminFormToday(props: any) {
                                 name="category"
                                 value={category.id}
                                 id={category.id}
-                                className="duration-500 bg-zinc-400  text-emerald-500 focus:ring-0 rounded-[2px] w-[25px] h-[25px]"
+                                className="block relative duration-500 bg-zinc-700  text-emerald-600 focus:ring-0 hover:bg-emerald-600 rounded-[2px] w-[120px] h-[25px] p-1"
                             />
                             <label
-                                className="text-white cursor-pointer flex items-center ml-1"
+                                className="absolute text-white cursor-pointer flex items-center ml-1"
                                 htmlFor={category.id}
                             >
-                                <div className="w-[15px] h-[15px]">
+                                <div className="w-[15px] h-auto">
                                     {parse(category.category_img)}
                                 </div>
                                 <p className="font-bold ml-1">

@@ -7,24 +7,27 @@ import parse from "html-react-parser";
 export default function Sidebar({ categories }: CategoriesProps) {
     return (
         <div className="bg-[#000238] fixed left-0 w-[15%] h-screen">
-            <h1 className="font-bold maze--title text-[30px] text-white w-[85%] m-auto flex items-center duration-300 px-5 py-[12px]">
+            <h1 className="font-bold maze--title text-[30px] text-white w-[85%] m-auto flex items-center duration-300 px-5 pt-[12px]">
                 <img src="/maze_logo.png" className="w-[40px] h-[40px]" />
                 <span className="block pt-1">MAZE</span>
             </h1>
+            <p className="maze--title block text-[10px] w-fit-content m-auto text-center pb-[12px]">
+                for only PC
+            </p>
             <div className="border-t border-gray-500 w-[85%] m-auto py-5">
                 <Link
                     href="/profile"
                     className="flex items-start font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 rounded-[10px]"
                 >
-                    <span className="block w-[30px] h-[30px] rounded-full bg-gray-400 mr-5 mt-1"></span>
-                    <span className="block text-[12px]">
+                    <span className="block w-[30px] h-[30px] rounded-full bg-blue-800 mr-5 mt-1"></span>
+                    <span className="maze--title block text-[13px]">
                         kaitokosuge
-                        <br />
-                        <span className="text-yellow-600 text-[18px]">★s</span>
-                        <br />
-                        <span className="text-purple-700 text-[18px] font-bold">
-                            mazer
-                        </span>
+                        <p className="maze--title font-bold maze--knight--gra text-[18px] mt-1">
+                            K<span className="text-[8px]">night</span>
+                        </p>
+                        <p className="maze--title font-bold maze--title--gra text-[13px] mt-1">
+                            MAZER
+                        </p>
                     </span>
                 </Link>
                 <Link
@@ -38,11 +41,21 @@ export default function Sidebar({ categories }: CategoriesProps) {
                     <span className="block">HOME</span>
                 </Link>
                 <Link
+                    href="/history"
+                    className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
+                >
+                    <img
+                        src="/history--logo.png"
+                        className="w-[20px] h-[20px] mr-5 rounded-[5px]"
+                    />
+                    <span className="block">HISTORY</span>
+                </Link>
+                <Link
                     href="/news"
                     className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
                 >
                     <img
-                        src="/home.png"
+                        src="/news--logo.png"
                         className="w-[20px] h-[20px] mr-5 rounded-[5px]"
                     />
                     <span className="block">NEWS</span>
@@ -56,7 +69,7 @@ export default function Sidebar({ categories }: CategoriesProps) {
                             className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#000458] duration-300 rounded-[10px] flex items-center"
                         >
                             <>
-                                <div className="w-[20px] h-[20px]">
+                                <div className="w-[20px] h-auto">
                                     {parse(category.category_img)}
                                 </div>
                                 <span className="block ml-5">

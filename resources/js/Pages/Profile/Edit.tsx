@@ -1,37 +1,133 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import DeleteUserForm from './Partials/DeleteUserForm';
-import UpdatePasswordForm from './Partials/UpdatePasswordForm';
-import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
-import { Head } from '@inertiajs/react';
-import { PageProps } from '@/types';
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import DeleteUserForm from "./Partials/DeleteUserForm";
+import UpdatePasswordForm from "./Partials/UpdatePasswordForm";
+import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm";
+import { Head } from "@inertiajs/react";
+import { PageProps } from "@/types";
+import Sidebar from "../Presentation/Sidebar";
+import { useState } from "react";
+import Dropdown from "@/Components/Dropdown";
+import ProfileData from "./ProfileData";
 
-export default function Edit({ auth, mustVerifyEmail, status }: PageProps<{ mustVerifyEmail: boolean, status?: string }>) {
+export default function Edit({
+    auth,
+    mustVerifyEmail,
+    status,
+    categories,
+    allRate,
+    trueQuizNum,
+    allQuizNum,
+}: PageProps<{
+    mustVerifyEmail: boolean;
+    status?: string;
+    categories: any;
+    allRate: number;
+    trueQuizNum: number;
+    allQuizNum: number;
+}>) {
+    const [isShowDelete, setIsShowdelete] = useState<boolean>(false);
+    const handleAccountSet = () => {
+        setIsShowdelete(!isShowDelete);
+    };
+    const [isSetClick, setIsSetClick] = useState<boolean>(false);
+    const handleSetting = () => {
+        setIsSetClick(!isSetClick);
+    };
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Profile</h2>}
-        >
-            <Head title="Profile" />
+        <div className="bg-[#00142C] pl-[40px] flex pr-[40px] pb-[100px]">
+            <div className="w-[15%] h-screen relative">
+                <Sidebar categories={categories} />
+            </div>
+            <div className="w-[85%] flex justify-between">
+                <div className="pt-[60px] w-[100%]">
+                    <div className="flex justify-between items-center">
+                        <h2 className="font-bold text-gray-100 text-[50px]">
+                            PROFILE
+                        </h2>
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <UpdateProfileInformationForm
-                            mustVerifyEmail={mustVerifyEmail}
-                            status={status}
-                            className="max-w-xl"
+                        <img
+                            onClick={handleSetting}
+                            className="w-[30px] h-[30px]"
+                            src="/set--logo.png"
+                        ></img>
+                    </div>
+
+                    <div className="flex justify-between">
+                        <div
+                            className={
+                                isSetClick === true
+                                    ? "w-[25%] opacity-100 duration-100"
+                                    : "w-[0%] opacity-0 duration-100"
+                            }
+                        >
+                            <div
+                                className={
+                                    isSetClick === true
+                                        ? "sm:p-8 bg-[#140034] shadow rounded-[20px] mt-5"
+                                        : "sm:p-8 bg-[#140034] shadow rounded-[20px] mt-5"
+                                }
+                            >
+                                <p className="font-bold text-gray-100 text-[30px]">
+                                    SETTING
+                                </p>
+                                <UpdateProfileInformationForm
+                                    mustVerifyEmail={mustVerifyEmail}
+                                    status={status}
+                                    className="max-w-xl"
+                                />
+                                <p
+                                    className="mt-10 text-[14px] cursor-pointer text-gray-500 hover:text-gray-200 duration-300"
+                                    onClick={handleAccountSet}
+                                >
+                                    アカウント管理→
+                                </p>
+                                <Dropdown.Link
+                                    href={route("logout")}
+                                    method="post"
+                                    as="button"
+                                >
+                                    ログアウト→
+                                </Dropdown.Link>
+                            </div>
+
+                            {isShowDelete === true ? (
+                                <>
+                                    <div className="p-4 sm:p-8 bg-[#140034] shadow sm:rounded-lg opacity-100 duration-300">
+                                        <UpdatePasswordForm className="max-w-xl" />
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="p-4 sm:p-8 bg-[#140034] shadow sm:rounded-lg opacity-0 duration-300">
+                                        <DeleteUserForm className="max-w-xl" />
+                                    </div>
+                                </>
+                            )}
+                            {isShowDelete === true ? (
+                                <>
+                                    <div className="p-4 sm:p-8 bg-[#140034] shadow sm:rounded-lg opacity-100 duration-300">
+                                        <DeleteUserForm className="max-w-xl" />
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="p-4 sm:p-8 bg-[#140034] shadow sm:rounded-lg opacity-0 duration-300">
+                                        <DeleteUserForm className="max-w-xl" />
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                        <ProfileData
+                            categories={categories}
+                            auth={auth}
+                            allRate={allRate}
+                            trueQuizNum={trueQuizNum}
+                            allQuizNum={allQuizNum}
+                            isSetClick={isSetClick}
                         />
-                    </div>
-
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <UpdatePasswordForm className="max-w-xl" />
-                    </div>
-
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <DeleteUserForm className="max-w-xl" />
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </div>
     );
 }

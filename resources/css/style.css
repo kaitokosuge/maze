@@ -2,6 +2,7 @@ body {
     font-family: sans-serif;
     color: white;
     background: #000238;
+    min-height: 100vh;
 }
 .bg-colorfull-100 {
     background: linear-gradient(#000238, #000238, #370035, #370035);
@@ -14,6 +15,36 @@ body {
 }
 .bg-react-color {
     background: linear-gradient(#008f9f, #00142c, #00142c, #00142c, #00142c);
+}
+.bg-laravel-color {
+    background: linear-gradient(#af5757, #00142c, #00142c, #00142c, #00142c);
+}
+.bg-php-color {
+    background: linear-gradient(#8c49cc, #00142c, #00142c, #00142c, #00142c);
+}
+.bg-next-color {
+    background: linear-gradient(
+        #676767,
+        #171717,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c
+    );
+}
+.bg-python-color {
+    background: linear-gradient(
+        #604a00,
+        #00114f,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c,
+        #00142c
+    );
 }
 .text-limit {
     width: 50%;
@@ -33,14 +64,83 @@ body {
         background-position: 0% 0%;
     }
 }
+@keyframes bgtitlegradient {
+    0% {
+        background-position: 0 0%;
+    }
+
+    50% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+@keyframes bgknightgradient {
+    0% {
+        background-position: 0 0%;
+    }
+
+    50% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
 .maze--title {
     font-family: "Russo One", sans-serif;
+}
+.maze--title--gra {
+    background: -webkit-linear-gradient(0deg, #003f88, #00a6b2);
+    background-size: 280%;
+    animation: 7s infinite bgtitlegradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.maze--knight--gra {
+    background: -webkit-linear-gradient(0deg, #7f2c2c, #797500);
+    background-size: 280%;
+    animation: 15s infinite bgknightgradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.maze--herald--gra {
+    background: -webkit-linear-gradient(0deg, #138c0a, #10558e);
+    background-size: 280%;
+    animation: 15s infinite bgknightgradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.maze--sovereign--gra {
+    background: -webkit-linear-gradient(
+        0deg,
+        #16bf0a,
+        #0c8304,
+        #1e87dc,
+        #0f43bd,
+        #a653ff,
+        #ffc800,
+        #c20404,
+        #c20404,
+        #c20404
+    );
+    background-size: 300%;
+    animation: 12s infinite bgknightgradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .bg-colorfull-200 {
     background: linear-gradient(#001432, #002f32);
 }
 .bg-colorfull-300 {
     background: linear-gradient(#002d62, #00686f);
+}
+.bg-allquiz {
+    background: linear-gradient(to right, #000238, #000238, #370035, #370035);
+}
+.bg-profile {
+    background: linear-gradient(to right, #151515, #151515, #151515);
 }
 .bg-c-none {
     background-color: rgba(0, 0, 0, 0) !important;
@@ -201,6 +301,15 @@ body {
 .auth--text {
     text-shadow: 0 0 50px rgba(204, 204, 204, 0.5);
 }
+.auth--text-2 {
+    text-shadow: 0 0 18px rgba(204, 204, 204, 0.5);
+}
 .auth--card {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+.profile--card {
+    box-shadow: 0 0 10px rgba(72, 72, 72, 0.1);
+}
+.bg-profile-card {
+    background: rgb(15, 15, 15);
 }

@@ -43,4 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function isUserTrue()
+    {
+        return $this->belongsToMany(Quiz::class, 'user_quiz', 'user_id','quiz_id');
+    }
 }
