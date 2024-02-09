@@ -80,9 +80,23 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
     return (
         <div className="bg-[#00142C] pt-[60px] pb-[100px] pl-[40px] pr-[50px] min-h-screen">
             <div className="flex justify-between items-center">
-                <h2 className="font-bold text-[50px]">HOME</h2>
+                <h2
+                    className={
+                        isEyeClick === true
+                            ? "font-bold text-[50px] opacity-0 duration-300"
+                            : "font-bold text-[50px] opacity-100 duration-300"
+                    }
+                >
+                    HOME
+                </h2>
                 <div className="flex items-center">
-                    <div className="ml-5 flex items-center">
+                    <div
+                        className={
+                            isEyeClick === true
+                                ? "ml-5 flex items-center opacity-0 duration-300"
+                                : "ml-5 flex items-center opacity-100 duration-300"
+                        }
+                    >
                         <img
                             //onClick={handleClickEye}
                             className="w-[30px] cursor-pointer"
@@ -90,7 +104,13 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                         />
                         <p className="ml-5 font-bold">38</p>
                     </div>
-                    <div className="ml-5 flex items-center">
+                    <div
+                        className={
+                            isEyeClick === true
+                                ? "ml-5 flex items-center opacity-0 duration-300"
+                                : "ml-5 flex items-center opacity-100 duration-300"
+                        }
+                    >
                         <Drawer>
                             <DrawerTrigger className="text-yello-300">
                                 <div className="flex items-center">
@@ -198,7 +218,7 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                     </>
                 ) : (
                     <>
-                        <div className="flex items-center justify-between opacity-100 duration-300">
+                        <div className="flex items-center justify-between  opacity-100 duration-300">
                             <div className="w-[70%] flex items-center">
                                 <p className="font-bold text-[30px] text-gray-400">
                                     Today's Quiz
@@ -389,7 +409,7 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                     <div className="opacity-0 duration-1000">
                         <TopMedia user={user} />
                     </div>
-                    <div className="mt-[280px] duration-300">
+                    <div className="mt-[350px] duration-300">
                         <h2 className="font-bold text-[20px] mt-10">
                             All Quiz
                         </h2>

@@ -21,7 +21,7 @@ class AdminController extends Controller
         $rangeQuizzes = $quiz->where(function ($query) use ($sliceToday, $nineDays) {
             $query->where('showDay', '>=', $sliceToday)
                   ->where('showDay', '<=', $nineDays);
-                })->where('isToday',true)->get();
+                })->where('isToday',true)->with("categories")->with("user")->get();
         $mapDay = $rangeQuizzes->map(function($quiz){
             return $quiz->showDay;
         })->toArray();
@@ -33,7 +33,7 @@ class AdminController extends Controller
         $showDays = array_values(array_diff($days, $mapDay));
         $user=\Auth::user();
         if($user->isAdmin === 1){
-            return Inertia::render('Admin/AdminContainer')->with(['categories' => $category->get(),'days' => $days,"showDays" => $showDays]); 
+            return Inertia::render('Admin/AdminContainer')->with(['categories' => $category->get(),'days' => $days,"showDays" => $showDays,"reserveQuizzes"=>$rangeQuizzes]); 
         }else{
             return redirect("/top");
         };

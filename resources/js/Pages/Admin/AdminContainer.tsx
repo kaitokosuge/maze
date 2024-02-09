@@ -5,7 +5,7 @@ import AdminCalender from "./Presentation/AdminCalender";
 import AdminForm from "./Presentation/AdminForm";
 
 export default function AdminContainer(props: any) {
-    const { categories, days, showDays } = props;
+    const { categories, days, showDays, reserveQuizzes } = props;
     return (
         <div>
             <div className="flex">
@@ -15,7 +15,10 @@ export default function AdminContainer(props: any) {
                 <div className={`bg-[#00142C] w-[85%] min-h-screen`}>
                     <Header />
                     <div className="pl-[40px] pr-[50px]">
-                        <AdminCalender days={days} />
+                        <AdminCalender
+                            reserveQuizzes={reserveQuizzes}
+                            days={days}
+                        />
                         <AdminForm
                             days={days}
                             categories={categories}
