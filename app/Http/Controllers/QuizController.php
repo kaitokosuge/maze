@@ -23,7 +23,7 @@ class QuizController extends Controller
         $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
             $day = new Carbon();
             $today = $day->toDateString();
-            return $item->showDay < $today;
+            return $item->showDay <= $today;
         })->values()->toArray();
         return Inertia::render('Top/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
     }
@@ -36,7 +36,7 @@ class QuizController extends Controller
         })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
             $day = new Carbon();
             $today = $day->toDateString();
-            return $item->showDay < $today;
+            return $item->showDay <= $today;
         })->values()->toArray();
         return Inertia::render('Category/CategoryContainer')->with(['user'=>$user,'category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
@@ -64,7 +64,7 @@ class QuizController extends Controller
         $AllQuiz = $quiz->with("choices")->with('user')->with('isUserTrue')->with('categories')->orderBy('id','desc')->get()->filter( function ($item) {
             $day = new Carbon();
             $today = $day->toDateString();
-            return $item->showDay < $today;
+            return $item->showDay <= $today;
         })->values()->toArray();
         return response()->json([
             'allQuiz' => $AllQuiz
@@ -77,7 +77,7 @@ class QuizController extends Controller
         })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
             $day = new Carbon();
             $today = $day->toDateString();
-            return $item->showDay < $today;
+            return $item->showDay <= $today;
         })->values()->toArray();
         return response()->json([
             'newQuizzes' => $categoryQuiz

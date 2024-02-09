@@ -29,17 +29,27 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
             return [...isChoiceClick, choiceId];
         });
     };
+    const [csrfMetaTag, setCsrfMetaTag] = useState<Element | null>(null);
+
+    useEffect(() => {
+        const csrfTag = document.head.querySelector(
+            'meta[name="csrf-token"]'
+        ).content;
+        setCsrfMetaTag(csrfTag);
+        console.log("csrfTag", csrfTag);
+    }, []);
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
-        const csrfMetaTag: Element | null = document.head.querySelector(
-            'meta[name="csrf-token"]'
-        );
+        // const csrfMetaTag: Element | null = document.head.querySelector(
+        //     'meta[name="csrf-token"]'
+        // );
         try {
+            console.log("csrfMetaTag", csrfMetaTag);
             const res = await fetch(`/quiz/answer/${id}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": `${csrfMetaTag.content}`,
+                    "X-CSRF-TOKEN": `${csrfMetaTag}`,
                 },
                 body: JSON.stringify(isChoiceClick),
             });
@@ -92,13 +102,13 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                                     <p className="ml-5 font-bold">20</p>
                                 </div>
                             </DrawerTrigger>
-                            <DrawerContent className="bg-[#000238] border-none min-h-[400px] px-[100px] pb-10">
+                            <DrawerContent className="bg-[#1d2089] border-none min-h-[500px] px-[100px] pb-10">
                                 <DrawerHeader>
-                                    <DrawerTitle className="mt-10 text-[20px]">
-                                        Comment
+                                    <DrawerTitle className="mt-10 text-[30px]">
+                                        COMMENT
                                     </DrawerTitle>
                                     <DrawerDescription>
-                                        This action cannot be undone.
+                                        today's quiz comment
                                     </DrawerDescription>
                                 </DrawerHeader>
                                 <DrawerFooter>
@@ -379,7 +389,7 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                     <div className="opacity-0 duration-1000">
                         <TopMedia user={user} />
                     </div>
-                    <div className="mt-[250px] duration-1000">
+                    <div className="mt-[280px] duration-300">
                         <h2 className="font-bold text-[20px] mt-10">
                             All Quiz
                         </h2>
@@ -391,7 +401,7 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                     <div className="opacity-100 duration-1000">
                         <TopMedia user={user} />
                     </div>
-                    <div className="mt-0 duration-1000">
+                    <div className="mt-0 duration-300">
                         <h2 className="font-bold text-[20px] mt-10">
                             All Quiz
                         </h2>

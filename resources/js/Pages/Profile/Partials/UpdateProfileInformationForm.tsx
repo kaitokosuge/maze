@@ -32,13 +32,7 @@ export default function UpdateProfileInformation({
 
     return (
         <section className={className}>
-            <header>
-                <h2 className="font-bold text-gray-100 text-[50px]">PROFILE</h2>
-
-                <p className="mt-1 text-sm text-gray-500"></p>
-            </header>
-
-            <form onSubmit={submit} className="mt-6 space-y-6">
+            <form onSubmit={submit} className="mt-1 space-y-6">
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 

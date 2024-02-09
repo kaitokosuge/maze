@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 
 export default function AdminFormToday(props: any) {
-    const { days, categories } = props;
+    const { days, categories, showDays } = props;
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
@@ -21,17 +21,25 @@ export default function AdminFormToday(props: any) {
                 body: JSON.stringify(postQuiz),
             });
             if (res.ok) {
-                console.log("postQuizzzzz", postQuiz);
-                setPostQuiz({
-                    quiz: "",
-                    day: "",
-                    category: [],
-                    choices: [{ uuid: uuidv4(), choice: "", istrue: "true" }],
-                    answer: "",
-                });
+                const result = await res.json();
+                console.log("result", result);
+                if (result.alreadyReserve !== null) {
+                    setPostQuiz(postQuiz);
+                    alert(`${result.alreadyReserve}`);
+                } else if (result.successReserve !== null) {
+                    setPostQuiz({
+                        quiz: "",
+                        day: "",
+                        category: [],
+                        choices: [
+                            { uuid: uuidv4(), choice: "", istrue: "true" },
+                        ],
+                        answer: "",
+                    });
+                }
             }
         } catch (error) {
-            console.log(error);
+            console.log("error", error);
         }
     };
     const [choices, handleChoices] = useState<Choices[]>([
@@ -148,7 +156,7 @@ export default function AdminFormToday(props: any) {
                     <span className="font-normal text-[10px]"> 公開日時</span>
                 </p>
                 <div className="mt-[20px] flex">
-                    {days.map((day: string) => (
+                    {showDays.map((day: string) => (
                         <div
                             id={day}
                             onClick={handleClickDay}
