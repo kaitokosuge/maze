@@ -10,41 +10,23 @@ body {
     animation: 10s infinite bggradient;
 }
 .bg-js-color {
-    /* background: linear-gradient(#008f9f,#00142C,#00142C,#00142C,#00142C); */
-    background: linear-gradient(#877e00, #00142c, #00142c, #00142c, #00142c);
+    /* background: linear-gradient(#877e00, #00142c, #00142c, #00142c, #00142c); */
+    background: linear-gradient(#877e00, #00142c 200px, #00142c 200px);
 }
 .bg-react-color {
-    background: linear-gradient(#008f9f, #00142c, #00142c, #00142c, #00142c);
+    background: linear-gradient(#008f9f, #00142c 200px, #00142c 200px);
 }
 .bg-laravel-color {
-    background: linear-gradient(#af5757, #00142c, #00142c, #00142c, #00142c);
+    background: linear-gradient(#af5757, #00142c 200px, #00142c 200px);
 }
 .bg-php-color {
-    background: linear-gradient(#8c49cc, #00142c, #00142c, #00142c, #00142c);
+    background: linear-gradient(#8c49cc, #00142c 200px, #00142c 200px);
 }
 .bg-next-color {
-    background: linear-gradient(
-        #676767,
-        #171717,
-        #00142c,
-        #00142c,
-        #00142c,
-        #00142c,
-        #00142c,
-        #00142c
-    );
+    background: linear-gradient(#676767, #171717, #00142c 200px, #00142c 200px);
 }
 .bg-python-color {
-    background: linear-gradient(
-        #604a00,
-        #00114f,
-        #00142c,
-        #00142c,
-        #00142c,
-        #00142c,
-        #00142c,
-        #00142c
-    );
+    background: linear-gradient(#604a00, #00114f, #00142c 200px, #00142c 200px);
 }
 .text-limit {
     width: 50%;
@@ -88,6 +70,7 @@ body {
         background-position: 0% 0%;
     }
 }
+
 .maze--title {
     font-family: "Russo One", sans-serif;
 }

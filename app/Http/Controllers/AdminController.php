@@ -16,7 +16,6 @@ class AdminController extends Controller
     {
         $today = new Carbon();
         $nineDays = $today->copy()->addDays(8);
-        //dd($nineDays);
         $sliceToday = $today->toDateString();
         $rangeQuizzes = $quiz->where(function ($query) use ($sliceToday, $nineDays) {
             $query->where('showDay', '>=', $sliceToday)
@@ -32,8 +31,15 @@ class AdminController extends Controller
         }
         $showDays = array_values(array_diff($days, $mapDay));
         $user=\Auth::user();
+        $today = new Carbon();
+        $allQuizNum = $quiz->where(function ($query) use ($today) {
+            $query->where('showDay', '<=', $today);
+                })->get()->count();
+        $trueQuizNum = $user->isUserTrue()->count();
+        $Rate = round($trueQuizNum / $allQuizNum, 2)*100;
+        $allRate = floor($Rate);
         if($user->isAdmin === 1){
-            return Inertia::render('Admin/AdminContainer')->with(['categories' => $category->get(),'days' => $days,"showDays" => $showDays,"reserveQuizzes"=>$rangeQuizzes]); 
+            return Inertia::render('Admin/AdminContainer')->with(['allRate'=>$allRate,'user'=>$user,'categories' => $category->get(),'days' => $days,"showDays" => $showDays,"reserveQuizzes"=>$rangeQuizzes]); 
         }else{
             return redirect("/top");
         };

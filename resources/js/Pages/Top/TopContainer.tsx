@@ -9,6 +9,7 @@ export default function TopContainer({
     quizzes,
     categories,
     todayQuiz,
+    allRate,
 }: any) {
     const [stateQuizzes, setQuizzes] = useState(quizzes);
 
@@ -17,7 +18,11 @@ export default function TopContainer({
             <div>
                 <div className="flex">
                     <div className="w-[15%] h-screen relative">
-                        <Sidebar categories={categories} />
+                        <Sidebar
+                            categories={categories}
+                            user={user}
+                            allRate={allRate}
+                        />
                     </div>
                     <div className="w-[85%]">
                         <Header />

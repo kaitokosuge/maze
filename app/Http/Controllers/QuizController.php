@@ -13,7 +13,6 @@ class QuizController extends Controller
 {
     public function index(User $user, Quiz $quiz, Category $category)
     {
-        
         $todayQuiz = $quiz->with("categories")->with("choices")->with("user")->orderBy('id','desc')->with('isUserTrue')->get()->filter(function ($item) {
             $day = new Carbon();
             $today = $day->toDateString();
@@ -25,7 +24,14 @@ class QuizController extends Controller
             $today = $day->toDateString();
             return $item->showDay <= $today;
         })->values()->toArray();
-        return Inertia::render('Top/TopContainer')->with(['user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
+        $today = new Carbon();
+        $allQuizNum = $quiz->where(function ($query) use ($today) {
+            $query->where('showDay', '<=', $today);
+                })->get()->count();
+        $trueQuizNum = $user->isUserTrue()->count();
+        $Rate = round($trueQuizNum / $allQuizNum, 2)*100;
+        $allRate = floor($Rate);
+        return Inertia::render('Top/TopContainer')->with(['allRate'=>$allRate,'user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
     }
 
     public function showCategory(Category $category, Quiz $quiz)
@@ -38,7 +44,14 @@ class QuizController extends Controller
             $today = $day->toDateString();
             return $item->showDay <= $today;
         })->values()->toArray();
-        return Inertia::render('Category/CategoryContainer')->with(['user'=>$user,'category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
+        $today = new Carbon();
+        $allQuizNum = $quiz->where(function ($query) use ($today) {
+            $query->where('showDay', '<=', $today);
+                })->get()->count();
+        $trueQuizNum = $user->isUserTrue()->count();
+        $Rate = round($trueQuizNum / $allQuizNum, 2)*100;
+        $allRate = floor($Rate);
+        return Inertia::render('Category/CategoryContainer')->with(['allRate'=>$allRate,'user'=>$user,'category' => $category, 'quizzes' => $categoryQuiz, 'categories' => $category->get()]);
     }
     
     public function quizTry(Request $requests, Quiz $quiz , User $user)
@@ -50,10 +63,18 @@ class QuizController extends Controller
         }
         if(count($answerArray) === count($tryArray) && array_diff($answerArray, $tryArray) === array_diff($tryArray, $answerArray)){
             $user = \Auth::user();
-            $quiz->isUserTrue()->attach($user->id);
-            return response()->json([
-                'isTrue' => 'true',
-            ]);
+            if ($quiz->isUserTrue()->where('user_id', $user->id)->where('quiz_id', $quiz->id)->exists()) {
+                return response()->json([
+                    'isTrue' => 'true',
+                    'alredyTrue'=>"alredyTrue"
+                ]);
+            } else {
+                $user = \Auth::user();
+                $quiz->isUserTrue()->attach($user->id);
+                return response()->json([
+                    'isTrue' => 'true',
+                ]);
+            }
         }else{
             return ['isTrue' => 'false'];
         }
@@ -70,6 +91,7 @@ class QuizController extends Controller
             'allQuiz' => $AllQuiz
         ]);
     }
+
     public function quizGet(Category $category ,Quiz $quiz) 
     {
         $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {

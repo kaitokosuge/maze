@@ -11,19 +11,25 @@ import ProfileData from "./ProfileData";
 
 export default function Edit({
     auth,
+    user,
     mustVerifyEmail,
     status,
     categories,
     allRate,
     trueQuizNum,
     allQuizNum,
+    categoryQuizCount,
+    categoryQuizTrueCount,
 }: PageProps<{
+    user: any;
     mustVerifyEmail: boolean;
     status?: string;
     categories: any;
     allRate: number;
     trueQuizNum: number;
     allQuizNum: number;
+    categoryQuizCount: any;
+    categoryQuizTrueCount: any;
 }>) {
     const [isShowDelete, setIsShowdelete] = useState<boolean>(false);
     const handleAccountSet = () => {
@@ -36,7 +42,11 @@ export default function Edit({
     return (
         <div className="bg-[#00142C] pl-[40px] flex pr-[40px] pb-[100px]">
             <div className="w-[15%] h-screen relative">
-                <Sidebar categories={categories} />
+                <Sidebar
+                    categories={categories}
+                    user={user}
+                    allRate={allRate}
+                />
             </div>
             <div className="w-[85%] flex justify-between">
                 <div className="pt-[60px] w-[100%]">
@@ -47,7 +57,7 @@ export default function Edit({
 
                         <img
                             onClick={handleSetting}
-                            className="w-[30px] h-[30px]"
+                            className="w-[30px] h-[30px] cursor-pointer"
                             src="/set--logo.png"
                         ></img>
                     </div>
@@ -124,6 +134,8 @@ export default function Edit({
                             trueQuizNum={trueQuizNum}
                             allQuizNum={allQuizNum}
                             isSetClick={isSetClick}
+                            categoryQuizCount={categoryQuizCount}
+                            categoryQuizTrueCount={categoryQuizTrueCount}
                         />
                     </div>
                 </div>

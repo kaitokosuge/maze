@@ -5,12 +5,16 @@ import AdminCalender from "./Presentation/AdminCalender";
 import AdminForm from "./Presentation/AdminForm";
 
 export default function AdminContainer(props: any) {
-    const { categories, days, showDays, reserveQuizzes } = props;
+    const { categories, days, showDays, reserveQuizzes, user, allRate } = props;
     return (
         <div>
             <div className="flex">
                 <div className="w-[15%]">
-                    <Sidebar categories={categories} />
+                    <Sidebar
+                        categories={categories}
+                        user={user}
+                        allRate={allRate}
+                    />
                 </div>
                 <div className={`bg-[#00142C] w-[85%] min-h-screen]`}>
                     <Header />
