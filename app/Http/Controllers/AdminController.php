@@ -16,7 +16,6 @@ class AdminController extends Controller
     {
         $today = new Carbon();
         $nineDays = $today->copy()->addDays(8);
-        //dd($nineDays);
         $sliceToday = $today->toDateString();
         $rangeQuizzes = $quiz->where(function ($query) use ($sliceToday, $nineDays) {
             $query->where('showDay', '>=', $sliceToday)

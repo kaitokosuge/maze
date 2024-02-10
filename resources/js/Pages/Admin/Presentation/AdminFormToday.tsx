@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { useToast } from "@/shadcn-ui/ui/use-toast";
 import { Toaster } from "@/shadcn-ui/ui/toaster";
+import { Filter } from "lucide-react";
 
 export default function AdminFormToday(props: any) {
     const { days, categories, showDays } = props;
+    console.log("showDay", showDays);
     const { toast } = useToast();
+    const [viewDays, setViewDays] = useState(showDays);
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
@@ -31,8 +34,13 @@ export default function AdminFormToday(props: any) {
                     alert(`${result.alreadyReserve}`);
                 } else if (result.successReserve !== null) {
                     toast({
-                        title: "Scheduled: Catch up",
-                        description: "Friday, February 10, 2023 at 5:57 PM",
+                        title: "クイズの投稿が完了しました",
+                        description: `${postQuiz.day}に投稿されます`,
+                    });
+                    setViewDays((prev: any) => {
+                        return prev.filter(
+                            (day: string) => day !== postQuiz.day
+                        );
                     });
                     setPostQuiz((prev) => {
                         return {
@@ -167,7 +175,7 @@ export default function AdminFormToday(props: any) {
                     <span className="font-normal text-[10px]"> 公開日時</span>
                 </p>
                 <div className="mt-[20px] flex">
-                    {showDays.map((day: string) => (
+                    {viewDays.map((day: string) => (
                         <div
                             id={day}
                             onClick={handleClickDay}
@@ -186,6 +194,7 @@ export default function AdminFormToday(props: any) {
                     <span className="font-normal text-[10px]"> クイズ</span>
                 </label>
                 <textarea
+                    value={postQuiz.quiz}
                     onChange={handleChangeTodayQuiz}
                     name="quiz"
                     className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
@@ -281,6 +290,7 @@ export default function AdminFormToday(props: any) {
                     </p>
                     <textarea
                         onChange={handleChangeTodayQuiz}
+                        value={postQuiz.answer}
                         name="answer"
                         className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                     ></textarea>
