@@ -2,9 +2,12 @@ import { count } from "console";
 import { v4 as uuidv4 } from "uuid";
 import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
+import { useToast } from "@/shadcn-ui/ui/use-toast";
+import { Toaster } from "@/shadcn-ui/ui/toaster";
 
 export default function AdminFormToday(props: any) {
     const { days, categories, showDays } = props;
+    const { toast } = useToast();
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
@@ -27,6 +30,10 @@ export default function AdminFormToday(props: any) {
                     setPostQuiz(postQuiz);
                     alert(`${result.alreadyReserve}`);
                 } else if (result.successReserve !== null) {
+                    toast({
+                        title: "Scheduled: Catch up",
+                        description: "Friday, February 10, 2023 at 5:57 PM",
+                    });
                     setPostQuiz((prev) => {
                         return {
                             ...prev,
@@ -146,6 +153,7 @@ export default function AdminFormToday(props: any) {
     return (
         <>
             <form onSubmit={handleSubmit} className="mt-[0px]">
+                <Toaster />
                 <div className="flex justify-between">
                     <div className="font-bold text-xl text-gray-300">
                         Today's quiz を作成

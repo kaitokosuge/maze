@@ -31,7 +31,7 @@ export default function ProfileRank(props: any) {
                     </>
                 );
                 break;
-            case allRate < 90:
+            case allRate < 100:
                 rank = (
                     <>
                         <p className="maze--title font-bold maze--herald--gra text-[34px] mt-5">

@@ -17,6 +17,8 @@ export default function Edit({
     allRate,
     trueQuizNum,
     allQuizNum,
+    categoryQuizCount,
+    categoryQuizTrueCount,
 }: PageProps<{
     mustVerifyEmail: boolean;
     status?: string;
@@ -24,6 +26,8 @@ export default function Edit({
     allRate: number;
     trueQuizNum: number;
     allQuizNum: number;
+    categoryQuizCount: any;
+    categoryQuizTrueCount: any;
 }>) {
     const [isShowDelete, setIsShowdelete] = useState<boolean>(false);
     const handleAccountSet = () => {
@@ -124,6 +128,8 @@ export default function Edit({
                             trueQuizNum={trueQuizNum}
                             allQuizNum={allQuizNum}
                             isSetClick={isSetClick}
+                            categoryQuizCount={categoryQuizCount}
+                            categoryQuizTrueCount={categoryQuizTrueCount}
                         />
                     </div>
                 </div>

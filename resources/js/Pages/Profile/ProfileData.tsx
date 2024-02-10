@@ -1,12 +1,21 @@
 import React from "react";
 import parse from "html-react-parser";
 import ProfileRank from "./ProfileRank";
+import ProfileWidth from "./ProfileWidth";
 
 export default function ProfileData(props: any) {
-    const { auth, trueQuizNum, allQuizNum, allRate, isSetClick, categories } =
-        props;
-    const num = allRate;
-    console.log(num);
+    const {
+        auth,
+        trueQuizNum,
+        allQuizNum,
+        allRate,
+        isSetClick,
+        categories,
+        categoryQuizCount,
+        categoryQuizTrueCount,
+    } = props;
+    console.log(allRate);
+
     return (
         <div
             className={
@@ -54,7 +63,8 @@ export default function ProfileData(props: any) {
                         allQuizNum={allQuizNum}
                     />
                 </div>
-                <div className="w-[45%] ">
+
+                <div className="w-[45%]">
                     <p className="font-bold text-[20px]">All Quiz</p>
                     <p className="mt-10 font-bold text-[10px] text-gray-600">
                         Number
@@ -65,7 +75,7 @@ export default function ProfileData(props: any) {
                             / {allQuizNum}
                         </span>
                     </div>
-                    <p className="mt-5 font-bold text-[10px] text-gray-600">
+                    <p className="mt-5 font-bold text-[10px] text-gray-600 ">
                         Rate
                     </p>
                     <div className="w-full bg-black rounded-[10px] mt-5 p-1">
@@ -83,7 +93,7 @@ export default function ProfileData(props: any) {
                         : "grid grid-cols-3 gap-10 mt-10"
                 }
             >
-                {categories.map((category: any) => (
+                {categories.map((category: any, index: number) => (
                     <div className="rounded-[20px] p-10 profile--card bg-profile-card">
                         <div className="flex font-bold text-[30px]">
                             <div className="w-[50px]">
@@ -95,18 +105,42 @@ export default function ProfileData(props: any) {
                             Count
                         </p>
                         <div className="mt-1 font-bold text-[80px] flex items-end">
-                            <p className="leading-none">15</p>
+                            <p className="leading-none">
+                                {categoryQuizTrueCount[index + 1] ===
+                                undefined ? (
+                                    0
+                                ) : (
+                                    <>{categoryQuizTrueCount[index + 1]}</>
+                                )}
+                            </p>
                             <span className="text-[25px] ml-5 leading-none">
-                                / 21
+                                / {categoryQuizCount[index]}
                             </span>
                         </div>
-                        <p className="mt-5 font-bold text-[10px] text-gray-600">
+                        <p className="mt-5 font-bold text-[10px] text-gray-600 w-[0%]">
                             Rate
                         </p>
                         <div className="w-full bg-black rounded-[10px] mt-5 p-1">
-                            <div
-                                className={`w-[${num}%] bg-[#877e00] h-[30px] rounded-[10px]`}
-                            ></div>
+                            <>
+                                {categoryQuizTrueCount[index + 1] ===
+                                undefined ? (
+                                    <>
+                                        <div className="w-0 bg-[#877e00] h-[30px] rounded-[10px]"></div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div
+                                            className={`w-[${Math.round(
+                                                (categoryQuizTrueCount[
+                                                    index + 1
+                                                ] /
+                                                    categoryQuizCount[index]) *
+                                                    100
+                                            )}%] bg-[#877e00] h-[30px] rounded-[10px]`}
+                                        ></div>
+                                    </>
+                                )}
+                            </>
                         </div>
                     </div>
                 ))}

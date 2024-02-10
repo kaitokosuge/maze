@@ -25,7 +25,36 @@ class ProfileController extends Controller
             $query->where('showDay', '<=', $today);
                 })->get()->count();
         $trueQuizNum = $user->isUserTrue()->count();
-        $allRate = round($trueQuizNum / $allQuizNum, 2)*100;
+        $Rate = round($trueQuizNum / $allQuizNum, 2)*100;
+        $allRate = floor($Rate);
+        $allCategoryNum = $category->get()->count();
+        $categoryArray = [];
+        for($num = 0; $num < $allCategoryNum; $num++){
+            $data = $category->find($num + 1)->quizzes()->where('showDay', '<=', $today)->count();
+            array_push($categoryArray,$data);
+        }
+        
+
+        // ユーザーに関連するクイズを取得
+        $quizzes = $user->isUserTrue()->get();
+
+        // カテゴリーごとの正解数を格納する配列を初期化
+        $categoryStats = [];
+
+        // クイズごとにループして正解数を計算
+        foreach ($quizzes as $quiz) {
+            foreach ($quiz->categories as $category) {
+                // カテゴリーがまだ配列に存在しない場合は初期値を設定
+                if (!isset($categoryStats[$category->id])) {
+                    $categoryStats[$category->id] = 0;
+                }
+                // クイズが正解者のものであれば正解数を増やす
+                if ($quiz->isUserTrue()) {
+                    $categoryStats[$category->id]++;
+                }
+            }
+        }
+        
 
         return Inertia::render('Profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
@@ -34,6 +63,8 @@ class ProfileController extends Controller
             'trueQuizNum' => $trueQuizNum,
             'allQuizNum' => $allQuizNum,
             'allRate' => $allRate,
+            'categoryQuizCount' =>  $categoryArray,
+            'categoryQuizTrueCount'=>$categoryStats
         ]);
     }
 
