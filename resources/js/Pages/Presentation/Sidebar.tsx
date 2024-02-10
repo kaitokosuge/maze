@@ -22,7 +22,7 @@ export default function Sidebar(props: any) {
                     href="/profile"
                     className="flex items-start font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 rounded-[10px]"
                 >
-                    <span className="block w-[30px] h-[30px] rounded-full bg-blue-800 mr-5 mt-1"></span>
+                    <div className="block w-[35px] h-[35px] rounded-full bg-blue-800 mr-5 mt-1"></div>
                     <span className="maze--title block text-[13px]">
                         {user.name}
                         <p className="maze--title font-bold maze--knight--gra text-[18px] mt-1">

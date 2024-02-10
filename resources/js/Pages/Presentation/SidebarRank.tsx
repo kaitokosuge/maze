@@ -8,8 +8,8 @@ export default function SidebarRank(props: any) {
             case allRate === 100:
                 rank = (
                     <>
-                        <p className="maze--title font-bold maze--sovereign--gra text-[11px] mt-1">
-                            Sovereign
+                        <p className="maze--title font-bold maze--sovereign--gra text-[10px] mt-1">
+                            <span className="text-[20px]">S</span>overeign
                         </p>
                     </>
                 );
@@ -18,7 +18,7 @@ export default function SidebarRank(props: any) {
                 rank = (
                     <>
                         <p className="maze--title font-bold maze--knight--gra text-[11px] mt-1">
-                            Knight
+                            <span className="text-[20px]">K</span>night
                         </p>
                     </>
                 );
@@ -27,7 +27,7 @@ export default function SidebarRank(props: any) {
                 rank = (
                     <>
                         <p className="maze--title font-bold maze--herald--gra text-[11px] mt-1">
-                            Herald
+                            <span className="text-[20px]">H</span>erald
                         </p>
                     </>
                 );
