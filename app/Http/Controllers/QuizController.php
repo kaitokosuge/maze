@@ -50,10 +50,18 @@ class QuizController extends Controller
         }
         if(count($answerArray) === count($tryArray) && array_diff($answerArray, $tryArray) === array_diff($tryArray, $answerArray)){
             $user = \Auth::user();
-            $quiz->isUserTrue()->attach($user->id);
-            return response()->json([
-                'isTrue' => 'true',
-            ]);
+            if ($quiz->isUserTrue()->where('user_id', $user->id)->where('quiz_id', $quiz->id)->exists()) {
+                return response()->json([
+                    'isTrue' => 'true',
+                    'alredyTrue'=>"alredyTrue"
+                ]);
+            } else {
+                $user = \Auth::user();
+                $quiz->isUserTrue()->attach($user->id);
+                return response()->json([
+                    'isTrue' => 'true',
+                ]);
+            }
         }else{
             return ['isTrue' => 'false'];
         }
