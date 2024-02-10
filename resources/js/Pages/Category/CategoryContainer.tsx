@@ -7,12 +7,16 @@ import CategoryQuizCard from "./Presentation/CategoryQuizCard";
 import parse from "html-react-parser";
 
 export default function CategoryContainer(props: any) {
-    const { category, quizzes, categories, user } = props;
+    const { category, quizzes, categories, user, allRate } = props;
     console.log(quizzes);
     return (
         <div className="flex">
             <div className="w-[15%]">
-                <Sidebar categories={categories} />
+                <Sidebar
+                    categories={categories}
+                    user={user}
+                    allRate={allRate}
+                />
             </div>
             <div
                 className={`bg-[#00142C] bg-${category.category_color} w-[85%] min-h-screen`}

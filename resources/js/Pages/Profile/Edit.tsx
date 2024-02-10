@@ -11,6 +11,7 @@ import ProfileData from "./ProfileData";
 
 export default function Edit({
     auth,
+    user,
     mustVerifyEmail,
     status,
     categories,
@@ -20,6 +21,7 @@ export default function Edit({
     categoryQuizCount,
     categoryQuizTrueCount,
 }: PageProps<{
+    user: any;
     mustVerifyEmail: boolean;
     status?: string;
     categories: any;
@@ -40,7 +42,11 @@ export default function Edit({
     return (
         <div className="bg-[#00142C] pl-[40px] flex pr-[40px] pb-[100px]">
             <div className="w-[15%] h-screen relative">
-                <Sidebar categories={categories} />
+                <Sidebar
+                    categories={categories}
+                    user={user}
+                    allRate={allRate}
+                />
             </div>
             <div className="w-[85%] flex justify-between">
                 <div className="pt-[60px] w-[100%]">
