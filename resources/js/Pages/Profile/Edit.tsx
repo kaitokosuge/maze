@@ -57,7 +57,7 @@ export default function Edit({
 
                         <img
                             onClick={handleSetting}
-                            className="w-[30px] h-[30px]"
+                            className="w-[30px] h-[30px] cursor-pointer"
                             src="/set--logo.png"
                         ></img>
                     </div>

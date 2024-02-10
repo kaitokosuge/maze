@@ -20,7 +20,7 @@ export default function Sidebar(props: any) {
             <div className="border-t border-gray-700 w-[85%] m-auto py-5">
                 <Link
                     href="/profile"
-                    className="flex items-start font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 rounded-[10px]"
+                    className="flex items-start font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] hover:scale-105 duration-300 rounded-[10px]"
                 >
                     <div className="block w-[35px] h-[35px] rounded-full bg-blue-800 mr-5 mt-1"></div>
                     <span className="maze--title block text-[13px]">
@@ -33,7 +33,7 @@ export default function Sidebar(props: any) {
                 {user.isAdmin === 1 && (
                     <Link
                         href="/mazer"
-                        className="font-bold w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex items-center rounded-[10px]"
+                        className="hover:scale-105 font-bold w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex items-center rounded-[10px]"
                     >
                         <img
                             src="/pen--logo.png"
@@ -47,7 +47,7 @@ export default function Sidebar(props: any) {
 
                 <Link
                     href="/top"
-                    className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
+                    className="hover:scale-105 font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
                 >
                     <img
                         src="/home.png"
@@ -57,7 +57,7 @@ export default function Sidebar(props: any) {
                 </Link>
                 <Link
                     href="/history"
-                    className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
+                    className="hover:scale-105 font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
                 >
                     <img
                         src="/history--logo.png"
@@ -67,7 +67,7 @@ export default function Sidebar(props: any) {
                 </Link>
                 <Link
                     href="/news"
-                    className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
+                    className="hover:scale-105 font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
                 >
                     <img
                         src="/news--logo.png"
@@ -81,7 +81,7 @@ export default function Sidebar(props: any) {
                     <>
                         <Link
                             href={`/quiz/${category.id}`}
-                            className="font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#000458] duration-300 rounded-[10px] flex items-center"
+                            className="hover:scale-105 font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#000458] duration-300 rounded-[10px] flex items-center"
                         >
                             <>
                                 <div className="w-[20px] h-auto">
