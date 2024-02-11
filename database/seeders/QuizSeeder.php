@@ -52,9 +52,8 @@ class QuizSeeder extends Seeder
             'user_id' => 1,
             'created_at' => now(),
             'isToday' => true,
-            'showDay' => '2024-02-10'
+            'showDay' => '2024-02-11'
         ]);
-        
         
     }
 }

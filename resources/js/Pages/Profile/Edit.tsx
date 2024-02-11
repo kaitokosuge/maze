@@ -51,7 +51,7 @@ export default function Edit({
             <div className="w-[85%] flex justify-between">
                 <div className="pt-[60px] w-[100%]">
                     <div className="flex justify-between items-center">
-                        <h2 className="font-bold text-gray-100 text-[50px]">
+                        <h2 className="font-bold text-gray-400 text-[30px]">
                             PROFILE
                         </h2>
 

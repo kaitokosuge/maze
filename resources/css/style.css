@@ -28,6 +28,36 @@ body {
 .bg-python-color {
     background: linear-gradient(#604a00, #00114f, #00142c 200px, #00142c 200px);
 }
+.bg-django-color {
+    background: linear-gradient(#00320d, #00142c 200px, #00142c 200px);
+}
+.bg-typescript-color {
+    background: linear-gradient(#0a3d89, #00142c 200px, #00142c 200px);
+}
+.bg-1 {
+    background: #877e00;
+}
+.bg-2 {
+    background: #006a87;
+}
+.bg-3 {
+    background: rgb(164, 65, 65);
+}
+.bg-4 {
+    background: rgb(79, 48, 94);
+}
+.bg-5 {
+    background: linear-gradient(to right, #4e4e4e, #151515);
+}
+.bg-6 {
+    background: linear-gradient(to right, #846500, #001767);
+}
+.bg-7 {
+    background: rgb(1, 59, 13);
+}
+.bg-8 {
+    background: rgb(1, 50, 119);
+}
 .text-limit {
     width: 50%;
     white-space: nowrap;

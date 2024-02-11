@@ -41,11 +41,11 @@ export default function ProfileData(props: any) {
                 }
             >
                 <div className="w-[45%]">
-                    <p className="maze--title font-bold text-white auth--text-2 text-[24px]">
+                    <p className="maze--title font-bold text-blue-600 auth--text-2 text-[24px]">
                         {auth.user.name}
                     </p>
                     <span className="maze--title text-[10px] text-gray-300">
-                        お願いします
+                        "Hello world."
                     </span>
                     {Number(auth.user.isAdmin) === 1 && (
                         <>
@@ -67,7 +67,7 @@ export default function ProfileData(props: any) {
                 <div className="w-[45%]">
                     <p className="font-bold text-[20px]">All Quiz</p>
                     <p className="mt-10 font-bold text-[10px] text-gray-600">
-                        Number
+                        Count
                     </p>
                     <div className="mt-1 font-bold text-[80px] flex items-end">
                         <p className="leading-none">{trueQuizNum}</p>
@@ -136,7 +136,9 @@ export default function ProfileData(props: any) {
                                                 ] /
                                                     categoryQuizCount[index]) *
                                                     100
-                                            )}%] bg-[#877e00] h-[30px] rounded-[10px]`}
+                                            )}%] bg-${
+                                                category.id
+                                            } h-[30px] rounded-[10px]`}
                                         ></div>
                                     </>
                                 )}

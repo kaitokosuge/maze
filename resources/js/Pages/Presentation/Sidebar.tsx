@@ -39,7 +39,7 @@ export default function Sidebar(props: any) {
                             src="/pen--logo.png"
                             className="w-[20px] h-[20px] mr-5 rounded-[5px]"
                         />
-                        <p className="auth--text-2 maze--title font-bold maze--title--gra text-[16px] mt-1">
+                        <p className="maze--title font-bold maze--title--gra text-[16px] mt-1">
                             MAZER
                         </p>
                     </Link>

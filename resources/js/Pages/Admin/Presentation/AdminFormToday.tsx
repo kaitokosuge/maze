@@ -5,10 +5,12 @@ import parse from "html-react-parser";
 import { useToast } from "@/shadcn-ui/ui/use-toast";
 import { Toaster } from "@/shadcn-ui/ui/toaster";
 import { Filter } from "lucide-react";
+import AdminPostedQuiz from "./AdminPostedQuiz";
+import AdminPostedTodayQuiz from "./AdminPostedTodayQuiz";
 
 export default function AdminFormToday(props: any) {
-    const { days, categories, showDays } = props;
-    console.log("showDay", showDays);
+    const { categories, showDays, postedTodayQuiz } = props;
+
     const { toast } = useToast();
     const [viewDays, setViewDays] = useState(showDays);
     const handleSubmit = async (e: any) => {
@@ -156,7 +158,30 @@ export default function AdminFormToday(props: any) {
             });
         }
     };
-    console.log("postquiz", postQuiz);
+    const [postedTodayQuizState, setPostedTodayQuiz] =
+        useState(postedTodayQuiz);
+    const handleClickDeleteQuiz = async (e: any, id: number) => {
+        e.preventDefault();
+        const csrf_token = document.head.querySelector(
+            'meta[name="csrf-token"]'
+        ).content;
+        const res = await fetch(`/mazer/delete/quiz/${id}`, {
+            method: "DELETE",
+            headers: {
+                "X-CSRF-TOKEN": csrf_token,
+            },
+        });
+        if (res.ok) {
+            const data = await res.json();
+            console.log("delete data", data.quiz);
+            toast({
+                title: `削除が完了しました`,
+            });
+            setPostedTodayQuiz((prev: any) => {
+                return prev.filter((quiz: any) => quiz.id !== data.quiz.id);
+            });
+        }
+    };
 
     return (
         <>
@@ -166,7 +191,7 @@ export default function AdminFormToday(props: any) {
                     <div className="font-bold text-xl text-gray-300">
                         Today's quiz を作成
                     </div>
-                    <button className="block rounded-[10px] bg-[#2522e6] px-[30px] py-[10px] font-bold">
+                    <button className="hover:bg-[#22e68b] hover:scale-105 duration-300 block rounded-[10px] bg-[#19ac68] px-[30px] py-[10px] font-bold">
                         保存
                     </button>
                 </div>
@@ -260,14 +285,17 @@ export default function AdminFormToday(props: any) {
                 </p>
                 <div className="flex mt-[20px]">
                     {categories.map((category: any) => (
-                        <div key={category.id} className="ml-10 flex">
+                        <div
+                            key={category.id}
+                            className="grid grid-cols-5 gap-5"
+                        >
                             <input
                                 onChange={handleChangeTodayQuiz}
                                 type="checkbox"
                                 name="category"
                                 value={category.id}
                                 id={category.id}
-                                className="block relative duration-500 bg-zinc-700  text-emerald-600 focus:ring-0 hover:bg-emerald-600 rounded-[2px] w-[120px] h-[25px] p-1"
+                                className="block relative duration-200 bg-zinc-700  text-emerald-600 focus:ring-0 hover:bg-emerald-600 rounded-[2px] w-[120px] h-[25px] p-1"
                             />
                             <label
                                 className="absolute text-white cursor-pointer flex items-center ml-1"
@@ -296,6 +324,10 @@ export default function AdminFormToday(props: any) {
                     ></textarea>
                 </div>
             </form>
+            <AdminPostedTodayQuiz
+                postedTodayQuiz={postedTodayQuizState}
+                handleClickDeleteQuiz={handleClickDeleteQuiz}
+            />
         </>
     );
 }

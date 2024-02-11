@@ -5,7 +5,16 @@ import AdminCalender from "./Presentation/AdminCalender";
 import AdminForm from "./Presentation/AdminForm";
 
 export default function AdminContainer(props: any) {
-    const { categories, days, showDays, reserveQuizzes, user, allRate } = props;
+    const {
+        categories,
+        days,
+        showDays,
+        reserveQuizzes,
+        user,
+        allRate,
+        postedTodayQuiz,
+        postedQuiz,
+    } = props;
     return (
         <div>
             <div className="flex">
@@ -16,14 +25,14 @@ export default function AdminContainer(props: any) {
                         allRate={allRate}
                     />
                 </div>
-                <div className={`bg-[#00142C] w-[85%] min-h-screen]`}>
+                <div className={`bg-[#00142C] w-[85%] min-h-screen] pb-10`}>
                     <Header />
                     <div className="pl-[40px] pr-[50px] pt-[60px]">
-                        <h2 className="text-[50px] font-bold">
-                            <span className="maze--title maze--title--gra">
-                                MAZE
-                            </span>{" "}
-                            <span className="text-[20px]">ADMIN</span>
+                        <h2 className="maze--title text-[30px] font-bold">
+                            <span className="maze--title--gra">MAZER</span>{" "}
+                            <span className="text-[16px] text-gray-500">
+                                for ADMIN
+                            </span>
                         </h2>
                         <AdminCalender
                             reserveQuizzes={reserveQuizzes}
@@ -33,6 +42,8 @@ export default function AdminContainer(props: any) {
                             days={days}
                             categories={categories}
                             showDays={showDays}
+                            postedTodayQuiz={postedTodayQuiz}
+                            postedQuiz={postedQuiz}
                         />
                     </div>
                 </div>
