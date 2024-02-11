@@ -1,9 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
 import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
+import AdminPostedQuiz from "./AdminPostedQuiz";
+import { useToast } from "@/shadcn-ui/ui/use-toast";
+import { Toaster } from "@/shadcn-ui/ui/toaster";
 
 export default function AdminFormNormal(props: any) {
-    const { categories } = props;
+    const { categories, postedQuiz } = props;
+    const { toast } = useToast();
     const handleNormalSubmit = async (e: any) => {
         e.preventDefault();
         try {
@@ -117,15 +121,38 @@ export default function AdminFormNormal(props: any) {
             });
         }
     };
+    const [postedQuizState, setPostedQuiz] = useState(postedQuiz);
+    const handleClickDeleteQuiz = async (e: any, id: number) => {
+        e.preventDefault();
+        const csrf_token = document.head.querySelector(
+            'meta[name="csrf-token"]'
+        ).content;
+        const res = await fetch(`/mazer/delete/quiz/${id}`, {
+            method: "DELETE",
+            headers: {
+                "X-CSRF-TOKEN": csrf_token,
+            },
+        });
+        if (res.ok) {
+            const data = await res.json();
+            toast({
+                title: `削除が完了しました`,
+            });
+            setPostedQuiz((prev: any) => {
+                return prev.filter((quiz: any) => quiz.id !== data.quiz.id);
+            });
+        }
+    };
     console.log("postnprmalquiz", postQuiz);
     return (
         <div>
             <form onSubmit={handleNormalSubmit} className="mt-[0px]">
+                <Toaster />
                 <div className="flex justify-between">
                     <div className="font-bold text-xl text-gray-300">
                         quiz を作成
                     </div>
-                    <button className="block rounded-[10px] bg-[#2522e6] px-[30px] py-[10px] font-bold">
+                    <button className="hover:bg-[#22e68b] hover:scale-105 duration-300 block rounded-[10px] bg-[#19ac68] px-[30px] py-[10px] font-bold">
                         保存
                     </button>
                 </div>
@@ -136,7 +163,7 @@ export default function AdminFormNormal(props: any) {
                 <textarea
                     onChange={handleChangeNormalQuiz}
                     name="quiz"
-                    className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
+                    className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#340a38]"
                 ></textarea>
                 <label className="font-bold text-[20px] mt-[50px] block">
                     choices & true
@@ -155,7 +182,7 @@ export default function AdminFormNormal(props: any) {
                                 {index + 1}
                             </div>
                             <input
-                                className="ml-[20px] p-5 min-w-[300px] border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
+                                className="ml-[20px] p-5 min-w-[300px] border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#340a38]"
                                 type="text"
                                 name="choice"
                                 onChange={(e) => {
@@ -199,14 +226,17 @@ export default function AdminFormNormal(props: any) {
                 </p>
                 <div className="flex mt-[20px]">
                     {categories.map((category: any) => (
-                        <div key={category.id} className="ml-10 flex">
+                        <div
+                            key={category.id}
+                            className="grid grid-cols-5 gap-5"
+                        >
                             <input
                                 onChange={handleChangeNormalQuiz}
                                 type="checkbox"
                                 name="category"
                                 value={category.id}
                                 id={category.id}
-                                className="relative duration-500 bg-zinc-700  text-emerald-600 focus:ring-0 rounded-[2px] w-[120px] h-[25px] p-1"
+                                className="relative duration-200 bg-zinc-700  text-emerald-600 focus:ring-0 rounded-[2px] w-[120px] h-[25px] p-1"
                             />
                             <label
                                 className="absolute text-white cursor-pointer flex items-center ml-1"
@@ -230,10 +260,14 @@ export default function AdminFormNormal(props: any) {
                     <textarea
                         onChange={handleChangeNormalQuiz}
                         name="answer"
-                        className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
+                        className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#340a38]"
                     ></textarea>
                 </div>
             </form>
+            <AdminPostedQuiz
+                postedQuiz={postedQuizState}
+                handleClickDeleteQuiz={handleClickDeleteQuiz}
+            />
         </div>
     );
 }

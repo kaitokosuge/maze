@@ -28,18 +28,20 @@ Route::get('/', function () {
 });
 
 
-Route::get('/top', [QuizController::class, 'index']);
+
 
 Route::middleware('auth')->group(function () {
+    Route::get('/top', [QuizController::class, 'index']);
     Route::get('/quiz/{category}', [QuizController::class, 'showCategory']);
     Route::post('/quiz/answer/{quiz}',[QuizController::class,'quizTry']);
-
+    
     Route::get('/get/quiz',[QuizController::class,'allQuizGet']);
     Route::get('/quiz/new/{category}',[QuizController::class,'quizGet']);
 
     Route::get('/mazer',[AdminController::class,'index']);
     Route::post("/mazer/store/quiz",[AdminController::class,'storeQuiz']);
     Route::post("/mazer/store/normal/quiz",[AdminController::class,'storeNormalQuiz']);
+    Route::delete("/mazer/delete/quiz/{quiz}",[AdminController::class,'deleteQuiz']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
