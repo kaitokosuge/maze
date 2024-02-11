@@ -7,7 +7,6 @@ import SidebarRank from "./SidebarRank";
 
 export default function Sidebar(props: any) {
     const { categories, user, allRate } = props;
-    console.log("siderate", allRate);
     return (
         <div className="bg-[#000238] fixed left-0 w-[15%] h-screen">
             <h1 className="font-bold maze--title text-[30px] text-white w-[85%] m-auto flex items-center duration-300 px-5 pt-[12px]">
@@ -24,25 +23,37 @@ export default function Sidebar(props: any) {
                 >
                     <div className="block w-[35px] h-[35px] rounded-full bg-blue-800 mr-5 mt-1"></div>
                     <span className="maze--title block text-[13px]">
-                        {user.name}
-                        <p className="maze--title font-bold maze--knight--gra text-[18px] mt-1">
-                            <SidebarRank allRate={allRate} />
-                        </p>
+                        {user === undefined ? (
+                            <>unlogin</>
+                        ) : (
+                            <>
+                                {user.name}
+                                <p className="maze--title font-bold maze--knight--gra text-[18px] mt-1">
+                                    <SidebarRank allRate={allRate} />
+                                </p>
+                            </>
+                        )}
                     </span>
                 </Link>
-                {user.isAdmin === 1 && (
-                    <Link
-                        href="/mazer"
-                        className="hover:scale-105 font-bold w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex items-center rounded-[10px]"
-                    >
-                        <img
-                            src="/pen--logo.png"
-                            className="w-[20px] h-[20px] mr-5 rounded-[5px]"
-                        />
-                        <p className="maze--title font-bold maze--title--gra text-[16px] mt-1">
-                            MAZER
-                        </p>
-                    </Link>
+                {user === undefined ? (
+                    <></>
+                ) : (
+                    <>
+                        {user.isAdmin === 1 && (
+                            <Link
+                                href="/mazer"
+                                className="hover:scale-105 font-bold w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex items-center rounded-[10px]"
+                            >
+                                <img
+                                    src="/pen--logo.png"
+                                    className="w-[20px] h-[20px] mr-5 rounded-[5px]"
+                                />
+                                <p className="maze--title font-bold maze--title--gra text-[16px] mt-1">
+                                    MAZER
+                                </p>
+                            </Link>
+                        )}
+                    </>
                 )}
 
                 <Link
@@ -56,16 +67,6 @@ export default function Sidebar(props: any) {
                     <span className="block">HOME</span>
                 </Link>
                 <Link
-                    href="/history"
-                    className="hover:scale-105 font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
-                >
-                    <img
-                        src="/history--logo.png"
-                        className="w-[20px] h-[20px] mr-5 rounded-[5px]"
-                    />
-                    <span className="block">HISTORY</span>
-                </Link>
-                <Link
                     href="/news"
                     className="hover:scale-105 font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
                 >
@@ -74,6 +75,16 @@ export default function Sidebar(props: any) {
                         className="w-[20px] h-[20px] mr-5 rounded-[5px]"
                     />
                     <span className="block">NEWS</span>
+                </Link>
+                <Link
+                    href="/"
+                    className="hover:scale-105 font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
+                >
+                    <img
+                        src="/history--logo.png"
+                        className="w-[20px] h-[20px] mr-5 rounded-[5px]"
+                    />
+                    <span className="block">HISTORY</span>
                 </Link>
             </div>
             <div className="border-t border-gray-700 w-[85%] m-auto pt-5">

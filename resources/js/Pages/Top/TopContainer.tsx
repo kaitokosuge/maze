@@ -24,13 +24,14 @@ export default function TopContainer({
                             allRate={allRate}
                         />
                     </div>
-                    <div className="w-[85%]">
+                    <div className="w-[85%] relative">
                         <Header />
                         <TopMain
                             quizzes={quizzes}
                             todayQuiz={todayQuiz}
                             user={user}
                         />
+                        <div className="bg-footer w-full h-[60px] fixed bottom-0"></div>
                     </div>
                 </div>
             </div>

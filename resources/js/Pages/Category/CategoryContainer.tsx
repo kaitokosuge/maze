@@ -42,6 +42,7 @@ export default function CategoryContainer(props: any) {
                         categoryID={category.id}
                     />
                 </div>
+                <div className="bg-footer w-full h-[60px] fixed bottom-0 z-10"></div>
             </div>
         </div>
     );
