@@ -9,6 +9,9 @@ body {
     background-size: 100% 250%;
     animation: 10s infinite bggradient;
 }
+.bg-footer {
+    background: linear-gradient(180deg, #00023800, #00142c);
+}
 .bg-js-color {
     /* background: linear-gradient(#877e00, #00142c, #00142c, #00142c, #00142c); */
     background: linear-gradient(#877e00, #00142c 200px, #00142c 200px);
