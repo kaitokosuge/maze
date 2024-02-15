@@ -1,6 +1,7 @@
 import { User } from "@/types";
 import { userInfo } from "os";
 import React, { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function CategoryQuizCard(props: any) {
     const { quizzes, user, categoryID } = props;
@@ -64,13 +65,15 @@ export default function CategoryQuizCard(props: any) {
         if (res.ok) {
             const data = await res.json();
             console.log(data);
-            setShowQuizzes(data.newQuizzes);
+            setShowQuizzes((prev: any) => {
+                return [...prev, ...data.newQuizzes];
+            });
         }
     };
-    return (
-        <div className="mt-10">
+    const items = (
+        <>
             {showQuizzes.map((quiz: any, index: number) => (
-                <>
+                <div key={quiz.id}>
                     <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
                         <div
                             className={
@@ -238,8 +241,25 @@ export default function CategoryQuizCard(props: any) {
                             </div>
                         </div>
                     </div>
-                </>
+                </div>
             ))}
+        </>
+    );
+    return (
+        <div className="mt-10">
+            <InfiniteScroll
+                pageStart={1}
+                loadMore={fetchQuizzes}
+                hasMore={showQuizzes.length < 8 ? true : false}
+                loader={
+                    <div className="loader" key={0}>
+                        Loading ...
+                    </div>
+                }
+            >
+                {items}
+            </InfiniteScroll>
+            {}
         </div>
     );
 }

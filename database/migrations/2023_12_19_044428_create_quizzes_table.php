@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('answer');
             $table->string('showDay')->nullable();
             $table->text('image')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');;
             $table->timestamps();
         });
     }
