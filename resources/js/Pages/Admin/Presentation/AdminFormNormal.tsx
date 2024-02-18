@@ -23,7 +23,9 @@ export default function AdminFormNormal(props: any) {
                 body: JSON.stringify(postQuiz),
             });
             if (res.ok) {
-                console.log("postnormalQuizzzzz", postQuiz);
+                toast({
+                    title: "クイズの投稿が完了しました",
+                });
                 setPostQuiz({
                     quiz: "",
                     category: [],
@@ -145,129 +147,141 @@ export default function AdminFormNormal(props: any) {
     };
     console.log("postnprmalquiz", postQuiz);
     return (
-        <div>
-            <form onSubmit={handleNormalSubmit} className="mt-[0px]">
-                <Toaster />
-                <div className="flex justify-between">
-                    <div className="font-bold text-xl text-gray-300">
-                        quiz を作成
+        <>
+            <div>
+                <form onSubmit={handleNormalSubmit} className="mt-[0px]">
+                    <Toaster />
+                    <div className="flex justify-between">
+                        <div className="font-bold text-xl text-gray-300">
+                            quiz を作成
+                        </div>
+                        <button className="hover:bg-[#22e68b] hover:scale-105 duration-300 block rounded-[10px] bg-[#19ac68] px-[30px] py-[10px] font-bold">
+                            保存
+                        </button>
                     </div>
-                    <button className="hover:bg-[#22e68b] hover:scale-105 duration-300 block rounded-[10px] bg-[#19ac68] px-[30px] py-[10px] font-bold">
-                        保存
-                    </button>
-                </div>
-                <label className="font-bold text-[20px] mt-[50px] block">
-                    quiz
-                    <span className="font-normal text-[10px]"> クイズ</span>
-                </label>
-                <textarea
-                    onChange={handleChangeNormalQuiz}
-                    name="quiz"
-                    className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#340a38]"
-                ></textarea>
-                <label className="font-bold text-[20px] mt-[50px] block">
-                    choices & true
-                    <span className="font-normal text-[10px]">
-                        {" "}
-                        選択肢と正解
-                    </span>
-                </label>
-                <div className="">
-                    {postQuiz.choices.map((choiceEl, index) => (
-                        <div
-                            key={choiceEl.uuid}
-                            className="flex items-center mt-5"
-                        >
-                            <div className="font-bold text-[30px] w-[30px]">
-                                {index + 1}
-                            </div>
-                            <input
-                                className="ml-[20px] p-5 min-w-[300px] border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#340a38]"
-                                type="text"
-                                name="choice"
-                                onChange={(e) => {
-                                    handleChangeNormalQuiz(e, choiceEl.uuid);
-                                }}
-                            />
-                            <select
-                                onChange={(e) =>
-                                    handleChangeNormalQuiz(e, choiceEl.uuid)
-                                }
-                                className="bg-transparent ml-10 rounded-[10px]"
-                                name="istrue"
-                            >
-                                <option value="true" className="">
-                                    ○
-                                </option>
-                                <option value="false">×</option>
-                            </select>
-                            {postQuiz.choices.length > 1 && (
-                                <button
-                                    className="text-[12px] font-bold ml-5 border rounded-[5px] duration-300 hover:bg-red-500 border-red-500 px-5 py-[8px]"
-                                    onClick={() =>
-                                        handleClickDeletechoice(choiceEl.uuid)
-                                    }
-                                >
-                                    delete choice
-                                </button>
-                            )}
-                        </div>
-                    ))}
-                </div>
-                <div
-                    onClick={handleClickAddChoice}
-                    className="w-[200px] cursor-pointer border hover:bg-emerald-400 duration-300 border-emerald-400 rounded-[10px] mt-10 px-5 py-[8px] text-center"
-                >
-                    add choice
-                </div>
-                <p className="font-bold text-[20px] mt-[50px] block">
-                    categories
-                    <span className="font-normal text-[10px]"> カテゴリー</span>
-                </p>
-                <div className="flex mt-[20px]">
-                    {categories.map((category: any) => (
-                        <div
-                            key={category.id}
-                            className="grid grid-cols-5 gap-5"
-                        >
-                            <input
-                                onChange={handleChangeNormalQuiz}
-                                type="checkbox"
-                                name="category"
-                                value={category.id}
-                                id={category.id}
-                                className="relative duration-200 bg-zinc-700  text-emerald-600 focus:ring-0 rounded-[2px] w-[120px] h-[25px] p-1"
-                            />
-                            <label
-                                className="absolute text-white cursor-pointer flex items-center ml-1"
-                                htmlFor={category.id}
-                            >
-                                <div className="w-[15px] h-auto">
-                                    {parse(category.category_img)}
-                                </div>
-                                <p className="font-bold ml-1">
-                                    {category.category}
-                                </p>
-                            </label>
-                        </div>
-                    ))}
-                </div>
-                <div className="">
-                    <p className="font-bold text-[20px] mt-[50px] block">
-                        Explanation
-                        <span className="font-normal text-[10px]"> 解説</span>
-                    </p>
+                    <label className="font-bold text-[20px] mt-[50px] block">
+                        quiz
+                        <span className="font-normal text-[10px]"> クイズ</span>
+                    </label>
                     <textarea
+                        value={postQuiz.quiz}
                         onChange={handleChangeNormalQuiz}
-                        name="answer"
-                        className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#340a38]"
+                        name="quiz"
+                        className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#1c0930]"
                     ></textarea>
-                </div>
-            </form>
+                    <label className="font-bold text-[20px] mt-[50px] block">
+                        choices & true
+                        <span className="font-normal text-[10px]">
+                            {" "}
+                            選択肢と正解
+                        </span>
+                    </label>
+                    <div className="">
+                        {postQuiz.choices.map((choiceEl, index) => (
+                            <div
+                                key={choiceEl.uuid}
+                                className="flex items-center mt-5"
+                            >
+                                <div className="font-bold text-[30px] w-[30px]">
+                                    {index + 1}
+                                </div>
+                                <input
+                                    className="ml-[20px] p-5 min-w-[300px] border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#1c0930]"
+                                    type="text"
+                                    name="choice"
+                                    onChange={(e) => {
+                                        handleChangeNormalQuiz(
+                                            e,
+                                            choiceEl.uuid
+                                        );
+                                    }}
+                                />
+                                <select
+                                    onChange={(e) =>
+                                        handleChangeNormalQuiz(e, choiceEl.uuid)
+                                    }
+                                    className="bg-transparent ml-10 rounded-[10px]"
+                                    name="istrue"
+                                >
+                                    <option value="true" className="">
+                                        ○
+                                    </option>
+                                    <option value="false">×</option>
+                                </select>
+                                {postQuiz.choices.length > 1 && (
+                                    <button
+                                        className="text-[12px] font-bold ml-5 border rounded-[5px] duration-300 hover:bg-red-500 border-red-500 px-5 py-[8px]"
+                                        onClick={() =>
+                                            handleClickDeletechoice(
+                                                choiceEl.uuid
+                                            )
+                                        }
+                                    >
+                                        delete choice
+                                    </button>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    <div
+                        onClick={handleClickAddChoice}
+                        className="w-[200px] cursor-pointer border hover:bg-emerald-400 duration-300 border-emerald-400 rounded-[10px] mt-10 px-5 py-[8px] text-center"
+                    >
+                        add choice
+                    </div>
+                    <p className="font-bold text-[20px] mt-[50px] block">
+                        categories
+                        <span className="font-normal text-[10px]">
+                            {" "}
+                            カテゴリー
+                        </span>
+                    </p>
+                    <div className="grid grid-cols-5 gap-5 mt-[50px]">
+                        {categories.map((category: any) => (
+                            <div key={category.id} className="relative">
+                                <input
+                                    onChange={handleChangeNormalQuiz}
+                                    type="checkbox"
+                                    name="category"
+                                    value={category.id}
+                                    id={category.id}
+                                    className="relative duration-200 bg-zinc-700  text-emerald-600 focus:ring-0 rounded-[2px] w-[120px] h-[25px] p-1"
+                                />
+                                <label
+                                    className="absolute top-0 text-white cursor-pointer flex items-center ml-1"
+                                    htmlFor={category.id}
+                                >
+                                    <div className="w-[15px] h-auto">
+                                        {parse(category.category_img)}
+                                    </div>
+                                    <p className="font-bold ml-1">
+                                        {category.category}
+                                    </p>
+                                </label>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="">
+                        <p className="font-bold text-[20px] mt-[50px] block">
+                            Explanation
+                            <span className="font-normal text-[10px]">
+                                {" "}
+                                解説
+                            </span>
+                        </p>
+                        <textarea
+                            value={postQuiz.answer}
+                            onChange={handleChangeNormalQuiz}
+                            name="answer"
+                            className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#1c0930]"
+                        ></textarea>
+                    </div>
+                </form>
+            </div>
             <AdminPostedQuiz
                 postedQuiz={postedQuizState}
                 handleClickDeleteQuiz={handleClickDeleteQuiz}
             />
-        </div>
+        </>
     );
 }

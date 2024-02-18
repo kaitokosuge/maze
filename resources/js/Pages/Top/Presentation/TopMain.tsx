@@ -97,7 +97,7 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                     className={
                         isEyeClick === true
                             ? "font-bold text-[30px] opacity-0 duration-300"
-                            : "font-bold text-[30px] opacity-100 duration-300"
+                            : "font-bold text-[30px] opacity-100 duration-300 text-gray-500"
                     }
                 >
                     HOME
@@ -213,7 +213,7 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                             <>
                                 <div className="flex items-center justify-between opacity-0 duration-300">
                                     <div className="w-[70%] flex items-center">
-                                        <p className="maze--title font-bold text-[30px] text-gray-400">
+                                        <p className="maze--title font-bold text-[30px] text-gray-100">
                                             Today's Quiz
                                         </p>
                                         <div className="ml-5 flex">
@@ -248,14 +248,14 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center text-[28px] text-gray-200 font-bold">
+                                    <div className="flex items-center text-right text-[28px] text-gray-200 font-bold">
                                         <span>
                                             <img
                                                 className="block w-[20px] h-[20px] "
                                                 src="/calendar--logo.png"
                                             />
                                         </span>
-                                        <p className="ml-[10px]">
+                                        <p className="text-right">
                                             {todayQuiz.showDay}
                                         </p>
                                     </div>
@@ -265,14 +265,20 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                             <>
                                 <div className="flex items-center justify-between  opacity-100 duration-300">
                                     <div className="w-[70%] flex items-center">
-                                        <p className="maze--title font-bold text-[30px] text-gray-400">
+                                        <p
+                                            className={
+                                                addClass === true
+                                                    ? "maze--title font-bold text-[30px] text-gray-100 duration-700"
+                                                    : "maze--title font-bold text-[80px] text-gray-100"
+                                            }
+                                        >
                                             Today's Quiz
                                         </p>
                                         <div
                                             className={
                                                 addClass === true
-                                                    ? "ml-5 flex duration-100 opacity-100"
-                                                    : "ml-5 flex duration-100 opacity-0"
+                                                    ? "ml-5 flex duration-700 opacity-100 w-[50%] overflow-scroll pb-1"
+                                                    : "ml-5 flex duration-700 w-[0%] opacity-0"
                                             }
                                         >
                                             {todayQuiz.categories.map(
@@ -294,40 +300,40 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                                                 )
                                             )}
                                         </div>
-                                        <div
-                                            className={
-                                                addClass === true
-                                                    ? "flex text-[12px] ml-10 text-gray-300 font-bold duration-500 opacity-100"
-                                                    : "flex text-[12px] ml-10 text-gray-300 font-bold duration-500 opacity-0"
-                                            }
-                                        >
-                                            <span>
-                                                <img
-                                                    className="block w-[15px] h-[15px] "
-                                                    src="/pen--logo.png"
-                                                />
-                                            </span>
-                                            <p className="ml-[7px]">
-                                                {todayQuiz.user.name}
-                                            </p>
-                                        </div>
                                     </div>
                                     <div
                                         className={
                                             addClass === true
-                                                ? "flex items-center text-[28px] text-gray-200 font-bold duration-700 opacity-100"
-                                                : "flex items-center text-[28px] text-gray-200 font-bold duration-700 opacity-0"
+                                                ? "flex text-[12px] text-gray-300 font-bold duration-500 opacity-100"
+                                                : "flex text-[12px] text-gray-300 font-bold duration-500 opacity-0"
                                         }
                                     >
                                         <span>
                                             <img
-                                                className="block w-[20px] h-[20px] "
+                                                className="block w-[15px] h-[15px] "
+                                                src="/pen--logo.png"
+                                            />
+                                        </span>
+                                        <p className="text-right maze--title ml-1">
+                                            {todayQuiz.user.name}
+                                        </p>
+                                    </div>
+                                    <div
+                                        className={
+                                            addClass === true
+                                                ? "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-100"
+                                                : "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-0"
+                                        }
+                                    >
+                                        <span>
+                                            <img
+                                                className="block w-[20px] h-[20px] mt-[10px]"
                                                 src="/calendar--logo.png"
                                             />
                                         </span>
-                                        <p className="ml-[10px]">
+                                        <div className="maze--title ml-[7px]">
                                             {todayQuiz.showDay}
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             </>
@@ -346,7 +352,7 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                             className={
                                 addClass === true
                                     ? "mt-10 grid grid-cols-3 gap-5 duration-1000 opacity-100"
-                                    : "mt-10 grid grid-cols-3 gap-0 duration-1000 opacity-0"
+                                    : "mt-10 grid grid-cols-3 gap-20 duration-1000 opacity-0"
                             }
                         >
                             {todayQuiz.choices.map(
@@ -497,8 +503,8 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                         <TopMedia user={user} />
                     </div>
                     <div className="mt-0 duration-300">
-                        <h2 className="font-bold text-[20px] mt-10">
-                            All Quiz
+                        <h2 className="font-bold text-[20px] mt-10 maze--title">
+                            <span className="mr-5">|</span>All Quiz
                         </h2>
                         <TopAllQuiz quizzes={showQuizzes} user={user} />
                     </div>

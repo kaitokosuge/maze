@@ -66,12 +66,13 @@ export default function CategoryQuizCard(props: any) {
             const data = await res.json();
             console.log(data);
             setShowQuizzes((prev: any) => {
-                return [...prev, ...data.newQuizzes];
+                return [...data.newQuizzes];
             });
         }
     };
-    const items = (
-        <>
+
+    return (
+        <div className="mt-10">
             {showQuizzes.map((quiz: any, index: number) => (
                 <div key={quiz.id}>
                     <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
@@ -119,8 +120,8 @@ export default function CategoryQuizCard(props: any) {
                     <div
                         className={
                             isClick === index
-                                ? "fixed top-[20%] duration-300 w-[75%] opacity-100 px-[50px] py-[60px] bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
-                                : "fixed top-[20%] duration-500 w-[75%] bg-[#001E41] px-[50px] py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
+                                ? "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-300 w-[75%] opacity-100 px-[50px] py-[60px] bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
+                                : "max-h-[80%] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500 w-[75%] bg-[#001E41] px-[50px] py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
                         }
                     >
                         <p className="font-bold">{quiz.quiz}</p>
@@ -243,23 +244,6 @@ export default function CategoryQuizCard(props: any) {
                     </div>
                 </div>
             ))}
-        </>
-    );
-    return (
-        <div className="mt-10">
-            <InfiniteScroll
-                pageStart={1}
-                loadMore={fetchQuizzes}
-                hasMore={showQuizzes.length < 8 ? true : false}
-                loader={
-                    <div className="loader" key={0}>
-                        Loading ...
-                    </div>
-                }
-            >
-                {items}
-            </InfiniteScroll>
-            {}
         </div>
     );
 }

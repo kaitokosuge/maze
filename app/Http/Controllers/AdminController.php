@@ -49,7 +49,7 @@ class AdminController extends Controller
     }
     public function storeQuiz(Request $request,Quiz $quiz)
     {
-        $allQuiz = $quiz->get();
+        $allQuiz = $quiz->where("isToday",true)->get();
         $filterQuizzez = $allQuiz->filter(function($quiz) use($request){
             return $quiz->showDay === $request->day;
         });

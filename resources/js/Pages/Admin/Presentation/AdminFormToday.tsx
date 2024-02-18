@@ -214,7 +214,7 @@ export default function AdminFormToday(props: any) {
                         </div>
                     ))}
                 </div>
-                <label className="font-bold text-[20px] mt-[50px] block">
+                <label className="font-bold text-[20px] mt-[100px] block">
                     quiz
                     <span className="font-normal text-[10px]"> クイズ</span>
                 </label>
@@ -224,7 +224,7 @@ export default function AdminFormToday(props: any) {
                     name="quiz"
                     className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                 ></textarea>
-                <label className="font-bold text-[20px] mt-[50px] block">
+                <label className="font-bold text-[20px] mt-[100px] block">
                     choices & true
                     <span className="font-normal text-[10px]">
                         {" "}
@@ -279,29 +279,26 @@ export default function AdminFormToday(props: any) {
                 >
                     add choice
                 </div>
-                <p className="font-bold text-[20px] mt-[50px] block">
+                <p className="font-bold text-[20px] mt-[100px] block">
                     categories
                     <span className="font-normal text-[10px]"> カテゴリー</span>
                 </p>
-                <div className="flex mt-[20px]">
+                <div className="grid grid-cols-5 gap-5 mt-[50px]">
                     {categories.map((category: any) => (
-                        <div
-                            key={category.id}
-                            className="grid grid-cols-5 gap-5"
-                        >
+                        <div key={category.id} className="relative">
                             <input
                                 onChange={handleChangeTodayQuiz}
                                 type="checkbox"
                                 name="category"
                                 value={category.id}
                                 id={category.id}
-                                className="block relative duration-200 bg-zinc-700  text-emerald-600 focus:ring-0 hover:bg-emerald-600 rounded-[2px] w-[120px] h-[25px] p-1"
+                                className="w-full relative duration-200 bg-[#001E41] p-5 rounded-[10px]  text-emerald-600 focus:ring-0 hover:bg-emerald-600 h-[25px]"
                             />
                             <label
-                                className="absolute text-white cursor-pointer flex items-center ml-1"
+                                className="w-full absolute top-0 text-white cursor-pointer flex items-center mt-[8px]"
                                 htmlFor={category.id}
                             >
-                                <div className="w-[15px] h-auto">
+                                <div className="w-[15px] h-auto ml-5">
                                     {parse(category.category_img)}
                                 </div>
                                 <p className="font-bold ml-1">
@@ -312,7 +309,7 @@ export default function AdminFormToday(props: any) {
                     ))}
                 </div>
                 <div className="">
-                    <p className="font-bold text-[20px] mt-[50px] block">
+                    <p className="font-bold text-[20px] mt-[100px] block">
                         Explanation
                         <span className="font-normal text-[10px]"> 解説</span>
                     </p>
