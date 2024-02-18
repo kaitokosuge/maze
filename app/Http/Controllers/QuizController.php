@@ -7,11 +7,12 @@ use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Quiz;
 use App\Models\Category;
+use App\Models\Comment;
 use Carbon\Carbon;
 
 class QuizController extends Controller
 {
-    public function index(User $user, Quiz $quiz, Category $category)
+    public function index(User $user, Quiz $quiz, Category $category,Comment $comment)
     {
         $todayQuiz = $quiz->with("categories")->with("choices")->with("user")->orderBy('id','desc')->with('isUserTrue')->get()->filter(function ($item) {
             $day = new Carbon();
@@ -31,7 +32,13 @@ class QuizController extends Controller
         $trueQuizNum = $user->isUserTrue()->count();
         $Rate = round($trueQuizNum / $allQuizNum, 2)*100;
         $allRate = floor($Rate);
-        return Inertia::render('Top/TopContainer')->with(['allRate'=>$allRate,'user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
+        if ($todayQuiz != null) {
+            $comments = $comment->where('quiz_id', $todayQuiz->id)->with("user")->orderBy('id','desc')->get();
+           
+        } else {
+            $comments = "no comments";
+        }
+        return Inertia::render('Top/TopContainer')->with(['comments'=>$comments,'allRate'=>$allRate,'user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
     }
 
     public function showCategory(Category $category, Quiz $quiz)

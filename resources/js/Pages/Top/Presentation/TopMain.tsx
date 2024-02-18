@@ -3,18 +3,10 @@ import React, { useEffect, useState } from "react";
 import TopAllQuiz from "./TopAllQuiz";
 import TopMedia from "./TopMedia";
 import parse from "html-react-parser";
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/shadcn-ui/ui/drawer";
 
-export default function TopMain({ quizzes, todayQuiz, user }: any) {
+import TopComment from "./TopComment";
+
+export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
     console.log("main quiz", quizzes);
     console.log("topquiz", todayQuiz);
     const [showQuizzes, setShowQuizzes] = useState(quizzes);
@@ -126,51 +118,10 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                     >
                         {todayQuiz !== null ? (
                             <>
-                                <Drawer>
-                                    <DrawerTrigger className="text-yello-300">
-                                        <div className="flex items-center">
-                                            <img
-                                                //onClick={handleClickEye}
-                                                className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
-                                                src="/voice--logo.png"
-                                            />
-                                            <p className="ml-5 font-bold">20</p>
-                                        </div>
-                                    </DrawerTrigger>
-                                    <DrawerContent className="bg-profile-card border-none min-h-[70%] px-[100px] pb-10">
-                                        <DrawerHeader>
-                                            <DrawerTitle className="mt-10 text-[30px]">
-                                                REVIEWS
-                                            </DrawerTitle>
-                                        </DrawerHeader>
-                                        <div className="flex justify-between">
-                                            <div className="w-[45%] text-gray-400">
-                                                <div className="font-bold mt-5 flex items-center">
-                                                    <img
-                                                        className="w-[15px] h-[15px]"
-                                                        src="/pen--logo.png"
-                                                    />
-                                                    <p className="ml-1 ">
-                                                        {todayQuiz.user.name}
-                                                    </p>
-                                                </div>
-                                                <p className="font-bold mt-5 text-[12px]">
-                                                    <span className="text-[20px]">
-                                                        ?
-                                                    </span>
-                                                    {""}
-                                                    {todayQuiz.quiz}
-                                                </p>
-                                            </div>
-                                            <div className="w-[50%] bg-black min-h-[100%]"></div>
-                                        </div>
-                                        <DrawerFooter>
-                                            <DrawerClose>
-                                                <p>back</p>
-                                            </DrawerClose>
-                                        </DrawerFooter>
-                                    </DrawerContent>
-                                </Drawer>
+                                <TopComment
+                                    todayQuiz={todayQuiz}
+                                    comments={comments}
+                                />
                                 <div className="ml-5">
                                     {isEyeClick === true ? (
                                         <>

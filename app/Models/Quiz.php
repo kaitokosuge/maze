@@ -34,4 +34,9 @@ class Quiz extends Model
     {
         return $this->belongsToMany(Category::class, 'category_quiz', 'quiz_id', 'category_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMAny(Comment::class);
+    }
 }
