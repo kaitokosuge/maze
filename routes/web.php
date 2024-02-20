@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[MediaController::class,'history']);
 Route::get('/news',[MediaController::class,'news']);
-Route::middleware('auth')->group(function () {
+Route::middleware('verified')->group(function () {
 
     Route::get('/top', [QuizController::class, 'index']);
     Route::get('/quiz/{category}', [QuizController::class, 'showCategory']);

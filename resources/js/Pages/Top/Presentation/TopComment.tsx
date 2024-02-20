@@ -48,12 +48,12 @@ export default function TopComment(props: any) {
         <div>
             <Drawer>
                 <DrawerTrigger className="text-yello-300">
-                    <div className="flex items-center">
+                    <div className="ml-1 flex items-center hover:border duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]">
                         <img
-                            className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
+                            className="duration-200 w-[30px] cursor-pointer"
                             src="/voice--logo.png"
                         />
-                        <p className="ml-5 font-bold"></p>
+                        <p className="ml-5 font-bold">{stateComments.length}</p>
                     </div>
                 </DrawerTrigger>
                 <DrawerContent className="bg-profile-card border-none min-h-[70%] max-h-[80%] px-[100px] pb-5">
@@ -88,10 +88,8 @@ export default function TopComment(props: any) {
                             <div className="flex items-start font-bold mt-5 text-[12px]">
                                 <p className="text-[28px]">?</p>
                                 {""}
-                                <p className="ml-[8px] tracking-wider">
-                                    MAZEはプログラミングに関するクイズアプリです。Today's
-                                    questionという毎日24:00に更新されるクイズとそれぞれのカテゴリー（言語やフレームワーク等）ごとに属するクイズがあります。
-                                    クイズの正解数ごとにランクが存在するので全問正解を目指してみてください！！！モバイル・タブレット版は今後、開発を進めて参ります。
+                                <p className="ml-[8px] tracking-wider mt-1">
+                                    {todayQuiz.quiz}
                                 </p>
                             </div>
                         </div>

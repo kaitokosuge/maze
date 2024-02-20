@@ -33,9 +33,6 @@ export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
     }, []);
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
-        // const csrfMetaTag: Element | null = document.head.querySelector(
-        //     'meta[name="csrf-token"]'
-        // );
         try {
             console.log("csrfMetaTag", csrfMetaTag);
             const res = await fetch(`/quiz/answer/${id}`, {
@@ -99,7 +96,7 @@ export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
                         className={
                             isEyeClick === true
                                 ? "ml-5 flex items-center opacity-0 duration-300"
-                                : "ml-5 flex items-center opacity-100 duration-300"
+                                : "ml-5 flex items-center opacity-100 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]"
                         }
                     >
                         <img
@@ -109,45 +106,38 @@ export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
                         />
                         <p className="ml-5 font-bold">38</p>
                     </div>
-                    <div
-                        className={
-                            isEyeClick === true
-                                ? "ml-5 flex items-center opacity-0 duration-300"
-                                : "ml-5 flex items-center opacity-100 duration-300"
-                        }
-                    >
-                        {todayQuiz !== null ? (
-                            <>
-                                <TopComment
-                                    todayQuiz={todayQuiz}
-                                    comments={comments}
-                                />
-                                <div className="ml-5">
-                                    {isEyeClick === true ? (
-                                        <>
-                                            <img
-                                                onClick={handleClickEye}
-                                                className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
-                                                src="/eye--logo.png"
-                                            />
-                                        </>
-                                    ) : (
-                                        <>
-                                            <img
-                                                onClick={handleClickEye}
-                                                className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
-                                                src="/eyeclose--logo.png"
-                                            />
-                                        </>
-                                    )}
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <p>🍵</p>
-                            </>
-                        )}
-                    </div>
+
+                    {todayQuiz !== null ? (
+                        <>
+                            <TopComment
+                                todayQuiz={todayQuiz}
+                                comments={comments}
+                            />
+                            <div className="ml-1 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]">
+                                {isEyeClick === true ? (
+                                    <>
+                                        <img
+                                            onClick={handleClickEye}
+                                            className="duration-200 w-[30px] cursor-pointer"
+                                            src="/eye--logo.png"
+                                        />
+                                    </>
+                                ) : (
+                                    <>
+                                        <img
+                                            onClick={handleClickEye}
+                                            className="duration-200 w-[30px] cursor-pointer"
+                                            src="/eyeclose--logo.png"
+                                        />
+                                    </>
+                                )}
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <p>🍵</p>
+                        </>
+                    )}
                 </div>
             </div>
 
@@ -164,10 +154,22 @@ export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
                             <>
                                 <div className="flex items-center justify-between opacity-0 duration-300">
                                     <div className="w-[70%] flex items-center">
-                                        <p className="maze--title font-bold text-[30px] text-gray-100">
+                                        <p
+                                            className={
+                                                addClass === true
+                                                    ? "maze--title font-bold text-[30px] text-gray-100 duration-700"
+                                                    : "maze--title font-bold text-[80px] text-gray-100"
+                                            }
+                                        >
                                             Today's Quiz
                                         </p>
-                                        <div className="ml-5 flex">
+                                        <div
+                                            className={
+                                                addClass === true
+                                                    ? "ml-5 flex duration-700 opacity-100 w-[50%] overflow-scroll pb-1"
+                                                    : "ml-5 flex duration-700 w-[0%] opacity-0"
+                                            }
+                                        >
                                             {todayQuiz.categories.map(
                                                 (category: any) => (
                                                     <>
@@ -187,34 +189,46 @@ export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
                                                 )
                                             )}
                                         </div>
-                                        <div className="flex text-[12px] ml-10 text-gray-300 font-bold">
-                                            <span>
-                                                <img
-                                                    className="block w-[15px] h-[15px] "
-                                                    src="/pen--logo.png"
-                                                />
-                                            </span>
-                                            <p className="ml-[7px]">
-                                                {todayQuiz.user.name}
-                                            </p>
-                                        </div>
                                     </div>
-                                    <div className="flex items-center text-right text-[28px] text-gray-200 font-bold">
+                                    <div
+                                        className={
+                                            addClass === true
+                                                ? "flex text-[12px] text-gray-300 font-bold duration-500 opacity-100"
+                                                : "flex text-[12px] text-gray-300 font-bold duration-500 opacity-0"
+                                        }
+                                    >
                                         <span>
                                             <img
-                                                className="block w-[20px] h-[20px] "
+                                                className="block w-[15px] h-[15px] "
+                                                src="/pen--logo.png"
+                                            />
+                                        </span>
+                                        <p className="text-right maze--title ml-1">
+                                            {todayQuiz.user.name}
+                                        </p>
+                                    </div>
+                                    <div
+                                        className={
+                                            addClass === true
+                                                ? "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-100"
+                                                : "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-0"
+                                        }
+                                    >
+                                        <span>
+                                            <img
+                                                className="block w-[20px] h-[20px] mt-[10px]"
                                                 src="/calendar--logo.png"
                                             />
                                         </span>
-                                        <p className="text-right">
+                                        <div className="maze--title ml-[7px]">
                                             {todayQuiz.showDay}
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             </>
                         ) : (
                             <>
-                                <div className="flex items-center justify-between  opacity-100 duration-300">
+                                <div className="flex items-center justify-between opacity-100 duration-300">
                                     <div className="w-[70%] flex items-center">
                                         <p
                                             className={
