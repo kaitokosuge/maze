@@ -20,7 +20,7 @@ class QuizController extends Controller
             return $item->showDay === $today && $item->isToday === 1;
         })->first();
         $user = \Auth::user();
-        $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
+        $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->paginate(20)->filter( function ($item) {
             $day = new Carbon();
             $today = $day->toDateString();
             return $item->showDay <= $today;

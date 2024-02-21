@@ -452,26 +452,26 @@ export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
             </div>
             {isEyeClick === true ? (
                 <>
-                    <div className="opacity-0 duration-1000">
-                        <TopMedia user={user} />
-                    </div>
                     <div className="mt-[350px] duration-300">
                         <h2 className="font-bold text-[20px] mt-10">
                             All Quiz
                         </h2>
                         <TopAllQuiz quizzes={quizzes} user={user} />
                     </div>
+                    <div className="opacity-0 duration-1000">
+                        <TopMedia user={user} />
+                    </div>
                 </>
             ) : (
                 <>
-                    <div className="opacity-100 duration-1000">
-                        <TopMedia user={user} />
-                    </div>
                     <div className="mt-0 duration-300">
                         <h2 className="font-bold text-[20px] mt-10 maze--title">
                             <span className="mr-5">|</span>All Quiz
                         </h2>
                         <TopAllQuiz quizzes={showQuizzes} user={user} />
+                    </div>
+                    <div className="opacity-100 duration-1000">
+                        <TopMedia user={user} />
                     </div>
                 </>
             )}

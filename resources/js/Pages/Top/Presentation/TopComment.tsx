@@ -98,7 +98,12 @@ export default function TopComment(props: any) {
                                 {stateComments.map((comment: any) => (
                                     <>
                                         <div className="flex items-center mt-[27px]">
-                                            <div className="w-[25px] h-[25px] rounded-full bg-red-500"></div>
+                                            <div
+                                                style={{
+                                                    "background-color": `${comment.user.color}`,
+                                                }}
+                                                className="w-[25px] h-[25px] auth--card shadow-white rounded-full"
+                                            ></div>
                                             <p className="maze--title font-bold ml-[8px] text-[12px]">
                                                 {comment.user.name}
                                             </p>
