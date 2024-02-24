@@ -10,31 +10,35 @@ export default function TopContainer({
     categories,
     todayQuiz,
     allRate,
+    comments,
+    likescount,
+    likeCheck,
 }: any) {
     const [stateQuizzes, setQuizzes] = useState(quizzes);
 
     return (
         <>
-            <div>
-                <div className="flex">
-                    <div className="w-[15%] h-screen relative">
-                        <Sidebar
-                            categories={categories}
-                            user={user}
-                            allRate={allRate}
-                        />
-                    </div>
-                    <div className="w-[85%] relative">
-                        <Header />
-                        <TopMain
-                            quizzes={quizzes}
-                            todayQuiz={todayQuiz}
-                            user={user}
-                        />
-                        <div className="bg-footer w-full h-[60px] fixed bottom-0"></div>
-                    </div>
+            <div className="flex">
+                <div className="w-[15%] h-screen relative">
+                    <Sidebar
+                        categories={categories}
+                        user={user}
+                        allRate={allRate}
+                    />
+                </div>
+                <div className="w-[85%] relative">
+                    <Header />
+                    <TopMain
+                        quizzes={quizzes}
+                        todayQuiz={todayQuiz}
+                        user={user}
+                        comments={comments}
+                        likescount={likescount}
+                        likeCheck={likeCheck}
+                    />
                 </div>
             </div>
+            <div className="bg-footer w-full h-[60px] fixed bottom-0"></div>
         </>
     );
 }

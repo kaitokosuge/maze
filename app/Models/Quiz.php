@@ -34,4 +34,27 @@ class Quiz extends Model
     {
         return $this->belongsToMany(Category::class, 'category_quiz', 'quiz_id', 'category_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMAny(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+    public function is_liked_by_auth_user()
+    {
+        $id = \Auth::id();    
+        $likers = array();
+        foreach ($this->likes as $like) {
+            array_push($likers, $like->user_id);
+        }
+        if (in_array($id, $likers)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

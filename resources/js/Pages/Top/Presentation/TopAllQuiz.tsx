@@ -2,6 +2,7 @@ import { User } from "@/types";
 import { Quiz } from "@/types/Data/quiz";
 import React, { useState } from "react";
 import parse from "html-react-parser";
+import axios from "axios";
 
 export default function TopAllQuiz(props: any) {
     const { quizzes, user } = props;
@@ -33,17 +34,10 @@ export default function TopAllQuiz(props: any) {
             'meta[name="csrf-token"]'
         );
         try {
-            const res = await fetch(`/quiz/answer/${id}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": `${csrfMetaTag.content}`,
-                },
-                body: JSON.stringify(isChoiceClick),
-            });
-            if (res.ok) {
-                const data = await res.json();
-                setIsUserQuizAnswer(data.isTrue);
+            const data = isChoiceClick;
+            const res = await axios.post(`/quiz/answer/${id}`, data);
+            if (res.status) {
+                setIsUserQuizAnswer(res.data.isTrue);
                 console.log("send-ok", data);
             } else if (res.status === 419) {
                 alert("ページをリロードしてください");
@@ -61,7 +55,6 @@ export default function TopAllQuiz(props: any) {
         });
         if (res.ok) {
             const data = await res.json();
-            console.log(data);
             setShowQuizzes(data.allQuiz);
         } else {
             console.log("error");
@@ -88,7 +81,7 @@ export default function TopAllQuiz(props: any) {
                             {index + 1} {quiz.quiz}
                         </p>
                         <p className="font-bold text-[12px] text-gray-500">
-                            {quiz.categories.map((category) => (
+                            {quiz.categories.map((category: any) => (
                                 <div className="flex items-center mt-[7px]">
                                     <div className="w-[15px] h-auto">
                                         {parse(category.category_img)}
@@ -131,8 +124,8 @@ export default function TopAllQuiz(props: any) {
                     <div
                         className={
                             isClick === index
-                                ? "fixed top-[20%] duration-300 w-[75%] opacity-100 px-[50px] py-[60px] bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
-                                : "fixed top-[20%] duration-500 w-[75%] bg-[#001E41] px-[50px] py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
+                                ? "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-300 w-[75%] opacity-100 px-[50px] py-[60px] bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
+                                : "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500 w-[75%] bg-[#001E41] px-[50px] py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
                         }
                     >
                         <p className="font-bold">{quiz.quiz}</p>

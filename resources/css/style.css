@@ -37,6 +37,12 @@ body {
 .bg-typescript-color {
     background: linear-gradient(#0a3d89, #00142c 200px, #00142c 200px);
 }
+.bg-vue-color {
+    background: linear-gradient(#008a3a, #00142c 200px, #00142c 200px);
+}
+.bg-go-color {
+    background: linear-gradient(#1489b7, #00142c 200px, #00142c 200px);
+}
 .bg-1 {
     background: #877e00;
 }
@@ -53,13 +59,19 @@ body {
     background: linear-gradient(to right, #4e4e4e, #151515);
 }
 .bg-6 {
-    background: linear-gradient(to right, #846500, #001767);
+    background: linear-gradient(to right, #845400, #15046b);
 }
 .bg-7 {
     background: rgb(1, 59, 13);
 }
 .bg-8 {
     background: rgb(1, 50, 119);
+}
+.bg-9 {
+    background: rgb(0, 87, 51);
+}
+.bg-10 {
+    background: rgb(34, 96, 121);
 }
 .text-limit {
     width: 50%;

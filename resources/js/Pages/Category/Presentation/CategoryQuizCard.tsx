@@ -1,6 +1,8 @@
 import { User } from "@/types";
+import axios from "axios";
 import { userInfo } from "os";
 import React, { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function CategoryQuizCard(props: any) {
     const { quizzes, user, categoryID } = props;
@@ -35,17 +37,10 @@ export default function CategoryQuizCard(props: any) {
             'meta[name="csrf-token"]'
         );
         try {
-            const res = await fetch(`/quiz/answer/${id}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": `${csrfMetaTag.content}`,
-                },
-                body: JSON.stringify(isChoiceClick),
-            });
-            if (res.ok) {
-                const data = await res.json();
-                setIsUserQuizAnswer(data.isTrue);
+            const data = isChoiceClick;
+            const res = await axios.post(`/quiz/answer/${id}`, data);
+            if (res.status) {
+                setIsUserQuizAnswer(res.data.isTrue);
                 console.log("send-ok", data);
             } else if (res.status === 419) {
                 alert("ページをリロードしてください");
@@ -64,13 +59,16 @@ export default function CategoryQuizCard(props: any) {
         if (res.ok) {
             const data = await res.json();
             console.log(data);
-            setShowQuizzes(data.newQuizzes);
+            setShowQuizzes((prev: any) => {
+                return [...data.newQuizzes];
+            });
         }
     };
+
     return (
         <div className="mt-10">
             {showQuizzes.map((quiz: any, index: number) => (
-                <>
+                <div key={quiz.id}>
                     <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
                         <div
                             className={
@@ -116,8 +114,8 @@ export default function CategoryQuizCard(props: any) {
                     <div
                         className={
                             isClick === index
-                                ? "fixed top-[20%] duration-300 w-[75%] opacity-100 px-[50px] py-[60px] bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
-                                : "fixed top-[20%] duration-500 w-[75%] bg-[#001E41] px-[50px] py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
+                                ? "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-300 w-[75%] opacity-100 px-[50px] py-[60px] bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
+                                : "max-h-[80%] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500 w-[75%] bg-[#001E41] px-[50px] py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
                         }
                     >
                         <p className="font-bold">{quiz.quiz}</p>
@@ -238,7 +236,7 @@ export default function CategoryQuizCard(props: any) {
                             </div>
                         </div>
                     </div>
-                </>
+                </div>
             ))}
         </div>
     );

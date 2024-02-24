@@ -1,20 +1,20 @@
 import { Quiz, Quizzes } from "@/types/Data/quiz";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TopAllQuiz from "./TopAllQuiz";
 import TopMedia from "./TopMedia";
 import parse from "html-react-parser";
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/shadcn-ui/ui/drawer";
 
-export default function TopMain({ quizzes, todayQuiz, user }: any) {
+import TopComment from "./TopComment";
+import axios from "axios";
+
+export default function TopMain({
+    quizzes,
+    todayQuiz,
+    user,
+    comments,
+    likescount,
+    likeCheck,
+}: any) {
     console.log("main quiz", quizzes);
     console.log("topquiz", todayQuiz);
     const [showQuizzes, setShowQuizzes] = useState(quizzes);
@@ -30,33 +30,15 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
             return [...isChoiceClick, choiceId];
         });
     };
-    const [csrfMetaTag, setCsrfMetaTag] = useState<Element | null>(null);
 
-    useEffect(() => {
-        const csrfTag = document.head.querySelector(
-            'meta[name="csrf-token"]'
-        ).content;
-        setCsrfMetaTag(csrfTag);
-        console.log("csrfTag", csrfTag);
-    }, []);
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
-        // const csrfMetaTag: Element | null = document.head.querySelector(
-        //     'meta[name="csrf-token"]'
-        // );
+
         try {
-            console.log("csrfMetaTag", csrfMetaTag);
-            const res = await fetch(`/quiz/answer/${id}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": `${csrfMetaTag}`,
-                },
-                body: JSON.stringify(isChoiceClick),
-            });
-            if (res.ok) {
-                const data = await res.json();
-                setIsUserQuizAnswer(data.isTrue);
+            const data = isChoiceClick;
+            const res = await axios.post(`/quiz/answer/${id}`, data);
+            if (res.status) {
+                setIsUserQuizAnswer(res.data.isTrue);
                 await fetchQuizzes();
             } else if (res.status === 419) {
                 alert("ページをリロードしてください");
@@ -90,6 +72,26 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
             console.log("error");
         }
     };
+    const [likeCount, setLikeCount] = useState<number>(likescount);
+    const [isLiked, setIsLiked] = useState<boolean>(likeCheck);
+    console.log("isliked", isLiked);
+    const handleLike = async (e: any, id: number) => {
+        e.preventDefault();
+        const res = await axios.post(`/like/${id}`);
+        if (res.status === 200) {
+            console.log("res", res);
+            const status = res.data.status;
+            if (status === "post") {
+                setLikeCount(likeCount + 1);
+                setIsLiked(true);
+            } else if (status) {
+                setLikeCount(likeCount - 1);
+                setIsLiked(false);
+            }
+        } else {
+            alert("ページをリロードし再実行してください🙇");
+        }
+    };
     return (
         <div className="bg-[#00142C] pt-[60px] pb-[100px] pl-[40px] pr-[50px] min-h-screen">
             <div className="flex justify-between items-center">
@@ -97,106 +99,62 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                     className={
                         isEyeClick === true
                             ? "font-bold text-[30px] opacity-0 duration-300"
-                            : "font-bold text-[30px] opacity-100 duration-300"
+                            : "font-bold text-[30px] opacity-100 duration-300 text-gray-500"
                     }
                 >
                     HOME
                 </h2>
                 <div className="flex items-center">
                     <div
+                        onClick={(e) => handleLike(e, todayQuiz.id)}
                         className={
                             isEyeClick === true
-                                ? "ml-5 flex items-center opacity-0 duration-300"
-                                : "ml-5 flex items-center opacity-100 duration-300"
+                                ? isLiked === true
+                                    ? "ml-5 flex items-center opacity-0 duration-300 text-red-600"
+                                    : "ml-5 flex items-center opacity-0 duration-300"
+                                : isLiked === true
+                                ? "ml-5 flex items-center opacity-100 duration-300 text-red-600 hover:border-red-900 border border-red-500 rounded-[10px] px-5 py-[5px]"
+                                : "ml-5 flex items-center opacity-100 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]"
                         }
                     >
                         <img
-                            //onClick={handleClickEye}
                             className="w-[30px] cursor-pointer"
                             src="/heart--logo.png"
                         />
-                        <p className="ml-5 font-bold">38</p>
+                        <p className="ml-5 font-bold">{likeCount}</p>
                     </div>
-                    <div
-                        className={
-                            isEyeClick === true
-                                ? "ml-5 flex items-center opacity-0 duration-300"
-                                : "ml-5 flex items-center opacity-100 duration-300"
-                        }
-                    >
-                        {todayQuiz !== null ? (
-                            <>
-                                <Drawer>
-                                    <DrawerTrigger className="text-yello-300">
-                                        <div className="flex items-center">
-                                            <img
-                                                //onClick={handleClickEye}
-                                                className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
-                                                src="/voice--logo.png"
-                                            />
-                                            <p className="ml-5 font-bold">20</p>
-                                        </div>
-                                    </DrawerTrigger>
-                                    <DrawerContent className="bg-profile-card border-none min-h-[70%] px-[100px] pb-10">
-                                        <DrawerHeader>
-                                            <DrawerTitle className="mt-10 text-[30px]">
-                                                REVIEWS
-                                            </DrawerTitle>
-                                        </DrawerHeader>
-                                        <div className="flex justify-between">
-                                            <div className="w-[45%] text-gray-400">
-                                                <div className="font-bold mt-5 flex items-center">
-                                                    <img
-                                                        className="w-[15px] h-[15px]"
-                                                        src="/pen--logo.png"
-                                                    />
-                                                    <p className="ml-1 ">
-                                                        {todayQuiz.user.name}
-                                                    </p>
-                                                </div>
-                                                <p className="font-bold mt-5 text-[12px]">
-                                                    <span className="text-[20px]">
-                                                        ?
-                                                    </span>
-                                                    {""}
-                                                    {todayQuiz.quiz}
-                                                </p>
-                                            </div>
-                                            <div className="w-[50%] bg-black min-h-[100%]"></div>
-                                        </div>
-                                        <DrawerFooter>
-                                            <DrawerClose>
-                                                <p>back</p>
-                                            </DrawerClose>
-                                        </DrawerFooter>
-                                    </DrawerContent>
-                                </Drawer>
-                                <div className="ml-5">
-                                    {isEyeClick === true ? (
-                                        <>
-                                            <img
-                                                onClick={handleClickEye}
-                                                className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
-                                                src="/eye--logo.png"
-                                            />
-                                        </>
-                                    ) : (
-                                        <>
-                                            <img
-                                                onClick={handleClickEye}
-                                                className="hover:pb-[10px] duration-200 w-[30px] cursor-pointer"
-                                                src="/eyeclose--logo.png"
-                                            />
-                                        </>
-                                    )}
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <p>🍵</p>
-                            </>
-                        )}
-                    </div>
+
+                    {todayQuiz !== null ? (
+                        <>
+                            <TopComment
+                                todayQuiz={todayQuiz}
+                                comments={comments}
+                            />
+                            <div className="ml-1 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]">
+                                {isEyeClick === true ? (
+                                    <>
+                                        <img
+                                            onClick={handleClickEye}
+                                            className="duration-200 w-[30px] cursor-pointer"
+                                            src="/eye--logo.png"
+                                        />
+                                    </>
+                                ) : (
+                                    <>
+                                        <img
+                                            onClick={handleClickEye}
+                                            className="duration-200 w-[30px] cursor-pointer"
+                                            src="/eyeclose--logo.png"
+                                        />
+                                    </>
+                                )}
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <p>🍵</p>
+                        </>
+                    )}
                 </div>
             </div>
 
@@ -213,66 +171,20 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                             <>
                                 <div className="flex items-center justify-between opacity-0 duration-300">
                                     <div className="w-[70%] flex items-center">
-                                        <p className="maze--title font-bold text-[30px] text-gray-400">
-                                            Today's Quiz
-                                        </p>
-                                        <div className="ml-5 flex">
-                                            {todayQuiz.categories.map(
-                                                (category: any) => (
-                                                    <>
-                                                        <div className="font-bold text-[12px] ml-5 flex items-center">
-                                                            <div className="w-[15px] h-auto">
-                                                                {parse(
-                                                                    category.category_img
-                                                                )}
-                                                            </div>
-                                                            <p className="ml-1 text-gray-400">
-                                                                {
-                                                                    category.category
-                                                                }
-                                                            </p>
-                                                        </div>
-                                                    </>
-                                                )
-                                            )}
-                                        </div>
-                                        <div className="flex text-[12px] ml-10 text-gray-300 font-bold">
-                                            <span>
-                                                <img
-                                                    className="block w-[15px] h-[15px] "
-                                                    src="/pen--logo.png"
-                                                />
-                                            </span>
-                                            <p className="ml-[7px]">
-                                                {todayQuiz.user.name}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center text-[28px] text-gray-200 font-bold">
-                                        <span>
-                                            <img
-                                                className="block w-[20px] h-[20px] "
-                                                src="/calendar--logo.png"
-                                            />
-                                        </span>
-                                        <p className="ml-[10px]">
-                                            {todayQuiz.showDay}
-                                        </p>
-                                    </div>
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <div className="flex items-center justify-between  opacity-100 duration-300">
-                                    <div className="w-[70%] flex items-center">
-                                        <p className="maze--title font-bold text-[30px] text-gray-400">
+                                        <p
+                                            className={
+                                                addClass === true
+                                                    ? "maze--title font-bold text-[30px] text-gray-100 duration-700"
+                                                    : "maze--title font-bold text-[80px] text-gray-100"
+                                            }
+                                        >
                                             Today's Quiz
                                         </p>
                                         <div
                                             className={
                                                 addClass === true
-                                                    ? "ml-5 flex duration-100 opacity-100"
-                                                    : "ml-5 flex duration-100 opacity-0"
+                                                    ? "ml-5 flex duration-700 opacity-100 w-[50%] overflow-scroll pb-1"
+                                                    : "ml-5 flex duration-700 w-[0%] opacity-0"
                                             }
                                         >
                                             {todayQuiz.categories.map(
@@ -293,41 +205,117 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                                                     </>
                                                 )
                                             )}
-                                        </div>
-                                        <div
-                                            className={
-                                                addClass === true
-                                                    ? "flex text-[12px] ml-10 text-gray-300 font-bold duration-500 opacity-100"
-                                                    : "flex text-[12px] ml-10 text-gray-300 font-bold duration-500 opacity-0"
-                                            }
-                                        >
-                                            <span>
-                                                <img
-                                                    className="block w-[15px] h-[15px] "
-                                                    src="/pen--logo.png"
-                                                />
-                                            </span>
-                                            <p className="ml-[7px]">
-                                                {todayQuiz.user.name}
-                                            </p>
                                         </div>
                                     </div>
                                     <div
                                         className={
                                             addClass === true
-                                                ? "flex items-center text-[28px] text-gray-200 font-bold duration-700 opacity-100"
-                                                : "flex items-center text-[28px] text-gray-200 font-bold duration-700 opacity-0"
+                                                ? "flex text-[12px] text-gray-300 font-bold duration-500 opacity-100"
+                                                : "flex text-[12px] text-gray-300 font-bold duration-500 opacity-0"
                                         }
                                     >
                                         <span>
                                             <img
-                                                className="block w-[20px] h-[20px] "
+                                                className="block w-[15px] h-[15px] "
+                                                src="/pen--logo.png"
+                                            />
+                                        </span>
+                                        <p className="text-right maze--title ml-1">
+                                            {todayQuiz.user.name}
+                                        </p>
+                                    </div>
+                                    <div
+                                        className={
+                                            addClass === true
+                                                ? "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-100"
+                                                : "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-0"
+                                        }
+                                    >
+                                        <span>
+                                            <img
+                                                className="block w-[20px] h-[20px] mt-[10px]"
                                                 src="/calendar--logo.png"
                                             />
                                         </span>
-                                        <p className="ml-[10px]">
+                                        <div className="maze--title ml-[7px]">
                                             {todayQuiz.showDay}
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div className="flex items-center justify-between opacity-100 duration-300">
+                                    <div className="w-[70%] flex items-center">
+                                        <p
+                                            className={
+                                                addClass === true
+                                                    ? "maze--title font-bold text-[30px] text-gray-100 duration-700"
+                                                    : "maze--title font-bold text-[80px] text-gray-100"
+                                            }
+                                        >
+                                            Today's Quiz
                                         </p>
+                                        <div
+                                            className={
+                                                addClass === true
+                                                    ? "ml-5 flex duration-700 opacity-100 w-[50%] overflow-scroll pb-1"
+                                                    : "ml-5 flex duration-700 w-[0%] opacity-0"
+                                            }
+                                        >
+                                            {todayQuiz.categories.map(
+                                                (category: any) => (
+                                                    <>
+                                                        <div className="font-bold text-[12px] ml-5 flex items-center">
+                                                            <div className="w-[15px] h-auto">
+                                                                {parse(
+                                                                    category.category_img
+                                                                )}
+                                                            </div>
+                                                            <p className="ml-1 text-gray-400">
+                                                                {
+                                                                    category.category
+                                                                }
+                                                            </p>
+                                                        </div>
+                                                    </>
+                                                )
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div
+                                        className={
+                                            addClass === true
+                                                ? "flex text-[12px] text-gray-300 font-bold duration-500 opacity-100"
+                                                : "flex text-[12px] text-gray-300 font-bold duration-500 opacity-0"
+                                        }
+                                    >
+                                        <span>
+                                            <img
+                                                className="block w-[15px] h-[15px] "
+                                                src="/pen--logo.png"
+                                            />
+                                        </span>
+                                        <p className="text-right maze--title ml-1">
+                                            {todayQuiz.user.name}
+                                        </p>
+                                    </div>
+                                    <div
+                                        className={
+                                            addClass === true
+                                                ? "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-100"
+                                                : "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-0"
+                                        }
+                                    >
+                                        <span>
+                                            <img
+                                                className="block w-[20px] h-[20px] mt-[10px]"
+                                                src="/calendar--logo.png"
+                                            />
+                                        </span>
+                                        <div className="maze--title ml-[7px]">
+                                            {todayQuiz.showDay}
+                                        </div>
                                     </div>
                                 </div>
                             </>
@@ -346,7 +334,7 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
                             className={
                                 addClass === true
                                     ? "mt-10 grid grid-cols-3 gap-5 duration-1000 opacity-100"
-                                    : "mt-10 grid grid-cols-3 gap-0 duration-1000 opacity-0"
+                                    : "mt-10 grid grid-cols-3 gap-20 duration-1000 opacity-0"
                             }
                         >
                             {todayQuiz.choices.map(
@@ -481,26 +469,26 @@ export default function TopMain({ quizzes, todayQuiz, user }: any) {
             </div>
             {isEyeClick === true ? (
                 <>
-                    <div className="opacity-0 duration-1000">
-                        <TopMedia user={user} />
-                    </div>
                     <div className="mt-[350px] duration-300">
                         <h2 className="font-bold text-[20px] mt-10">
                             All Quiz
                         </h2>
                         <TopAllQuiz quizzes={quizzes} user={user} />
                     </div>
+                    <div className="opacity-0 duration-1000">
+                        <TopMedia user={user} />
+                    </div>
                 </>
             ) : (
                 <>
-                    <div className="opacity-100 duration-1000">
-                        <TopMedia user={user} />
-                    </div>
                     <div className="mt-0 duration-300">
-                        <h2 className="font-bold text-[20px] mt-10">
-                            All Quiz
+                        <h2 className="font-bold text-[20px] mt-10 maze--title">
+                            <span className="mr-5">|</span>All Quiz
                         </h2>
                         <TopAllQuiz quizzes={showQuizzes} user={user} />
+                    </div>
+                    <div className="opacity-100 duration-1000">
+                        <TopMedia user={user} />
                     </div>
                 </>
             )}

@@ -7,11 +7,12 @@ use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Quiz;
 use App\Models\Category;
+use App\Models\Comment;
 use Carbon\Carbon;
 
 class QuizController extends Controller
 {
-    public function index(User $user, Quiz $quiz, Category $category)
+    public function index(User $user, Quiz $quiz, Category $category,Comment $comment)
     {
         $todayQuiz = $quiz->with("categories")->with("choices")->with("user")->orderBy('id','desc')->with('isUserTrue')->get()->filter(function ($item) {
             $day = new Carbon();
@@ -19,7 +20,7 @@ class QuizController extends Controller
             return $item->showDay === $today && $item->isToday === 1;
         })->first();
         $user = \Auth::user();
-        $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
+        $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->paginate(20)->filter( function ($item) {
             $day = new Carbon();
             $today = $day->toDateString();
             return $item->showDay <= $today;
@@ -31,7 +32,17 @@ class QuizController extends Controller
         $trueQuizNum = $user->isUserTrue()->count();
         $Rate = round($trueQuizNum / $allQuizNum, 2)*100;
         $allRate = floor($Rate);
-        return Inertia::render('Top/TopContainer')->with(['allRate'=>$allRate,'user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
+        
+        if ($todayQuiz != null) {
+            $comments = $comment->where('quiz_id', $todayQuiz->id)->with("user")->orderBy('id','desc')->get();
+            $likesCount = $todayQuiz->likes->count();
+            $likeCheck = !$user->likes->where('quiz_id',$todayQuiz->id)->isEmpty();
+        } else {
+            $comments = "no comments";
+            $likesCount = "no likes";
+            $likeCheck = "no count";
+        }
+        return Inertia::render('Top/TopContainer')->with(['likeCheck'=>$likeCheck,'likescount'=>$likesCount,'comments'=>$comments,'allRate'=>$allRate,'user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
     }
 
     public function showCategory(Category $category, Quiz $quiz)
@@ -39,7 +50,7 @@ class QuizController extends Controller
         $user= \Auth::user();
         $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
             $query->where('id', $category->id);
-        })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
+        })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->paginate(8)->filter( function ($item) {
             $day = new Carbon();
             $today = $day->toDateString();
             return $item->showDay <= $today;

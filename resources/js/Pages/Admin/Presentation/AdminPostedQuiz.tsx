@@ -15,7 +15,6 @@ export default function AdminPostedQuiz(props: any) {
                 <div className="font-bold text-xl text-gray-300">
                     Quiz your history. You can delete quiz.
                 </div>
-
                 {postedQuiz.map((quiz: any) => (
                     <>
                         <div className="mt-10 p-10 bg-stone-950 rounded-[20px]">

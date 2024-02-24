@@ -7,8 +7,9 @@ import SidebarRank from "./SidebarRank";
 
 export default function Sidebar(props: any) {
     const { categories, user, allRate } = props;
+    console.log("color", user);
     return (
-        <div className="bg-[#000238] fixed left-0 w-[15%] h-screen">
+        <div className="bg-[#000238] fixed left-0 w-[15%] h-screen ">
             <h1 className="font-bold maze--title text-[30px] text-white w-[85%] m-auto flex items-center duration-300 px-5 pt-[12px]">
                 <img src="/maze_logo.png" className="w-[40px] h-[40px]" />
                 <span className="block pt-1">MAZE</span>
@@ -21,10 +22,26 @@ export default function Sidebar(props: any) {
                     href="/profile"
                     className="flex items-start font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] hover:scale-105 duration-300 rounded-[10px]"
                 >
-                    <div className="block w-[35px] h-[35px] rounded-full bg-blue-800 mr-5 mt-1"></div>
+                    {user === undefined ? (
+                        <>
+                            <div
+                                className={`block w-[35px] h-[35px] rounded-full bg-gray-400 mr-5 mt-1`}
+                            ></div>
+                        </>
+                    ) : (
+                        <>
+                            <div
+                                style={{ "background-color": `${user.color}` }}
+                                className={`block w-[35px] h-[35px] mr-5 mt-1 auth--card shadow-white rounded-full`}
+                            ></div>
+                        </>
+                    )}
+
                     <span className="maze--title block text-[13px]">
                         {user === undefined ? (
-                            <>unlogin</>
+                            <>
+                                unlogin<p className="text-[10px]">null</p>
+                            </>
                         ) : (
                             <>
                                 {user.name}
@@ -87,7 +104,7 @@ export default function Sidebar(props: any) {
                     <span className="block">HISTORY</span>
                 </Link>
             </div>
-            <div className="border-t border-gray-700 w-[85%] m-auto pt-5">
+            <div className="border-t border-gray-700 w-[85%] m-auto pt-5 overflow-scroll h-[55%] pb-[100px]">
                 {categories.map((category: any) => (
                     <>
                         <Link

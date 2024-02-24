@@ -44,6 +44,7 @@ class RegisteredUserController extends Controller
                 'isAdmin' => true,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'color'=>$request->color
             ]);
         } else {
             $user = User::create([
@@ -51,6 +52,7 @@ class RegisteredUserController extends Controller
                 'isAdmin' => false,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'color'=>$request->color
             ]);
         }
 

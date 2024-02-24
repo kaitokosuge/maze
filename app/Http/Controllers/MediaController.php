@@ -27,6 +27,7 @@ class MediaController extends Controller
     }
     public function news(Quiz $quiz,Category $category)
     {
+        $envnews = config('micronews.micronews');
         $user=\Auth::user();
         if($user===null){
             return Inertia::render('News/NewsContainer')->with(['categories' => $category->get()]);
@@ -38,6 +39,6 @@ class MediaController extends Controller
         $trueQuizNum = $user->isUserTrue()->count();
         $Rate = round($trueQuizNum / $allQuizNum, 2)*100;
         $allRate = floor($Rate);
-        return Inertia::render('News/NewsContainer')->with(['allRate'=>$allRate,'user'=>$user,'categories' => $category->get()]);
+        return Inertia::render('News/NewsContainer')->with(['envnews'=>$envnews,'allRate'=>$allRate,'user'=>$user,'categories' => $category->get()]);
     }
 } 

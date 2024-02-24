@@ -22,6 +22,7 @@ export default function UpdateProfileInformation({
         useForm({
             name: user.name,
             email: user.email,
+            color: user.color,
         });
 
     const submit: FormEventHandler = (e) => {
@@ -62,6 +63,23 @@ export default function UpdateProfileInformation({
                     />
 
                     <InputError className="mt-2" message={errors.email} />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="color" value="color" />
+
+                    <input
+                        id="color"
+                        type="color"
+                        className="mt-5 w-full bg-none align-[-3px] h-[50px] p-0 border"
+                        value={data.color}
+                        onChange={(e) => {
+                            setData("color", e.target.value);
+                        }}
+                        required
+                    />
+
+                    <InputError className="mt-2" message={errors.color} />
                 </div>
 
                 {mustVerifyEmail && user.email_verified_at === null && (
