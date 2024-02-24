@@ -10,6 +10,7 @@ import {
     DrawerTrigger,
 } from "@/shadcn-ui/ui/drawer";
 import parse from "html-react-parser";
+import axios from "axios";
 
 export default function TopComment(props: any) {
     const { todayQuiz, comments } = props;
@@ -19,20 +20,10 @@ export default function TopComment(props: any) {
     });
     const postComments = async (e: any) => {
         e.preventDefault();
-        const csrfTag = document.head.querySelector(
-            'meta[name="csrf-token"]'
-        ).content;
-        const res = await fetch(`/comment/${todayQuiz.id}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": `${csrfTag}`,
-            },
-            body: JSON.stringify(postComment),
-        });
-        if (res.ok) {
-            const data = await res.json();
-            setComments(data.comments);
+        const data = postComment;
+        const res = await axios.post(`/comment/${todayQuiz.id}`, data);
+        if (res.status) {
+            setComments(res.data.comments);
             setPostComment({ comment: "" });
         } else {
             alert("画面をリロードし、再送信してください");
@@ -85,7 +76,7 @@ export default function TopComment(props: any) {
                                     </div>
                                 ))}
                             </div>
-                            <div className="flex items-start font-bold mt-5 text-[12px]">
+                            <div className="flex items-center font-bold mt-5 text-[12px]">
                                 <p className="text-[28px]">?</p>
                                 {""}
                                 <p className="ml-[8px] tracking-wider mt-1">

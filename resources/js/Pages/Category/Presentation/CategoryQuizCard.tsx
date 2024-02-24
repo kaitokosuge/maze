@@ -1,4 +1,5 @@
 import { User } from "@/types";
+import axios from "axios";
 import { userInfo } from "os";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
@@ -36,17 +37,10 @@ export default function CategoryQuizCard(props: any) {
             'meta[name="csrf-token"]'
         );
         try {
-            const res = await fetch(`/quiz/answer/${id}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": `${csrfMetaTag.content}`,
-                },
-                body: JSON.stringify(isChoiceClick),
-            });
-            if (res.ok) {
-                const data = await res.json();
-                setIsUserQuizAnswer(data.isTrue);
+            const data = isChoiceClick;
+            const res = await axios.post(`/quiz/answer/${id}`, data);
+            if (res.status) {
+                setIsUserQuizAnswer(res.data.isTrue);
                 console.log("send-ok", data);
             } else if (res.status === 419) {
                 alert("ページをリロードしてください");

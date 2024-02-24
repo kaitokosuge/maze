@@ -7,6 +7,7 @@ import { Toaster } from "@/shadcn-ui/ui/toaster";
 import { Filter } from "lucide-react";
 import AdminPostedQuiz from "./AdminPostedQuiz";
 import AdminPostedTodayQuiz from "./AdminPostedTodayQuiz";
+import axios from "axios";
 
 export default function AdminFormToday(props: any) {
     const { categories, showDays, postedTodayQuiz } = props;
@@ -17,19 +18,10 @@ export default function AdminFormToday(props: any) {
         e.preventDefault();
 
         try {
-            const csrf_token = document.head.querySelector(
-                'meta[name="csrf-token"]'
-            ).content;
-            const res = await fetch("/mazer/store/quiz", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": csrf_token,
-                },
-                body: JSON.stringify(postQuiz),
-            });
-            if (res.ok) {
-                const result = await res.json();
+            const data = postQuiz;
+            const res = await axios.post("/mazer/store/quiz", data);
+            if (res.status) {
+                const result = res.data;
                 console.log("result", result);
                 if (result.alreadyReserve !== null) {
                     setPostQuiz(postQuiz);
@@ -162,17 +154,10 @@ export default function AdminFormToday(props: any) {
         useState(postedTodayQuiz);
     const handleClickDeleteQuiz = async (e: any, id: number) => {
         e.preventDefault();
-        const csrf_token = document.head.querySelector(
-            'meta[name="csrf-token"]'
-        ).content;
-        const res = await fetch(`/mazer/delete/quiz/${id}`, {
-            method: "DELETE",
-            headers: {
-                "X-CSRF-TOKEN": csrf_token,
-            },
-        });
-        if (res.ok) {
-            const data = await res.json();
+
+        const res = await axios.delete(`/mazer/delete/quiz/${id}`);
+        if (res.status) {
+            const data = res.data;
             console.log("delete data", data.quiz);
             toast({
                 title: `削除が完了しました`,

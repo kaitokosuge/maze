@@ -1,4 +1,5 @@
 export interface User {
+    color: string;
     id: number;
     name: string;
     email: string;
@@ -6,7 +7,9 @@ export interface User {
     isAdmin: boolean;
 }
 
-export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
+export type PageProps<
+    T extends Record<string, unknown> = Record<string, unknown>
+> = T & {
     auth: {
         user: User;
     };

@@ -4,6 +4,7 @@ import parse from "html-react-parser";
 import AdminPostedQuiz from "./AdminPostedQuiz";
 import { useToast } from "@/shadcn-ui/ui/use-toast";
 import { Toaster } from "@/shadcn-ui/ui/toaster";
+import axios from "axios";
 
 export default function AdminFormNormal(props: any) {
     const { categories, postedQuiz } = props;
@@ -11,18 +12,9 @@ export default function AdminFormNormal(props: any) {
     const handleNormalSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const csrf_token = document.head.querySelector(
-                'meta[name="csrf-token"]'
-            ).content;
-            const res = await fetch("/mazer/store/normal/quiz", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": csrf_token,
-                },
-                body: JSON.stringify(postQuiz),
-            });
-            if (res.ok) {
+            const data = postQuiz;
+            const res = await axios.post("/mazer/store/normal/quiz", data);
+            if (res.status) {
                 toast({
                     title: "クイズの投稿が完了しました",
                 });
@@ -126,17 +118,10 @@ export default function AdminFormNormal(props: any) {
     const [postedQuizState, setPostedQuiz] = useState(postedQuiz);
     const handleClickDeleteQuiz = async (e: any, id: number) => {
         e.preventDefault();
-        const csrf_token = document.head.querySelector(
-            'meta[name="csrf-token"]'
-        ).content;
-        const res = await fetch(`/mazer/delete/quiz/${id}`, {
-            method: "DELETE",
-            headers: {
-                "X-CSRF-TOKEN": csrf_token,
-            },
-        });
-        if (res.ok) {
-            const data = await res.json();
+
+        const res = await axios.delete(`/mazer/delete/quiz/${id}`);
+        if (res.status) {
+            const data = res.data;
             toast({
                 title: `削除が完了しました`,
             });

@@ -1,10 +1,11 @@
 import { Quiz, Quizzes } from "@/types/Data/quiz";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TopAllQuiz from "./TopAllQuiz";
 import TopMedia from "./TopMedia";
 import parse from "html-react-parser";
 
 import TopComment from "./TopComment";
+import axios from "axios";
 
 export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
     console.log("main quiz", quizzes);
@@ -22,30 +23,15 @@ export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
             return [...isChoiceClick, choiceId];
         });
     };
-    const [csrfMetaTag, setCsrfMetaTag] = useState<Element | null>(null);
 
-    useEffect(() => {
-        const csrfTag = document.head.querySelector(
-            'meta[name="csrf-token"]'
-        ).content;
-        setCsrfMetaTag(csrfTag);
-        console.log("csrfTag", csrfTag);
-    }, []);
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
+
         try {
-            console.log("csrfMetaTag", csrfMetaTag);
-            const res = await fetch(`/quiz/answer/${id}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": `${csrfMetaTag}`,
-                },
-                body: JSON.stringify(isChoiceClick),
-            });
-            if (res.ok) {
-                const data = await res.json();
-                setIsUserQuizAnswer(data.isTrue);
+            const data = isChoiceClick;
+            const res = await axios.post(`/quiz/answer/${id}`, data);
+            if (res.status) {
+                setIsUserQuizAnswer(res.data.isTrue);
                 await fetchQuizzes();
             } else if (res.status === 419) {
                 alert("ページをリロードしてください");
