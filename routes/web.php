@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
@@ -22,6 +23,8 @@ Route::middleware('verified')->group(function () {
 
     Route::post('/comment/{quiz}',[CommentController::class,'store']);
     Route::delete('/comment/{comment}',[CommentController::class,'delete']);
+
+    Route::post('/like/{quiz}',[LikeController::class,'like']);
 
     Route::get('/mazer',[AdminController::class,'index']);
     Route::post("/mazer/store/quiz",[AdminController::class,'storeQuiz']);

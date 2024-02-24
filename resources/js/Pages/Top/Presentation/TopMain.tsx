@@ -7,7 +7,14 @@ import parse from "html-react-parser";
 import TopComment from "./TopComment";
 import axios from "axios";
 
-export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
+export default function TopMain({
+    quizzes,
+    todayQuiz,
+    user,
+    comments,
+    likescount,
+    likeCheck,
+}: any) {
     console.log("main quiz", quizzes);
     console.log("topquiz", todayQuiz);
     const [showQuizzes, setShowQuizzes] = useState(quizzes);
@@ -65,6 +72,26 @@ export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
             console.log("error");
         }
     };
+    const [likeCount, setLikeCount] = useState<number>(likescount);
+    const [isLiked, setIsLiked] = useState<boolean>(likeCheck);
+    console.log("isliked", isLiked);
+    const handleLike = async (e: any, id: number) => {
+        e.preventDefault();
+        const res = await axios.post(`/like/${id}`);
+        if (res.status === 200) {
+            console.log("res", res);
+            const status = res.data.status;
+            if (status === "post") {
+                setLikeCount(likeCount + 1);
+                setIsLiked(true);
+            } else if (status) {
+                setLikeCount(likeCount - 1);
+                setIsLiked(false);
+            }
+        } else {
+            alert("ページをリロードし再実行してください🙇");
+        }
+    };
     return (
         <div className="bg-[#00142C] pt-[60px] pb-[100px] pl-[40px] pr-[50px] min-h-screen">
             <div className="flex justify-between items-center">
@@ -79,18 +106,22 @@ export default function TopMain({ quizzes, todayQuiz, user, comments }: any) {
                 </h2>
                 <div className="flex items-center">
                     <div
+                        onClick={(e) => handleLike(e, todayQuiz.id)}
                         className={
                             isEyeClick === true
-                                ? "ml-5 flex items-center opacity-0 duration-300"
+                                ? isLiked === true
+                                    ? "ml-5 flex items-center opacity-0 duration-300 text-red-600"
+                                    : "ml-5 flex items-center opacity-0 duration-300"
+                                : isLiked === true
+                                ? "ml-5 flex items-center opacity-100 duration-300 text-red-600 hover:border-red-900 border border-red-500 rounded-[10px] px-5 py-[5px]"
                                 : "ml-5 flex items-center opacity-100 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]"
                         }
                     >
                         <img
-                            //onClick={handleClickEye}
                             className="w-[30px] cursor-pointer"
                             src="/heart--logo.png"
                         />
-                        <p className="ml-5 font-bold">38</p>
+                        <p className="ml-5 font-bold">{likeCount}</p>
                     </div>
 
                     {todayQuiz !== null ? (

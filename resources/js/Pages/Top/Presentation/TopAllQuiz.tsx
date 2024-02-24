@@ -55,7 +55,6 @@ export default function TopAllQuiz(props: any) {
         });
         if (res.ok) {
             const data = await res.json();
-            console.log(data);
             setShowQuizzes(data.allQuiz);
         } else {
             console.log("error");

@@ -32,13 +32,17 @@ class QuizController extends Controller
         $trueQuizNum = $user->isUserTrue()->count();
         $Rate = round($trueQuizNum / $allQuizNum, 2)*100;
         $allRate = floor($Rate);
+        
         if ($todayQuiz != null) {
             $comments = $comment->where('quiz_id', $todayQuiz->id)->with("user")->orderBy('id','desc')->get();
-           
+            $likesCount = $todayQuiz->likes->count();
+            $likeCheck = !$user->likes->where('quiz_id',$todayQuiz->id)->isEmpty();
         } else {
             $comments = "no comments";
+            $likesCount = "no likes";
+            $likeCheck = "no count";
         }
-        return Inertia::render('Top/TopContainer')->with(['comments'=>$comments,'allRate'=>$allRate,'user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
+        return Inertia::render('Top/TopContainer')->with(['likeCheck'=>$likeCheck,'likescount'=>$likesCount,'comments'=>$comments,'allRate'=>$allRate,'user' => $user, 'categories' => $category->with('quizzes')->get(),'todayQuiz' => $todayQuiz, 'quizzes' => $quizzes]);
     }
 
     public function showCategory(Category $category, Quiz $quiz)
