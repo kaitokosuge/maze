@@ -8,7 +8,7 @@ export default function AdminPostedQuiz(props: any) {
     const month = String(today.getMonth() + 1).padStart(2, "0");
     const day = String(today.getDate()).padStart(2, "0");
     const formattedDate = `${year}-${month}-${day}`;
-    console.log(formattedDate);
+
     return (
         <div className="bg-profile mt-10 rounded-[20px] p-10">
             <div className="">

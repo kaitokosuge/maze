@@ -98,7 +98,7 @@ class QuizController extends Controller
 
     public function allQuizGet(Quiz $quiz) 
     {
-        $day = new Carbon();
+        $day = new Carbon(); 
         $today = $day->toDateString();
         $AllQuiz = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->where('showday', '<=' ,$today)->paginate(20);
         return response()->json([

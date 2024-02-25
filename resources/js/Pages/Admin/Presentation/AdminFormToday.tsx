@@ -22,7 +22,6 @@ export default function AdminFormToday(props: any) {
             const res = await axios.post("/mazer/store/quiz", data);
             if (res.status) {
                 const result = res.data;
-                console.log("result", result);
                 if (result.alreadyReserve !== null) {
                     setPostQuiz(postQuiz);
                     alert(`${result.alreadyReserve}`);
@@ -122,8 +121,6 @@ export default function AdminFormToday(props: any) {
                 });
             }
         } else if (e.target.name === "choice" || e.target.name === "istrue") {
-            console.log("choicess", choices);
-            console.log(e.target.value);
             setPostQuiz((prev) => ({
                 ...prev,
                 choices: prev.choices.map((choiceObj) => {
@@ -158,7 +155,6 @@ export default function AdminFormToday(props: any) {
         const res = await axios.delete(`/mazer/delete/quiz/${id}`);
         if (res.status) {
             const data = res.data;
-            console.log("delete data", data.quiz);
             toast({
                 title: `削除が完了しました`,
             });
@@ -278,6 +274,9 @@ export default function AdminFormToday(props: any) {
                                 value={category.id}
                                 id={category.id}
                                 className="w-full relative duration-200 bg-[#001E41] p-5 rounded-[10px]  text-emerald-600 focus:ring-0 hover:bg-emerald-600 h-[25px]"
+                                checked={postQuiz.category.includes(
+                                    category.id
+                                )}
                             />
                             <label
                                 className="w-full absolute top-0 text-white cursor-pointer flex items-center mt-[8px]"
