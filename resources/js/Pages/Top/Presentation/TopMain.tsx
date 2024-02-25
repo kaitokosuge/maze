@@ -115,14 +115,22 @@ export default function TopMain({
                                     ? "ml-5 flex items-center opacity-0 duration-300 text-red-600"
                                     : "ml-5 flex items-center opacity-0 duration-300"
                                 : isLiked === true
-                                ? "ml-5 flex items-center opacity-100 duration-300 text-red-600 hover:border-red-900 border border-red-500 rounded-[10px] px-5 py-[5px]"
+                                ? "ml-5 flex items-center opacity-100 duration-300 text-red-600 hover:border-red-900 border border-gray-800 rounded-[10px] px-5 py-[5px]"
                                 : "ml-5 flex items-center opacity-100 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]"
                         }
                     >
-                        <img
-                            className="w-[30px] cursor-pointer"
-                            src="/heart--logo.png"
-                        />
+                        {isLiked === true ? (
+                            <img
+                                className="w-[30px] cursor-pointer"
+                                src="/red-heart--logo.png"
+                            />
+                        ) : (
+                            <img
+                                className="w-[30px] cursor-pointer"
+                                src="/heart--logo.png"
+                            />
+                        )}
+
                         <p className="ml-5 font-bold">{likeCount}</p>
                     </div>
 
@@ -477,9 +485,6 @@ export default function TopMain({
                         </h2>
                         <TopAllQuiz quizzes={quizzes} user={user} />
                     </div>
-                    <div className="opacity-0 duration-1000">
-                        <TopMedia user={user} />
-                    </div>
                 </>
             ) : (
                 <>
@@ -489,9 +494,6 @@ export default function TopMain({
                         </h2>
                         <TopAllQuiz quizzes={showQuizzes} user={user} />
                         <div>{}</div>
-                    </div>
-                    <div className="opacity-100 duration-1000">
-                        <TopMedia user={user} />
                     </div>
                 </>
             )}

@@ -3,6 +3,7 @@ import React from "react";
 
 export default function TopMazerBtn(props: any) {
     const { user } = props;
+    const showAdminForm = () => {};
     return (
         <div className="w-[18%]">
             {user.isAdmin === 1 ? (
@@ -17,7 +18,10 @@ export default function TopMazerBtn(props: any) {
                 </>
             ) : (
                 <>
-                    <div className="font-bold px-5 py-[10px] bg-colorfull-300 rounded-[10px] block w-full text-[12px]">
+                    <div
+                        onClick={showAdminForm}
+                        className="font-bold px-5 py-[10px] bg-colorfull-300 rounded-[10px] block w-full text-[12px]"
+                    >
                         become{" "}
                         <span className="maze--title text-[17px]"> MAZE </span>{" "}
                         admin

@@ -30,7 +30,7 @@ export default function AdminForm(props: any) {
                     className={
                         isTodayTab === 0
                             ? "bg-[#0c143d] px-[100px] py-[15px] rounded-t-[10px] ml-[30px] cursor-pointer font-bold text-gray-600 hover:text-white duration-500"
-                            : "bg-[#1c0930] px-[100px] py-[15px] rounded-t-[10px] ml-[30px] cursor-pointer font-bold"
+                            : "bg-[#001E41] px-[100px] py-[15px] rounded-t-[10px] ml-[30px] cursor-pointer font-bold"
                     }
                 >
                     Normal
@@ -49,7 +49,7 @@ export default function AdminForm(props: any) {
                 </>
             ) : (
                 <>
-                    <div className="bg-[#1c0930] p-10 rounded-b-2xl rounded-r-2xl pb-[100px]">
+                    <div className="bg-[#001E41] p-10 rounded-b-2xl rounded-r-2xl pb-[100px]">
                         <AdminFormNormal
                             categories={categories}
                             postedQuiz={postedQuiz}

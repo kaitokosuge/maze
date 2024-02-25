@@ -29,9 +29,7 @@ export default function AdminFormNormal(props: any) {
             console.log(error);
         }
     };
-    // const [choices, handleChoices] = useState<Choices[]>([
-    //     { uuid: uuidv4(), choice: "", istrue: "true" },
-    // ]);
+
     interface PostNormalQuiz {
         quiz: string;
         category: number[];
@@ -152,7 +150,7 @@ export default function AdminFormNormal(props: any) {
                         value={postQuiz.quiz}
                         onChange={handleChangeNormalQuiz}
                         name="quiz"
-                        className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#1c0930]"
+                        className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                     ></textarea>
                     <label className="font-bold text-[20px] mt-[50px] block">
                         choices & true
@@ -171,7 +169,7 @@ export default function AdminFormNormal(props: any) {
                                     {index + 1}
                                 </div>
                                 <input
-                                    className="ml-[20px] p-5 min-w-[300px] border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#1c0930]"
+                                    className="ml-[20px] p-5 min-w-[300px] border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                                     type="text"
                                     name="choice"
                                     onChange={(e) => {
@@ -230,13 +228,16 @@ export default function AdminFormNormal(props: any) {
                                     name="category"
                                     value={category.id}
                                     id={category.id}
-                                    className="relative duration-200 bg-zinc-700  text-emerald-600 focus:ring-0 rounded-[2px] w-[120px] h-[25px] p-1"
+                                    className="w-full relative duration-200 bg-[#001E41] p-5 rounded-[10px]  text-emerald-600 focus:ring-0 hover:bg-emerald-600 h-[25px]"
+                                    checked={postQuiz.category.includes(
+                                        category.id
+                                    )}
                                 />
                                 <label
-                                    className="absolute top-0 text-white cursor-pointer flex items-center ml-1"
+                                    className="w-full absolute top-0 text-white cursor-pointer flex items-center mt-[8px]"
                                     htmlFor={category.id}
                                 >
-                                    <div className="w-[15px] h-auto">
+                                    <div className="w-[15px] h-auto ml-5">
                                         {parse(category.category_img)}
                                     </div>
                                     <p className="font-bold ml-1">
@@ -258,7 +259,7 @@ export default function AdminFormNormal(props: any) {
                             value={postQuiz.answer}
                             onChange={handleChangeNormalQuiz}
                             name="answer"
-                            className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#1c0930]"
+                            className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
                         ></textarea>
                     </div>
                 </form>
