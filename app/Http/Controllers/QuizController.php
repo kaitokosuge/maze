@@ -20,11 +20,10 @@ class QuizController extends Controller
             return $item->showDay === $today && $item->isToday === 1;
         })->first();
         $user = \Auth::user();
-        $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->paginate(20)->filter( function ($item) {
-            $day = new Carbon();
-            $today = $day->toDateString();
-            return $item->showDay <= $today;
-        })->values()->toArray();
+        $day = new Carbon();
+        $today = $day->toDateString();
+        $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->where('showday', '<=' ,$today)->paginate(20);
+        //dd($quizzes);
         $today = new Carbon();
         $allQuizNum = $quiz->where(function ($query) use ($today) {
             $query->where('showDay', '<=', $today);
@@ -32,7 +31,8 @@ class QuizController extends Controller
         $trueQuizNum = $user->isUserTrue()->count();
         $Rate = round($trueQuizNum / $allQuizNum, 2)*100;
         $allRate = floor($Rate);
-        
+        // $testQuiz = $quiz->paginate();
+        // dd($testQuiz);
         if ($todayQuiz != null) {
             $comments = $comment->where('quiz_id', $todayQuiz->id)->with("user")->orderBy('id','desc')->get();
             $likesCount = $todayQuiz->likes->count();
@@ -48,13 +48,18 @@ class QuizController extends Controller
     public function showCategory(Category $category, Quiz $quiz)
     {
         $user= \Auth::user();
+        // $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
+        //     $query->where('id', $category->id);
+        // })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->paginate(8)->filter( function ($item) {
+        //     $day = new Carbon();
+        //     $today = $day->toDateString();
+        //     return $item->showDay <= $today;
+        // })->values()->toArray();
+        $day = new Carbon();
+        $today = $day->toDateString();
         $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
             $query->where('id', $category->id);
-        })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->paginate(8)->filter( function ($item) {
-            $day = new Carbon();
-            $today = $day->toDateString();
-            return $item->showDay <= $today;
-        })->values()->toArray();
+        })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->where('showday', '<=' ,$today)->paginate(20);
         $today = new Carbon();
         $allQuizNum = $quiz->where(function ($query) use ($today) {
             $query->where('showDay', '<=', $today);
@@ -93,25 +98,21 @@ class QuizController extends Controller
 
     public function allQuizGet(Quiz $quiz) 
     {
-        $AllQuiz = $quiz->with("choices")->with('user')->with('isUserTrue')->with('categories')->orderBy('id','desc')->get()->filter( function ($item) {
-            $day = new Carbon();
-            $today = $day->toDateString();
-            return $item->showDay <= $today;
-        })->values()->toArray();
+        $day = new Carbon();
+        $today = $day->toDateString();
+        $AllQuiz = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->where('showday', '<=' ,$today)->paginate(20);
         return response()->json([
             'allQuiz' => $AllQuiz
         ]);
     }
 
-    public function quizGet(Category $category ,Quiz $quiz) 
+    public function quizGet(Category $category ,Quiz $quiz , $pageNum) 
     {
+        $day = new Carbon();
+        $today = $day->toDateString();
         $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
             $query->where('id', $category->id);
-        })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->get()->filter( function ($item) {
-            $day = new Carbon();
-            $today = $day->toDateString();
-            return $item->showDay <= $today;
-        })->values()->toArray();
+        })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->where('showday', '<=' ,$today)->paginate(20, ['*'], 'page',$pageNum);
         return response()->json([
             'newQuizzes' => $categoryQuiz
         ]);

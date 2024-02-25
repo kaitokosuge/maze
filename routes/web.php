@@ -19,7 +19,7 @@ Route::middleware('verified')->group(function () {
     Route::post('/quiz/answer/{quiz}',[QuizController::class,'quizTry']);
     
     Route::get('/get/quiz',[QuizController::class,'allQuizGet']);
-    Route::get('/quiz/new/{category}',[QuizController::class,'quizGet']);
+    Route::get('/quiz/new/{category}/{page}',[QuizController::class,'quizGet']);
 
     Route::post('/comment/{quiz}',[CommentController::class,'store']);
     Route::delete('/comment/{comment}',[CommentController::class,'delete']);

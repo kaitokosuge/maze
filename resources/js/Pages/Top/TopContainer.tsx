@@ -13,6 +13,7 @@ export default function TopContainer({
     comments,
     likescount,
     likeCheck,
+    testquiz,
 }: any) {
     const [stateQuizzes, setQuizzes] = useState(quizzes);
 
@@ -35,6 +36,7 @@ export default function TopContainer({
                         comments={comments}
                         likescount={likescount}
                         likeCheck={likeCheck}
+                        testquiz={testquiz}
                     />
                 </div>
             </div>

@@ -5,10 +5,11 @@ import { Quizzes } from "@/types/Data/quiz";
 import Header from "../Presentation/Header";
 import CategoryQuizCard from "./Presentation/CategoryQuizCard";
 import parse from "html-react-parser";
+import { Link } from "@inertiajs/react";
 
 export default function CategoryContainer(props: any) {
     const { category, quizzes, categories, user, allRate } = props;
-    console.log(quizzes);
+
     return (
         <>
             <div className="flex">
@@ -37,11 +38,49 @@ export default function CategoryContainer(props: any) {
                                 </p>
                             </div>
                         </div>
+                        <ul className="pagination flex items-center mt-10 absolute right-[5%]">
+                            {quizzes.links.map((link: any) => (
+                                <Link
+                                    key={link.label}
+                                    href={link.url}
+                                    className={
+                                        link.active === true
+                                            ? "mr-1 py-1 px-5 border border-[#4e0e92] bg-[#4e0e92] block w-content-fit min-w-[40px] text-center rounded-[10px] duration-300"
+                                            : "mr-1 py-1 px-5 border border-gray-700 block w-content-fit min-w-[40px] text-center rounded-[10px] hover:bg-[#4e0e92] hover:border-[#4e0e92] duration-300"
+                                    }
+                                >
+                                    <span
+                                        dangerouslySetInnerHTML={{
+                                            __html: link.label,
+                                        }}
+                                    />
+                                </Link>
+                            ))}
+                        </ul>
                         <CategoryQuizCard
                             quizzes={quizzes}
                             user={user}
                             categoryID={category.id}
                         />
+                        {/* <ul className="pagination flex items-center mt-5 absolute right-[5%]">
+                            {quizzes.links.map((link: any) => (
+                                <Link
+                                    key={link.label}
+                                    href={link.url}
+                                    className={
+                                        link.active === true
+                                            ? "mr-1 py-1 px-5 border bg-[#4e0e92] border-[#4e0e92] block w-content-fit min-w-[40px] text-center rounded-[10px] duration-300"
+                                            : "mr-1 py-1 px-5 border border-gray-700 block w-content-fit min-w-[40px] text-center rounded-[10px] hover:bg-[#4e0e92] hover:border-[#4e0e92] duration-300"
+                                    }
+                                >
+                                    <span
+                                        dangerouslySetInnerHTML={{
+                                            __html: link.label,
+                                        }}
+                                    />
+                                </Link>
+                            ))}
+                        </ul> */}
                     </div>
                 </div>
             </div>
