@@ -6,7 +6,7 @@ import InfiniteScroll from "react-infinite-scroller";
 
 export default function CategoryQuizCard(props: any) {
     const { quizzes, user, categoryID } = props;
-    console.log(quizzes);
+    console.log("paginate", quizzes);
     const [isClick, setIsClick] = useState(-1);
     const handleQuizShow = (index: number) => {
         if (index === isClick) {
@@ -27,15 +27,11 @@ export default function CategoryQuizCard(props: any) {
             return [...isChoiceClick, choiceId];
         });
     };
-    useEffect(() => {
-        console.log("isChoiceClick", isChoiceClick);
-    }, [isChoiceClick]);
+
     const [isUserQuizAnswer, setIsUserQuizAnswer] = useState("");
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
-        const csrfMetaTag: Element | null = document.head.querySelector(
-            'meta[name="csrf-token"]'
-        );
+
         try {
             const data = isChoiceClick;
             const res = await axios.post(`/quiz/answer/${id}`, data);
@@ -52,22 +48,19 @@ export default function CategoryQuizCard(props: any) {
         }
     };
     const [showQuizzes, setShowQuizzes] = useState(quizzes);
-    const fetchQuizzes = async () => {
-        const res = await fetch(`/quiz/new/${categoryID}`, {
-            method: "GET",
-        });
-        if (res.ok) {
-            const data = await res.json();
-            console.log(data);
+    const fetchQuizzes = async (pageNum: number) => {
+        const res = await axios.get(`/quiz/new/${categoryID}/${pageNum}`);
+        if (res.status) {
+            console.log("fetch modal close quiz", res.data.newQuizzes);
             setShowQuizzes((prev: any) => {
-                return [...data.newQuizzes];
+                return { ...res.data.newQuizzes };
             });
         }
     };
 
     return (
-        <div className="mt-10">
-            {showQuizzes.map((quiz: any, index: number) => (
+        <div className="mt-28">
+            {showQuizzes.data.map((quiz: any, index: number) => (
                 <div key={quiz.id}>
                     <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
                         <div
@@ -79,7 +72,7 @@ export default function CategoryQuizCard(props: any) {
                             onClick={() => {
                                 handleQuizShow(-1);
                                 setIsUserQuizAnswer("");
-                                fetchQuizzes();
+                                fetchQuizzes(showQuizzes.current_page);
                             }}
                         ></div>
                         <p className="font-bold text-[16px] text-limit">

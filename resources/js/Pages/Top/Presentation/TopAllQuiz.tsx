@@ -3,6 +3,7 @@ import { Quiz } from "@/types/Data/quiz";
 import React, { useState } from "react";
 import parse from "html-react-parser";
 import axios from "axios";
+import { Link } from "@inertiajs/react";
 
 export default function TopAllQuiz(props: any) {
     const { quizzes, user } = props;
@@ -60,9 +61,10 @@ export default function TopAllQuiz(props: any) {
             console.log("error");
         }
     };
+
     return (
         <div>
-            {showQuizzes.map((quiz: any, index: number) => (
+            {showQuizzes.data.map((quiz: any, index: number) => (
                 <>
                     <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
                         <div

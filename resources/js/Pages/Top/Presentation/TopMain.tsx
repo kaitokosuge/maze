@@ -14,8 +14,10 @@ export default function TopMain({
     comments,
     likescount,
     likeCheck,
+    testquiz,
 }: any) {
-    console.log("main quiz", quizzes);
+    console.log("main quizzes", quizzes);
+    console.log("quiz paginate", testquiz);
     console.log("topquiz", todayQuiz);
     const [showQuizzes, setShowQuizzes] = useState(quizzes);
     const [isUserQuizAnswer, setIsUserQuizAnswer] = useState("");
@@ -486,6 +488,7 @@ export default function TopMain({
                             <span className="mr-5">|</span>All Quiz
                         </h2>
                         <TopAllQuiz quizzes={showQuizzes} user={user} />
+                        <div>{}</div>
                     </div>
                     <div className="opacity-100 duration-1000">
                         <TopMedia user={user} />
