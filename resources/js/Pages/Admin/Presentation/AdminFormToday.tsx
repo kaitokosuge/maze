@@ -16,7 +16,10 @@ export default function AdminFormToday(props: any) {
     const [viewDays, setViewDays] = useState(showDays);
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-
+        if (postQuiz.day === "") {
+            alert("日付を選択してください");
+            return;
+        }
         try {
             const data = postQuiz;
             const res = await axios.post("/mazer/store/quiz", data);
@@ -53,9 +56,7 @@ export default function AdminFormToday(props: any) {
             console.log("error", error);
         }
     };
-    const [choices, handleChoices] = useState<Choices[]>([
-        { uuid: uuidv4(), choice: "", istrue: "true" },
-    ]);
+
     interface PostQuiz {
         quiz: string;
         day: string;
@@ -204,6 +205,7 @@ export default function AdminFormToday(props: any) {
                     onChange={handleChangeTodayQuiz}
                     name="quiz"
                     className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
+                    required
                 ></textarea>
                 <label className="font-bold text-[20px] mt-[100px] block">
                     choices & true
@@ -302,6 +304,7 @@ export default function AdminFormToday(props: any) {
                         value={postQuiz.answer}
                         name="answer"
                         className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
+                        required
                     ></textarea>
                 </div>
             </form>

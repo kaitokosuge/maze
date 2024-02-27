@@ -151,6 +151,7 @@ export default function AdminFormNormal(props: any) {
                         onChange={handleChangeNormalQuiz}
                         name="quiz"
                         className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
+                        required
                     ></textarea>
                     <label className="font-bold text-[20px] mt-[50px] block">
                         choices & true
@@ -178,6 +179,7 @@ export default function AdminFormNormal(props: any) {
                                             choiceEl.uuid
                                         );
                                     }}
+                                    required
                                 />
                                 <select
                                     onChange={(e) =>
@@ -260,6 +262,7 @@ export default function AdminFormNormal(props: any) {
                             onChange={handleChangeNormalQuiz}
                             name="answer"
                             className="mt-[20px] p-5 w-full border outline-none border-gray-600 rounded-[10px] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none duration-300 bg-[#001E41]"
+                            required
                         ></textarea>
                     </div>
                 </form>

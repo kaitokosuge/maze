@@ -25,7 +25,7 @@ export default function AdminContainer(props: any) {
                         allRate={allRate}
                     />
                 </div>
-                <div className={`bg-[#00142C] w-[85%] min-h-screen] pb-10`}>
+                <div className={`bg-[#00142C] w-[85%] min-h-screen pb-10`}>
                     <Header />
                     <div className="pl-[40px] pr-[50px] pt-[60px]">
                         <h2 className="maze--title text-[30px] font-bold">

@@ -11,10 +11,12 @@ export default function UpdateProfileInformation({
     mustVerifyEmail,
     status,
     className = "",
+    user: any,
 }: {
     mustVerifyEmail: boolean;
     status?: string;
     className?: string;
+    user: any;
 }) {
     const user = usePage<PageProps>().props.auth.user;
 
@@ -83,19 +85,22 @@ export default function UpdateProfileInformation({
 
                     <InputError className="mt-2" message={errors.color} />
                 </div>
-
-                <div>
-                    <InputLabel htmlFor="admin" value="become admin" />
-                    <input
-                        id="admin_code"
-                        type="text"
-                        name="admin_code"
-                        value={data.admin_code}
-                        className="bg-c-none block w-full m-auto mt-5 px-[10px] py-[12px] border-gray-400 ring-gray-400 focus:border-gray-300 focus:ring-gray-300 focus:bg-none shadow-sm ease-in-out duration-500 text-white font-bold text-[18px]"
-                        autoComplete="admin_code"
-                        onChange={(e) => setData("admin_code", e.target.value)}
-                    />
-                </div>
+                {user.isAdmin === true && (
+                    <div>
+                        <InputLabel htmlFor="admin" value="become admin" />
+                        <input
+                            id="admin_code"
+                            type="text"
+                            name="admin_code"
+                            value={data.admin_code}
+                            className="bg-c-none block w-full m-auto mt-5 px-[10px] py-[12px] border-gray-400 ring-gray-400 focus:border-gray-300 focus:ring-gray-300 focus:bg-none shadow-sm ease-in-out duration-500 text-white font-bold text-[18px]"
+                            autoComplete="admin_code"
+                            onChange={(e) =>
+                                setData("admin_code", e.target.value)
+                            }
+                        />
+                    </div>
+                )}
 
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>

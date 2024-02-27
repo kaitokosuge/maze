@@ -84,6 +84,7 @@ export default function Edit({
                                     mustVerifyEmail={mustVerifyEmail}
                                     status={status}
                                     className="max-w-xl"
+                                    user={user}
                                 />
                                 <p
                                     className="mt-10 text-[14px] cursor-pointer text-gray-500 hover:text-gray-200 duration-300"
