@@ -5,20 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Reply extends Model
 {
+    protected $table = "replies";
     use HasFactory;
-    protected $fillable=[
-        "user_id",
-        "quiz_id",
-        'comment',
+    protected $fillable = [
+        'user_id',
+        'comment_id',
+        'reply',
     ];
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-    public function replies()
-    {
-        return $this->hasMany(Reply::class);
     }
 }
