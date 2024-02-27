@@ -257,15 +257,23 @@ export default function TopMain({
                             <>
                                 <div className="flex items-center justify-between opacity-100 duration-300">
                                     <div className="w-[70%] flex items-center">
-                                        <p
+                                        <div
                                             className={
                                                 addClass === true
-                                                    ? "maze--title font-bold text-[30px] text-gray-100 duration-700"
-                                                    : "maze--title font-bold text-[80px] text-gray-100"
+                                                    ? "flex items-center maze--title font-bold text-[30px] text-gray-100 duration-700"
+                                                    : "flex items-center maze--title font-bold text-[80px] text-gray-100"
                                             }
                                         >
-                                            Today's Quiz
-                                        </p>
+                                            <img
+                                                src="/eye02--logo.png"
+                                                className={
+                                                    addClass === true
+                                                        ? "w-[35px] ml-1 duration-700"
+                                                        : "w-[80px] ml-1"
+                                                }
+                                            />
+                                            <p>Today's Quiz</p>
+                                        </div>
                                         <div
                                             className={
                                                 addClass === true

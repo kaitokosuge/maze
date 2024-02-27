@@ -4,6 +4,21 @@ body {
     background: #000238;
     min-height: 100vh;
 }
+.all {
+    @media (max-width: 1150px) {
+        display: none;
+        color: black;
+    }
+}
+.all02 {
+    display: none;
+    @media (max-width: 1150px) {
+        display: block;
+    }
+}
+.bg-first {
+    background: linear-gradient(to right, #002248, #004a4f);
+}
 .bg-colorfull-100 {
     background: linear-gradient(#000238, #000238, #370035, #370035);
     background-size: 100% 250%;
@@ -11,6 +26,9 @@ body {
 }
 .bg-footer {
     background: linear-gradient(180deg, #00023800, #00142c);
+}
+.bg-today-quiz {
+    background: linear-gradient(#370035, #00142c 500px, #00142c 500px);
 }
 .bg-js-color {
     /* background: linear-gradient(#877e00, #00142c, #00142c, #00142c, #00142c); */
@@ -43,6 +61,9 @@ body {
 .bg-go-color {
     background: linear-gradient(#1489b7, #00142c 200px, #00142c 200px);
 }
+.bg-fastapi-color {
+    background: linear-gradient(#177a6e, #00142c 200px, #00142c 200px);
+}
 .bg-1 {
     background: #877e00;
 }
@@ -73,8 +94,11 @@ body {
 .bg-10 {
     background: rgb(34, 96, 121);
 }
+.bg-11 {
+    background: rgb(34, 121, 105);
+}
 .text-limit {
-    width: 50%;
+    width: 40%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -121,6 +145,13 @@ body {
 }
 .maze--title--gra {
     background: -webkit-linear-gradient(0deg, #003f88, #00a6b2);
+    background-size: 280%;
+    animation: 7s infinite bgtitlegradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.maze--today--gra {
+    background: -webkit-linear-gradient(0deg, #00058c, #650062);
     background-size: 280%;
     animation: 7s infinite bgtitlegradient;
     -webkit-background-clip: text;

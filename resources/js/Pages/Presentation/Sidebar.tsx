@@ -74,6 +74,18 @@ export default function Sidebar(props: any) {
                 )}
 
                 <Link
+                    href="/today-quiz"
+                    className="hover:scale-105 font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
+                >
+                    <img
+                        src="/eye02--logo.png"
+                        className="w-[20px] h-[20px] mr-5 rounded-[5px]"
+                    />
+                    <span className="block maze--title maze--title--gra">
+                        Today's Quiz
+                    </span>
+                </Link>
+                <Link
                     href="/top"
                     className="hover:scale-105 font-bold text-[16px] text-white w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex rounded-[10px]"
                 >
@@ -104,7 +116,7 @@ export default function Sidebar(props: any) {
                     <span className="block">HISTORY</span>
                 </Link>
             </div>
-            <div className="border-t border-gray-700 w-[85%] m-auto pt-5 overflow-scroll h-[55%] pb-[100px]">
+            <div className="border-t border-gray-700 w-[85%] m-auto pt-5 overflow-scroll h-[55%] pb-[120px]">
                 {categories.map((category: any) => (
                     <>
                         <Link
