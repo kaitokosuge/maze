@@ -45,15 +45,19 @@ export default function CategoryContainer(props: any) {
                                     href={link.url}
                                     className={
                                         link.active === true
-                                            ? "mr-1 py-1 px-5 border border-[#4e0e92] bg-[#4e0e92] block w-content-fit min-w-[40px] text-center rounded-[10px] duration-300"
-                                            : "mr-1 py-1 px-5 border border-gray-700 block w-content-fit min-w-[40px] text-center rounded-[10px] hover:bg-[#4e0e92] hover:border-[#4e0e92] duration-300"
+                                            ? "mr-1 py-1 px-[10px] border border-[#381161] bg-[#381161] block w-content-fit min-w-[30px] text-center rounded-[10px] duration-300 font-bold"
+                                            : "mr-1 py-1 px-[10px] border border-gray-700 block w-content-fit min-w-[30px] text-center rounded-[10px] hover:bg-[#4e0e92] hover:border-[#4e0e92] duration-300 font-bold"
                                     }
                                 >
-                                    <span
-                                        dangerouslySetInnerHTML={{
-                                            __html: link.label,
-                                        }}
-                                    />
+                                    <p>
+                                        {link.label === "&laquo; Previous" ? (
+                                            <>◀︎</>
+                                        ) : link.label === "Next &raquo;" ? (
+                                            <>▶︎</>
+                                        ) : (
+                                            <>{link.label}</>
+                                        )}
+                                    </p>
                                 </Link>
                             ))}
                         </ul>
