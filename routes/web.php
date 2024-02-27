@@ -6,6 +6,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\TodayController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,8 @@ Route::middleware('verified')->group(function () {
 
     Route::post('/comment/{quiz}',[CommentController::class,'store']);
     Route::delete('/comment/{comment}',[CommentController::class,'delete']);
+
+    Route::post('/reply/{comment}/{quiz}',[ReplyController::class,'store']);
 
     Route::post('/like/{quiz}',[LikeController::class,'like']);
 

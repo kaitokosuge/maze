@@ -35,7 +35,9 @@ class QuizController extends Controller
         // $testQuiz = $quiz->paginate();
         // dd($testQuiz);
         if ($todayQuiz != null) {
-            $comments = $comment->where('quiz_id', $todayQuiz->id)->with("user")->orderBy('id','desc')->get();
+            $comments = $comment->where('quiz_id', $todayQuiz->id)->with("user")->with(['replies' => function ($query) {
+                $query->with('user');
+            }])->orderBy('id','desc')->get();
             $likesCount = $todayQuiz->likes->count();
             $likeCheck = !$user->likes->where('quiz_id',$todayQuiz->id)->isEmpty();
         } else {
