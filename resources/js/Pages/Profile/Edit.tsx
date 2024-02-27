@@ -20,6 +20,7 @@ export default function Edit({
     allQuizNum,
     categoryQuizCount,
     categoryQuizTrueCount,
+    todayQuizRate,
 }: PageProps<{
     user: any;
     mustVerifyEmail: boolean;
@@ -30,6 +31,7 @@ export default function Edit({
     allQuizNum: number;
     categoryQuizCount: any;
     categoryQuizTrueCount: any;
+    todayQuizRate: number;
 }>) {
     const [isShowDelete, setIsShowdelete] = useState<boolean>(false);
     const handleAccountSet = () => {
@@ -137,6 +139,7 @@ export default function Edit({
                             isSetClick={isSetClick}
                             categoryQuizCount={categoryQuizCount}
                             categoryQuizTrueCount={categoryQuizTrueCount}
+                            todayQuizRate={todayQuizRate}
                         />
                     </div>
                 </div>

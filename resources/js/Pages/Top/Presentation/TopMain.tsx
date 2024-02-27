@@ -137,8 +137,10 @@ export default function TopMain({
                     {todayQuiz !== null ? (
                         <>
                             <TopComment
+                                user={user}
                                 todayQuiz={todayQuiz}
                                 comments={comments}
+                                isUserQuizAnswer={isUserQuizAnswer}
                             />
                             <div className="ml-1 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]">
                                 {isEyeClick === true ? (

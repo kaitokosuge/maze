@@ -73,7 +73,13 @@ export default function TodayQuizzes(props: any) {
                                 Albatross
                             </p>
                         )}
-                        <p>{rateNum}%</p>
+                        {rateNum < 0 ? (
+                            <>0%</>
+                        ) : (
+                            <>
+                                <p>{rateNum}%</p>
+                            </>
+                        )}
                     </div>
                     <div className="w-[70%] bg-black rounded-[10px] mt-5 p-1">
                         <div

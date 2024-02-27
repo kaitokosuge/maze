@@ -13,6 +13,7 @@ export default function ProfileData(props: any) {
         categories,
         categoryQuizCount,
         categoryQuizTrueCount,
+        todayQuizRate,
     } = props;
     console.log(allRate);
 
@@ -60,9 +61,12 @@ export default function ProfileData(props: any) {
                             </span>
                         </>
                     )}
-                    <p className="maze--title font-bold maze--today--gra text-[34px] mt-5">
-                        Albatross
-                    </p>
+                    {todayQuizRate >= 90 && (
+                        <p className="maze--title font-bold maze--today--gra text-[34px] mt-5">
+                            Albatross
+                        </p>
+                    )}
+
                     <span className="text-[10px] text-gray-300">
                         You are Albatross. Over 90% of today's quiz is answered
                         correctly the first time!

@@ -13,7 +13,8 @@ import parse from "html-react-parser";
 import axios from "axios";
 
 export default function TopComment(props: any) {
-    const { todayQuiz, comments } = props;
+    const { todayQuiz, comments, isUserQuizAnswer, user } = props;
+    console.log("visUserQuizAnswer", isUserQuizAnswer);
     const [stateComments, setComments] = useState(comments);
     const [postComment, setPostComment] = useState({
         comment: "",
@@ -65,13 +66,21 @@ export default function TopComment(props: any) {
         <div>
             <Drawer>
                 <DrawerTrigger className="text-yello-300">
-                    <div className="ml-1 flex items-center hover:border duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]">
-                        <img
-                            className="duration-200 w-[30px] cursor-pointer"
-                            src="/voice--logo.png"
-                        />
-                        <p className="ml-5 font-bold">{stateComments.length}</p>
-                    </div>
+                    {todayQuiz.is_user_true.some(
+                        (ob: any) => ob.id === user.id
+                    ) === true || isUserQuizAnswer ? (
+                        <div className="ml-1 flex items-center hover:border duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]">
+                            <img
+                                className="duration-200 w-[30px] cursor-pointer"
+                                src="/voice--logo.png"
+                            />
+                            <p className="ml-5 font-bold">
+                                {stateComments.length}
+                            </p>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
                 </DrawerTrigger>
                 <DrawerContent className="bg-profile-card border-none min-h-[70%] max-h-[80%] px-[100px] pb-5">
                     <DrawerHeader>

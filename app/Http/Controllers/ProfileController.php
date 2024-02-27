@@ -34,6 +34,11 @@ class ProfileController extends Controller
             array_push($categoryArray,$data);
         }
         
+        $todayQuizNum = $quiz->where('isToday',true)->where('showday', '<=' ,$today)->count();
+        $todayQuizFalse = $user->falseQuiz->count();
+        $todayQuizTrue = $user->isUserTrue->where('isToday',true)->count();
+
+        $todayQuizRate = floor(($todayQuizTrue - $todayQuizFalse ) / $todayQuizNum *100);
 
         // ユーザーに関連するクイズを取得
         $quizzes = $user->isUserTrue()->get();
@@ -65,7 +70,8 @@ class ProfileController extends Controller
             'allQuizNum' => $allQuizNum,
             'allRate' => $allRate,
             'categoryQuizCount' =>  $categoryArray,
-            'categoryQuizTrueCount'=>$categoryStats
+            'categoryQuizTrueCount'=>$categoryStats,
+            'todayQuizRate'=>$todayQuizRate,
         ]);
     }
 

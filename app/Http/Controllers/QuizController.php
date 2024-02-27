@@ -51,13 +51,7 @@ class QuizController extends Controller
     public function showCategory(Category $category, Quiz $quiz)
     {
         $user= \Auth::user();
-        // $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
-        //     $query->where('id', $category->id);
-        // })->with("choices")->with('user')->with('isUserTrue')->orderBy('id','desc')->paginate(8)->filter( function ($item) {
-        //     $day = new Carbon();
-        //     $today = $day->toDateString();
-        //     return $item->showDay <= $today;
-        // })->values()->toArray();
+        
         $day = new Carbon();
         $today = $day->toDateString();
         $categoryQuiz = $quiz->whereHas('categories', function ($query) use ($category) {
