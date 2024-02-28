@@ -3,9 +3,12 @@ import React, { useState } from "react";
 import parse from "html-react-parser";
 import { User } from "@/types";
 import { Link } from "@inertiajs/react";
+import TopComment from "@/Pages/Top/Presentation/TopComment";
 
 export default function TodayQuizzes(props: any) {
     const { quizzes, user, todayQuizRate } = props;
+
+    const likeArray = user.likes.map((like: any) => like.quiz_id);
 
     const [isClick, setIsClick] = useState(-1);
     const handleQuizShow = (index: number) => {
@@ -19,7 +22,7 @@ export default function TodayQuizzes(props: any) {
     const [isChoiceClick, setIsChoiceClick] = useState<number[]>([]);
     const handleChangeQuizData = (e: any, choiceId: number) => {
         e.preventDefault();
-        console.log(choiceId);
+
         setIsChoiceClick(() => {
             if (isChoiceClick.some((id) => id === choiceId) === true) {
                 return isChoiceClick.filter((id) => id !== choiceId);
@@ -62,7 +65,31 @@ export default function TodayQuizzes(props: any) {
             console.log("error");
         }
     };
+    // const [likeCount, setLikeCount] = useState<number>(quizzes[].likes.length);
+    const [isLiked, setIsLiked] = useState(likeArray);
 
+    const handleLike = async (e: any, id: number, pageNum: number) => {
+        e.preventDefault();
+
+        const res = await axios.post(`/like/${id}/${pageNum}`);
+        if (res.status === 200) {
+            console.log("res lieke", res.data.AllQuiz);
+            const status = res.data.status;
+            if (status === "post") {
+                setShowQuizzes(res.data.AllQuiz);
+                setIsLiked((prev: any) => {
+                    return [...prev, res.data.quizId];
+                });
+            } else if (status === "delete") {
+                setShowQuizzes(res.data.AllQuiz);
+                setIsLiked((prev: any) => {
+                    return prev.filter((like: any) => like !== res.data.quizId);
+                });
+            }
+        } else {
+            alert("ページをリロードし再実行してください🙇");
+        }
+    };
     return (
         <div className="mt-[100px]">
             <div className="rounded-[20px] bg-profile w-[100%] px-10 py-10 mt-5 duration-100">
@@ -91,7 +118,49 @@ export default function TodayQuizzes(props: any) {
             <div className="">
                 {showQuizzes.data.map((quiz: any, index: number) => (
                     <>
-                        <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
+                        <div className="flex items-center mt-5 justify-end">
+                            <TopComment
+                                user={user}
+                                todayQuiz={quiz}
+                                comments={quiz.comments}
+                                isUserQuizAnswer={isUserQuizAnswer}
+                            />
+                            <div
+                                onClick={(e) =>
+                                    handleLike(
+                                        e,
+                                        quiz.id,
+                                        showQuizzes.current_page
+                                    )
+                                }
+                                className={
+                                    isLiked.some(
+                                        (like: any) => like === quiz.id
+                                    )
+                                        ? "relative z-20 ml-1 flex items-center opacity-100 duration-300 text-red-600 hover:border-red-900 border border-gray-800 rounded-[10px] px-5 py-[5px]"
+                                        : "relative z-20 ml-1 flex items-center opacity-100 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]"
+                                }
+                            >
+                                {isLiked.some(
+                                    (like: any) => like === quiz.id
+                                ) ? (
+                                    <img
+                                        className="w-[30px] cursor-pointer relative z-10"
+                                        src="/red-heart--logo.png"
+                                    />
+                                ) : (
+                                    <img
+                                        className="w-[30px] cursor-pointer relative z-10"
+                                        src="/heart--logo.png"
+                                    />
+                                )}
+
+                                <p className="ml-5 font-bold relative z-10">
+                                    {quiz.likes.length}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-1 flex items-center justify-between">
                             <div
                                 className={
                                     isClick === index

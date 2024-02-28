@@ -7,7 +7,7 @@ import SidebarRank from "./SidebarRank";
 
 export default function Sidebar(props: any) {
     const { categories, user, allRate } = props;
-    console.log("color", user);
+
     return (
         <div className="bg-[#000238] fixed left-0 w-[15%] h-screen ">
             <h1 className="font-bold maze--title text-[30px] text-white w-[85%] m-auto flex items-center duration-300 px-5 pt-[12px]">
@@ -15,7 +15,7 @@ export default function Sidebar(props: any) {
                 <span className="block pt-1">MAZE</span>
             </h1>
             <p className="maze--title block text-[10px] w-fit-content m-auto text-center pb-[12px]">
-                for only PC
+                for PCs only
             </p>
             <div className="border-t border-gray-700 w-[85%] m-auto py-5">
                 <Link
@@ -36,7 +36,6 @@ export default function Sidebar(props: any) {
                             ></div>
                         </>
                     )}
-
                     <span className="maze--title block text-[13px]">
                         {user === undefined ? (
                             <>
