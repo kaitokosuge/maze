@@ -7,6 +7,7 @@ import TodayQuizzes from "./Presentation/TodayQuizzes";
 export default function TodayContainer(props: any) {
     const { categories, user, allRate, quizzes, todayQuizRate } = props;
     console.log("today quizzez", quizzes);
+    console.log("login user", user);
     return (
         <>
             <div className="flex">

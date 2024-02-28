@@ -33,7 +33,7 @@ Route::middleware('verified')->group(function () {
 
     Route::post('/reply/{comment}/{quiz}',[ReplyController::class,'store']);
 
-    Route::post('/like/{quiz}',[LikeController::class,'like']);
+    Route::post('/like/{quiz}/{pageNum}',[LikeController::class,'like']);
 
     Route::get('/mazer',[AdminController::class,'index']);
     Route::post('/mazer/store/quiz',[AdminController::class,'storeQuiz']);
