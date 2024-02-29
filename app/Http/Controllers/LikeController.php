@@ -22,7 +22,7 @@ class LikeController extends Controller
                 $query->with(['replies' => function ($quer) {
                     $quer->with('user');
                 }]);
-            }])->orderBy('id','desc')->where('isToday',true)->where('showday', '<=' ,$today)->paginate(20, ['*'], 'page',$pageNum);
+            }])->orderBy('id','desc')->where('isToday',true)->where('showDay', '<=' ,$today)->paginate(20, ['*'], 'page',$pageNum);
             
             return response()->json([
                 'quizId' => $deleteQuizId,
@@ -39,7 +39,7 @@ class LikeController extends Controller
                 $query->with(['replies' => function ($quer) {
                     $quer->with('user');
                 }]);
-            }])->orderBy('id','desc')->where('isToday',true)->where('showday', '<=' ,$today)->paginate(20, ['*'], 'page',$pageNum);
+            }])->orderBy('id','desc')->where('isToday',true)->where('showDay', '<=' ,$today)->paginate(20, ['*'], 'page',$pageNum);
             return response()->json([
                 'quizId' => $quiz->id,
                 'status'=>'post',
