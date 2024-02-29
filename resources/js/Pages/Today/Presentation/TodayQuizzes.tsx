@@ -101,9 +101,17 @@ export default function TodayQuizzes(props: any) {
                             </p>
                         )}
                         {rateNum < 0 ? (
-                            <>0%</>
+                            <>
+                                <p>0%</p>
+                                <p className="text-[12px] maze--title">
+                                    First time correct answer rate
+                                </p>
+                            </>
                         ) : (
                             <>
+                                <p className="text-[12px] maze--title">
+                                    First time correct answer rate
+                                </p>
                                 <p>{rateNum}%</p>
                             </>
                         )}

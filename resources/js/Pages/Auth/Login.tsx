@@ -98,14 +98,23 @@ export default function Login({
                 </div>
 
                 <div className="flex items-center justify-between mt-10">
-                    {canResetPassword && (
+                    <div>
+                        {canResetPassword && (
+                            <Link
+                                href={route("password.request")}
+                                className="underline text-[10px] text-gray-600 hover:text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                パスワードを忘れた方はこちら
+                            </Link>
+                        )}
                         <Link
-                            href={route("password.request")}
-                            className="underline text-[10px] text-gray-600 hover:text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            href="/register"
+                            className="mt-5 block duration-300 underline text-[14px] text-gray-300 hover:text-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                            パスワードを忘れた方はこちら
+                            新規登録はこちら
                         </Link>
-                    )}
+                    </div>
+
                     <button
                         className={`bg-blue-800 hover:bg-blue-600 duration-300 rounded-[10px] px-[25px] font-bold p-[10px] text-[15px] text-gray-300 uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition ease-in-out }`}
                         disabled={processing}

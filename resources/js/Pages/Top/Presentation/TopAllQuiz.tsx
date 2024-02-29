@@ -31,9 +31,6 @@ export default function TopAllQuiz(props: any) {
     const [isUserQuizAnswer, setIsUserQuizAnswer] = useState("");
     const handleAnswerQuiz = async (e: any, id: number) => {
         e.preventDefault();
-        const csrfMetaTag: Element | null = document.head.querySelector(
-            'meta[name="csrf-token"]'
-        );
         try {
             const data = isChoiceClick;
             const res = await axios.post(`/quiz/answer/${id}`, data);

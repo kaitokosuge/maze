@@ -62,15 +62,17 @@ export default function ProfileData(props: any) {
                         </>
                     )}
                     {todayQuizRate >= 90 && (
-                        <p className="maze--title font-bold maze--today--gra text-[34px] mt-5">
-                            Albatross
-                        </p>
+                        <>
+                            <p className="maze--title font-bold maze--today--gra text-[34px] mt-5">
+                                Albatross
+                            </p>
+                            <span className="text-[10px] text-gray-300">
+                                You are Albatross. Over 90% of today's quiz is
+                                answered correctly the first time!
+                            </span>
+                        </>
                     )}
 
-                    <span className="text-[10px] text-gray-300">
-                        You are Albatross. Over 90% of today's quiz is answered
-                        correctly the first time!
-                    </span>
                     <ProfileRank
                         allRate={allRate}
                         trueQuizNum={trueQuizNum}

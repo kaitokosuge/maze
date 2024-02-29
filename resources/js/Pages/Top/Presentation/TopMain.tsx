@@ -79,7 +79,7 @@ export default function TopMain({
     console.log("isliked", isLiked);
     const handleLike = async (e: any, id: number) => {
         e.preventDefault();
-        const res = await axios.post(`/like/${id}`);
+        const res = await axios.post(`/like/${id}/0`);
         if (res.status === 200) {
             console.log("res", res);
             const status = res.data.status;
