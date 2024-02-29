@@ -6,7 +6,6 @@
         "build": "tsc && vite build && vite build --ssr",
         "watch": "vite build --watch"
     },
-    
     "devDependencies": {
         "@headlessui/react": "^1.4.2",
         "@inertiajs/react": "^1.0.0",
