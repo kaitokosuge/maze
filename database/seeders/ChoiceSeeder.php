@@ -14,94 +14,16 @@ class ChoiceSeeder extends Seeder
     public function run(): void
     {
         DB::table('choices')->insert([
-            'choice' => 'input',
+            'choice' => 'test quizです',
             'isTrue' => true,
             'quiz_id' => 1,
         ]);
         DB::table('choices')->insert([
-            'choice' => 'submit',
-            'isTrue' => false,
+            'choice' => 'test quizです',
+            'isTrue' => true,
             'quiz_id' => 1,
         ]);
-        DB::table('choices')->insert([
-            'choice' => 'change',
-            'isTrue' => false,
-            'quiz_id' => 1,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => 'click',
-            'isTrue' => false,
-            'quiz_id' => 1,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => '梅干し',
-            'isTrue' => false,
-            'quiz_id' => 2,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => 'カレー',
-            'isTrue' => true,
-            'quiz_id' => 2,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => '寿司',
-            'isTrue' => true,
-            'quiz_id' => 2,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => '草',
-            'isTrue' => false,
-            'quiz_id' => 2,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => '羊肉',
-            'isTrue' => false,
-            'quiz_id' => 2,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => 'basketball',
-            'isTrue' => true,
-            'quiz_id' => 3,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => 'baseball',
-            'isTrue' => false,
-            'quiz_id' => 3,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => 'soccer',
-            'isTrue' => false,
-            'quiz_id' => 3,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => 'mission impossible',
-            'isTrue' => true,
-            'quiz_id' => 4,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => 'jurassic word',
-            'isTrue' => true,
-            'quiz_id' => 4,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => 'avater',
-            'isTrue' => true,
-            'quiz_id' => 4,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => 'アンパンマン',
-            'isTrue' => true,
-            'quiz_id' => 5,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => '進撃の巨人',
-            'isTrue' => true,
-            'quiz_id' => 5,
-        ]);
-        DB::table('choices')->insert([
-            'choice' => 'テスト選択肢テスト選択肢テスト選択肢',
-            'isTrue' => true,
-            'quiz_id' => 5,
-        ]);
+        
+        
     }
 }
