@@ -18,7 +18,7 @@ class QuizSeeder extends Seeder
             'answer' => 'ありがとうございました！！！',
             'user_id' => 1,
             'created_at' => now(),
-            'isToday' => false,
+            'isToday' => true,
             'showDay' => '2024-02-01'
         ]);
     }
