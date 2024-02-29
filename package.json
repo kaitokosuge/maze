@@ -3,8 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "tsc && vite build && vite build --ssr",
-        "watch": "vite build --watch"
+        "build": "vite build",
+        "heroku-postbuild": "npm run build"
     },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",
