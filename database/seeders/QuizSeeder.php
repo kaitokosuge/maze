@@ -13,7 +13,13 @@ class QuizSeeder extends Seeder
      */
     public function run(): void
     {
-        
-        
+        DB::table('quizzes')->insert([
+            'quiz' => 'mazeへようこそ！！！実際にクイズ画面を触ってみよう',
+            'answer' => 'ありがとうございました！！！',
+            'user_id' => 1,
+            'created_at' => now(),
+            'isToday' => false,
+            'showDay' => '2024-02-01'
+        ]);
     }
 }
