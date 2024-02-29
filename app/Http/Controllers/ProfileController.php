@@ -34,7 +34,7 @@ class ProfileController extends Controller
             array_push($categoryArray,$data);
         }
         
-        $todayQuizNum = $quiz->where('isToday',true)->where('showday', '<=' ,$today)->count();
+        $todayQuizNum = $quiz->where('isToday',true)->where('showDay', '<=' ,$today)->count();
         $todayQuizFalse = $user->falseQuiz->count();
         $todayQuizTrue = $user->isUserTrue->where('isToday',true)->count();
 

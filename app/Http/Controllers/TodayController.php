@@ -23,7 +23,7 @@ class TodayController extends Controller
         $Rate = round($trueQuizNum / $allQuizNum, 2)*100;
         $allRate = floor($Rate);
 
-        $todayQuizNum = $quiz->where('isToday',true)->where('showday', '<=' ,$today)->count();
+        $todayQuizNum = $quiz->where('isToday',true)->where('showDay', '<=' ,$today)->count();
         $todayQuizFalse = $user->falseQuiz->count();
         $todayQuizTrue = $user->isUserTrue->where('isToday',true)->count();
 
@@ -35,7 +35,7 @@ class TodayController extends Controller
             $query->with(['replies' => function ($quer) {
                 $quer->with('user');
             }]);
-        }])->orderBy('id','desc')->where('isToday',true)->where('showday', '<=' ,$today)->paginate(20);
+        }])->orderBy('id','desc')->where('isToday',true)->where('showDay', '<=' ,$today)->paginate(20);
         return Inertia::render('Today/TodayContainer')->with(['todayQuizRate'=>$todayQuizRate,'quizzes'=>$quizzes,'allRate'=>$allRate, 'user' => $user, 'categories' => $category->with('quizzes')->get()]);
     }
     public function getTodayQuiz(Quiz $quiz,$pageNum)
@@ -46,7 +46,7 @@ class TodayController extends Controller
             $query->with(['replies' => function ($quer) {
                 $quer->with('user');
             }]);
-        }])->orderBy('id','desc')->where('isToday',true)->where('showday', '<=' ,$today)->paginate(20, ['*'], 'page',$pageNum);
+        }])->orderBy('id','desc')->where('isToday',true)->where('showDay', '<=' ,$today)->paginate(20, ['*'], 'page',$pageNum);
 
         return response()->json([
             'allQuiz' => $AllQuiz
