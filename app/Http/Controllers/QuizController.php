@@ -23,7 +23,7 @@ class QuizController extends Controller
         $user = \Auth::user();
         $day = new Carbon();
         $today = $day->toDateString();
-        $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->where('isToday',false)->where('showday', '<=' ,$today)->paginate(20);
+        $quizzes = $quiz->with("categories")->with("choices")->with("user")->with('isUserTrue')->orderBy('id','desc')->where('isToday',false)->where('showDay', '<=' ,$today)->paginate(20);
         //dd($quizzes);
         $today = new Carbon();
         $allQuizNum = $quiz->where(function ($query) use ($today) {
