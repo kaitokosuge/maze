@@ -2,6 +2,8 @@ import { Link } from "lucide-react";
 import React from "react";
 import Header from "../Presentation/Header";
 import Sidebar from "../Presentation/Sidebar";
+import HistoryCopy from "./Presentation/HistoryCopy";
+import HistoryDesc from "./Presentation/HistoryDesc";
 
 export default function HistoryContainer(props: any) {
     const { categories, user, allRate } = props;
@@ -51,9 +53,10 @@ export default function HistoryContainer(props: any) {
                             )}
                         </div>
                     </div>
-                    <p className="font-bold text-[20px]">HISTORY</p>
+                    <p className="font-bold text-[20px]">RULES</p>
+                    <HistoryDesc />
                 </div>
-                <div className="bg-footer w-full h-[60px] fixed bottom-0 z-10"></div>
+                <HistoryCopy />
             </div>
         </div>
     );

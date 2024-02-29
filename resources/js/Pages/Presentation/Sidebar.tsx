@@ -112,9 +112,10 @@ export default function Sidebar(props: any) {
                         src="/history--logo.png"
                         className="w-[20px] h-[20px] mr-5 rounded-[5px]"
                     />
-                    <span className="block">HISTORY</span>
+                    <span className="block">RULES</span>
                 </Link>
             </div>
+
             <div className="border-t border-gray-700 w-[85%] m-auto pt-5 overflow-scroll h-[55%] pb-[120px]">
                 {categories.map((category: any) => (
                     <>
