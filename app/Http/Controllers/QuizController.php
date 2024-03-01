@@ -96,7 +96,7 @@ class QuizController extends Controller
                 ]);
             }
         }else{
-            if($quiz->isToday === 1){
+            if($quiz->isToday === true){
                 $falseuser = new FalseUser();
                 if(!$falseuser->where('user_id',\Auth::user()->id)->where('quiz_id',$quiz->id)->exists()){
                     $falseuser->user_id = \Auth::user()->id;
