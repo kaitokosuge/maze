@@ -40,8 +40,7 @@ class AdminController extends Controller
         $allRate = floor($Rate);
         $postedTodayQuiz = $quiz->where('user_id',$user->id)->where('isToday',true)->orderBy('id','desc')->with('choices')->with('categories')->get();
         $postedQuiz = $quiz->where('user_id',$user->id)->where('isToday',false)->orderBy('id','desc')->with('choices')->with('categories')->get();
-        dd($user->isAdmin);
-        if($user->isAdmin === 1){
+        if($user->isAdmin === true){
             return Inertia::render('Admin/AdminContainer')->with(["postedQuiz"=>$postedQuiz,'postedTodayQuiz'=>$postedTodayQuiz,'allRate'=>$allRate,'user'=>$user,'categories' => $category->get(),'days' => $days,"showDays" => $showDays,"reserveQuizzes"=>$rangeQuizzes]); 
         }else{
             return redirect("/top");

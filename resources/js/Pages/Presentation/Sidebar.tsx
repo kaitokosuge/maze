@@ -55,7 +55,7 @@ export default function Sidebar(props: any) {
                     <></>
                 ) : (
                     <>
-                        {user.isAdmin === 1 && (
+                        {user.isAdmin === true && (
                             <Link
                                 href="/mazer"
                                 className="hover:scale-105 font-bold w-[100%] px-5 py-[12px] m-auto hover:bg-[#001358] duration-300 flex items-center rounded-[10px]"
