@@ -26,7 +26,7 @@ class TodayController extends Controller
         $todayQuizNum = $quiz->where('isToday',true)->where('showDay', '<=' ,$today)->count();
         $todayQuizFalse = $user->falseQuiz->count();
         $todayQuizTrue = $user->isUserTrue->where('isToday',true)->count();
-
+        dd($todayQuizFalse);
         $todayQuizRate = floor(($todayQuizTrue - $todayQuizFalse ) / $todayQuizNum *100);
 
 

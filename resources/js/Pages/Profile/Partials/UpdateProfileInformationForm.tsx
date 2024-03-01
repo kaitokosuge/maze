@@ -85,7 +85,7 @@ export default function UpdateProfileInformation({
 
                     <InputError className="mt-2" message={errors.color} />
                 </div>
-                {user.isAdmin === true && (
+                {user.isAdmin === false && (
                     <div>
                         <InputLabel htmlFor="admin" value="become admin" />
                         <input
