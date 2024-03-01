@@ -145,8 +145,8 @@ export default function TodayQuizzes(props: any) {
                                     isLiked.some(
                                         (like: any) => like === quiz.id
                                     )
-                                        ? "relative z-20 ml-1 flex items-center opacity-100 duration-300 text-red-600 hover:border-red-900 border border-gray-800 rounded-[10px] px-5 py-[5px]"
-                                        : "relative z-20 ml-1 flex items-center opacity-100 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]"
+                                        ? "relative z-10 ml-1 flex items-center opacity-100 duration-300 text-red-600 hover:border-red-900 border border-gray-800 rounded-[10px] px-5 py-[5px]"
+                                        : "relative z-10 ml-1 flex items-center opacity-100 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]"
                                 }
                             >
                                 {isLiked.some(
