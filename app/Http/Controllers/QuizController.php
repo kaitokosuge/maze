@@ -109,7 +109,7 @@ class QuizController extends Controller
             $todayQuizFalse = $user->falseQuiz->count();
             $todayQuizTrue = $user->isUserTrue->where('isToday',true)->count();
             $todayQuizRate = floor(($todayQuizTrue - $todayQuizFalse ) / $todayQuizNum *100);
-            dd("ok");
+    
             return response()->json([
                 'isTrue' => 'false',
                 'rate'=>$todayQuizRate
