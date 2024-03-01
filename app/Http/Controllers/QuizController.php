@@ -18,7 +18,7 @@ class QuizController extends Controller
         $todayQuiz = $quiz->with("categories")->with("choices")->with("user")->orderBy('id','desc')->with('isUserTrue')->get()->filter(function ($item) {
             $day = new Carbon();
             $today = $day->toDateString();
-            return $item->showDay === $today && $item->isToday === 1;
+            return $item->showDay === $today && $item->isToday === true;
         })->first();
         $user = \Auth::user();
         $day = new Carbon();
