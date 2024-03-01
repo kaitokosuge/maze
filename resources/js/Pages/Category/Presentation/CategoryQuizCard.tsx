@@ -121,7 +121,7 @@ export default function CategoryQuizCard(props: any) {
                                     isUserQuizAnswer === "true" ? (
                                         <div
                                             className={
-                                                choice.isTrue === 0
+                                                choice.isTrue === false
                                                     ? "rounded-[10px] border border-gray-600 p-5 cursor-pointer"
                                                     : "before:content('正解') rounded-[10px] bg-[#00ad6e] p-5 cursor-pointer duration-300"
                                             }
