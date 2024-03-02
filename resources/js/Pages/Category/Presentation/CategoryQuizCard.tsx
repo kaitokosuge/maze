@@ -76,30 +76,30 @@ export default function CategoryQuizCard(props: any) {
                             }}
                         ></div>
                         <p className="font-bold text-[16px] text-limit">
-                            {index + 1} {quiz.quiz}
+                            {quiz.quiz}
                         </p>
-                        <data className="font-bold text-[12px] text-gray-500">
+                        <data className="md:block hidden font-bold text-[12px] text-gray-500">
                             {quiz.created_at.slice(0, -17)}
                         </data>
-                        <p className="font-bold text-[12px] text-gray-500">
+                        <p className="md:block hidden font-bold text-[12px] text-gray-500">
                             {quiz.user.name}
                         </p>
                         <div>
                             {quiz.is_user_true.some(
                                 (ob: User) => ob.id === user.id
                             ) === true ? (
-                                <p className="font-bold text-[#00FFA3] duration-700">
-                                    done ！！
+                                <p className="font-bold text-[#00FFA3] duration-700 maze--title">
+                                    done ！
                                 </p>
                             ) : (
-                                <p className="font-bold text-[#1b5841]">
+                                <p className="font-bold text-[#1b5841] maze--title">
                                     not done
                                 </p>
                             )}
                         </div>
                         <p
                             onClick={() => handleQuizShow(index)}
-                            className="hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] w-[100px] text-center px-5 py-[7px] font-bold cursor-pointer"
+                            className="maze--title hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] w-[100px] text-center px-5 py-[7px] font-bold cursor-pointer"
                         >
                             open
                         </p>
@@ -169,7 +169,7 @@ export default function CategoryQuizCard(props: any) {
                                 (ob: any) => ob.id === user.id
                             ) === true ? (
                                 <>
-                                    <p className="text-[26px] font-bold text-[#00FFA3]">
+                                    <p className="text-[26px] font-bold text-[#00FFA3] maze--title">
                                         You clear!!!
                                     </p>
                                     <p className="mt-1">{quiz.answer}</p>
@@ -184,7 +184,7 @@ export default function CategoryQuizCard(props: any) {
                                             onClick={(e) =>
                                                 handleAnswerQuiz(e, quiz.id)
                                             }
-                                            className="hover:bg-[#2825bf] duration-300 rounded-[10px] block m-auto mt-10 bg-[#030086] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
+                                            className="maze--title hover:bg-[#2825bf] duration-300 rounded-[10px] block m-auto mt-10 bg-[#030086] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
                                         >
                                             answer
                                         </button>
@@ -220,7 +220,7 @@ export default function CategoryQuizCard(props: any) {
                                             onClick={() =>
                                                 setIsUserQuizAnswer("")
                                             }
-                                            className="hover:bg-[#34ee5c] duration-300 rounded-[10px] block m-auto mt-10 bg-[#009020] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
+                                            className="maze--title hover:bg-[#34ee5c] duration-300 rounded-[10px] block m-auto mt-10 bg-[#009020] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
                                         >
                                             retry
                                         </button>

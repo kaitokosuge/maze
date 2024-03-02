@@ -10,13 +10,11 @@ export default function Sidebar(props: any) {
 
     return (
         <div className="bg-[#000238] fixed min-w-[220px] h-screen">
-            <h1 className="font-bold maze--title text-[30px] text-white w-[85%] m-auto flex items-center duration-300 px-5 pt-[12px]">
+            <h1 className="font-bold maze--title text-[30px] text-white w-[85%] m-auto flex items-center duration-300 px-5 pt-[12px] pb-[12px]">
                 <img src="/maze_logo.png" className="w-[40px] h-[40px]" />
                 <span className="block pt-1">MAZE</span>
             </h1>
-            <p className="maze--title block text-[10px] w-fit-content m-auto text-center pb-[12px]">
-                for PCs only
-            </p>
+
             <div className="border-t border-gray-700 w-[85%] m-auto py-5">
                 <Link
                     href="/profile"
@@ -80,7 +78,7 @@ export default function Sidebar(props: any) {
                         src="/eye02--logo.png"
                         className="w-[20px] h-[20px] mr-5 rounded-[5px]"
                     />
-                    <span className="block maze--title maze--title--gra">
+                    <span className="block maze--title maze--title--gra md:text-[16px] text-[14px]">
                         Today's Quiz
                     </span>
                 </Link>
@@ -116,7 +114,7 @@ export default function Sidebar(props: any) {
                 </Link>
             </div>
 
-            <div className="border-t border-gray-700 w-[85%] m-auto pt-5 overflow-scroll h-[55%] pb-[120px]">
+            <div className="border-t border-gray-700 w-[85%] m-auto pt-5 overflow-scroll h-[55%] pb-[250px]">
                 {categories.map((category: any) => (
                     <>
                         <Link

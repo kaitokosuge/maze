@@ -49,7 +49,7 @@ export default function Register() {
 
             <form
                 onSubmit={submit}
-                className="overflow-hidden auth--card bg-[#140034] xl:w-[60%] w-full m-auto xl:px-[80px] px-10 pt-[40px] pb-[40px] rounded-[20px] xl:mt-[120px] mt-[50px]"
+                className="overflow-hidden auth--card bg-[#140034] xl:w-[60%] w-full m-auto xl:px-[80px] px-10 pt-[40px] pb-[40px] rounded-[20px] xl:mt-[120px] mt-[60px]"
             >
                 <div className="w-[240%]">
                     <div

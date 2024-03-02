@@ -98,7 +98,7 @@ body {
     background: rgb(34, 121, 105);
 }
 .text-limit {
-    width: 40%;
+    width: 35%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

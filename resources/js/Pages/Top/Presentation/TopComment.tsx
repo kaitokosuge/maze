@@ -71,10 +71,10 @@ export default function TopComment(props: any) {
                     ) === true || isUserQuizAnswer ? (
                         <div className="ml-1 flex items-center hover:border duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]">
                             <img
-                                className="duration-200 w-[30px] cursor-pointer"
+                                className="duration-200 md:w-[30px] w-[16px] cursor-pointer"
                                 src="/voice--logo.png"
                             />
-                            <p className="ml-5 font-bold">
+                            <p className="ml-5 font-bold md:text-[16px] text-[12px] max-w-[20px]">
                                 {stateComments.length}
                             </p>
                         </div>
@@ -82,8 +82,8 @@ export default function TopComment(props: any) {
                         <></>
                     )}
                 </DrawerTrigger>
-                <DrawerContent className="bg-profile-card border-none min-h-[70%] md:max-h-[80%] max-h-[90%] md:px-[100px] p-5 pb-5">
-                    <DrawerHeader>
+                <DrawerContent className="bg-profile-card border-none md:min-h-[70%] md:max-h-[80%] min-h-[95%] max-h-[95%] md:px-[100px] md:p-20 md:pt-5 pb-5">
+                    <DrawerHeader className="md:p-0 px-5">
                         <DrawerTitle className="flex items-center md:mt-10 mt-5 md:text-[30px] text-[15px]">
                             <img
                                 className="md:w-[40px] w-[20px]"
@@ -93,7 +93,7 @@ export default function TopComment(props: any) {
                         </DrawerTitle>
                     </DrawerHeader>
                     <div className="flex flex-wrap justify-between">
-                        <div className="md:w-[40%] text-gray-400">
+                        <div className="md:w-[40%] text-gray-400 md:px-0 px-5">
                             <div className="font-bold mt-5 flex items-center">
                                 <img
                                     className="w-[15px] h-[15px]"
@@ -103,15 +103,15 @@ export default function TopComment(props: any) {
                                     {todayQuiz.user.name}
                                 </p>
                             </div>
-                            <div className="grid grid-cols-3 gap-5 mt-5">
+                            <div className="grid grid-cols-6 gap-5 mt-5">
                                 {todayQuiz.categories.map((category: any) => (
                                     <div className="flex items-center">
                                         <div className="w-[15px] h-auto">
                                             {parse(category.category_img)}
                                         </div>
-                                        <p className="font-bold ml-[8px]">
+                                        {/* <p className="font-bold ml-[8px]">
                                             {category.category}
-                                        </p>
+                                        </p> */}
                                     </div>
                                 ))}
                             </div>
@@ -123,8 +123,8 @@ export default function TopComment(props: any) {
                                 </p>
                             </div>
                         </div>
-                        <div className="md:w-[55%] w-full">
-                            <div className="bg-black min-h-[450px] max-h-[450px] rounded-[20px] overflow-scroll md:px-5 px-[10px] py-[15px] pb-[50px]">
+                        <div className="md:w-[55%] w-full md:mt-0 mt-[10px]">
+                            <div className="bg-black md:min-h-[450px] md:max-h-[450px] min-h-[320px] max-h-[350px] rounded-[20px] overflow-scroll md:px-5 px-[10px] py-[15px] pb-[50px]">
                                 {isShowReplies === true ? (
                                     <div className="">
                                         <p
@@ -157,7 +157,7 @@ export default function TopComment(props: any) {
                                                                         }
                                                                     </p>
                                                                 </div>
-                                                                <p className="mt-1 border-b border-b-gray-600 pb-5">
+                                                                <p className="mt-[8px] border-b border-b-gray-800 pb-5">
                                                                     {
                                                                         comment.comment
                                                                     }
@@ -167,7 +167,7 @@ export default function TopComment(props: any) {
                                                                         (
                                                                             reply: any
                                                                         ) => (
-                                                                            <div className="mt-5">
+                                                                            <div className="mt-[25px]">
                                                                                 <div className="flex items-center">
                                                                                     <div
                                                                                         style={{
@@ -184,7 +184,7 @@ export default function TopComment(props: any) {
                                                                                     </p>
                                                                                 </div>
 
-                                                                                <p>
+                                                                                <p className="mt-[8px]">
                                                                                     {
                                                                                         reply.reply
                                                                                     }
@@ -271,10 +271,10 @@ export default function TopComment(props: any) {
                                             type="text"
                                             name="reply"
                                             value={postReply.reply}
-                                            className="w-full focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none text-white bg-black rounded-[10px] px-5 py-[15px] border-gray-700 duration-300 block mt-5"
+                                            className="md:w-full w-[90%] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none text-white bg-black rounded-[10px] px-5 pr-[80px] py-[15px] border-gray-700 duration-300 block m-auto mt-5"
                                         />
-                                        <button className="text-[12px] absolute right-5 bottom-[11px] bg-blue-950 px-5 py-[5px] rounded-[10px]">
-                                            reply
+                                        <button className="text-[18px] absolute right-[25px]  bottom-[11px] bg-slate-900 px-5 py-[5px] rounded-[10px]">
+                                            ▶︎
                                         </button>
                                     </form>
                                 </>
@@ -289,10 +289,10 @@ export default function TopComment(props: any) {
                                             type="text"
                                             name="comment"
                                             value={postComment.comment}
-                                            className="w-full focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none text-white bg-black rounded-[10px] px-5 py-[15px] border-gray-700 duration-300 block mt-5"
+                                            className="md:w-full w-[90%] focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none text-white bg-black rounded-[10px] px-5 pr-[80px] py-[15px] border-gray-700 duration-300 block m-auto mt-5"
                                         />
-                                        <button className="text-[12px] absolute right-5 bottom-[11px] bg-blue-950 px-5 py-[5px] rounded-[10px]">
-                                            comment
+                                        <button className="text-[18px] absolute right-[25px] bottom-[11px] bg-slate-900 px-5 py-[5px] rounded-[10px]">
+                                            ▶︎
                                         </button>
                                     </form>
                                 </>

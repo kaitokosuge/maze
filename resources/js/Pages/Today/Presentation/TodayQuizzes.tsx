@@ -92,7 +92,7 @@ export default function TodayQuizzes(props: any) {
     };
     return (
         <div className="mt-[100px]">
-            <div className="rounded-[20px] bg-profile w-[100%] md:px-10 px-[10px] md:py-10 py-[10px] mt-5 duration-100">
+            <div className="rounded-[20px] bg-profile w-[100%] md:px-10 px-5 md:py-10 py-5 mt-5 duration-100">
                 <div className="rounded-[20px] bg-profile-card md:p-10 p-[25px] profile--card flex flex-wrap items-center justify-between">
                     <div className="font-bold text-[80px] maze--title maze--title--gra">
                         {rateNum >= 90 && (
@@ -145,25 +145,25 @@ export default function TodayQuizzes(props: any) {
                                     isLiked.some(
                                         (like: any) => like === quiz.id
                                     )
-                                        ? " ml-1 flex items-center opacity-100 duration-300 text-red-600 hover:border-red-900 border border-gray-800 rounded-[10px] px-5 py-[5px]"
-                                        : "ml-1 flex items-center opacity-100 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]"
+                                        ? " ml-1 flex items-center justify-between opacity-100 duration-300 text-red-600 hover:border-red-900 border border-gray-800 rounded-[10px] px-5 py-[5px]"
+                                        : "ml-1 flex items-center justify-between opacity-100 duration-300 hover:border-gray-100 border border-gray-800 rounded-[10px] px-5 py-[5px]"
                                 }
                             >
                                 {isLiked.some(
                                     (like: any) => like === quiz.id
                                 ) ? (
                                     <img
-                                        className="w-[30px] cursor-pointer"
+                                        className="md:w-[30px] w-[16px] cursor-pointer"
                                         src="/red-heart--logo.png"
                                     />
                                 ) : (
                                     <img
-                                        className="w-[30px] cursor-pointer"
+                                        className="md:w-[30px] w-[16px] cursor-pointer"
                                         src="/heart--logo.png"
                                     />
                                 )}
 
-                                <p className="ml-5 font-bold">
+                                <p className="ml-5 font-bold md:text-[16px] text-[12px] max-w-[20px]">
                                     {quiz.likes.length}
                                 </p>
                             </div>
@@ -193,7 +193,7 @@ export default function TodayQuizzes(props: any) {
                                         <div className="w-[15px] h-auto">
                                             {parse(category.category_img)}
                                         </div>
-                                        <p className="font-bold ml-1">
+                                        <p className="md:block hidden font-bold ml-1">
                                             {category.category}
                                         </p>
                                     </div>
@@ -209,11 +209,11 @@ export default function TodayQuizzes(props: any) {
                                 {quiz.is_user_true.some(
                                     (ob: User) => ob.id === user.id
                                 ) === true ? (
-                                    <p className="font-bold text-[#00FFA3] duration-700">
-                                        done ！！
+                                    <p className="font-bold text-[#00FFA3] duration-700 maze--title">
+                                        done ！
                                     </p>
                                 ) : (
-                                    <p className="font-bold text-[#1b5841]">
+                                    <p className="font-bold text-[#1b5841] maze--title">
                                         not done
                                     </p>
                                 )}
