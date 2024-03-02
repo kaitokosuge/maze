@@ -277,16 +277,16 @@ export default function TopMain({
                                         <div
                                             className={
                                                 addClass === true
-                                                    ? "flex items-center maze--title w-fit font-bold md:text-[30px] text-[20px] text-gray-100 duration-700"
-                                                    : "flex items-center maze--title w-fit font-bold md:text-[80px] text-[40px] text-gray-100"
+                                                    ? "flex items-center maze--title md:w-fit w-full font-bold md:text-[30px] text-[20px] text-gray-100 duration-700"
+                                                    : "flex items-center maze--title md:w-fit w-full font-bold md:text-[80px] text-[30px] text-gray-100"
                                             }
                                         >
                                             <img
                                                 src="/eye02--logo.png"
                                                 className={
                                                     addClass === true
-                                                        ? "w-[35px] ml-[8px] duration-700"
-                                                        : "w-[80px] ml-[8px]"
+                                                        ? "w-[35px] duration-700"
+                                                        : "w-[80px]"
                                                 }
                                             />
                                             <p>Today's Quiz</p>
@@ -294,14 +294,14 @@ export default function TopMain({
                                         <div
                                             className={
                                                 addClass === true
-                                                    ? "ml-5 flex duration-700 opacity-100 md:w-[50%] w-[20%] md:mt-0 mt-5 overflow-scroll pb-1"
+                                                    ? "ml-5 flex duration-700 opacity-100 md:w-[50%] w-full md:mt-0 mt-5 overflow-scroll pb-1"
                                                     : "ml-5 flex duration-700 w-[0%] opacity-0"
                                             }
                                         >
                                             {todayQuiz.categories.map(
                                                 (category: any) => (
                                                     <>
-                                                        <div className="font-bold text-[12px] md:ml-5 flex items-center justify-between">
+                                                        <div className="font-bold text-[12px] md:ml-5 flex items-center ml-1">
                                                             <div className="w-[15px] h-auto">
                                                                 {parse(
                                                                     category.category_img
@@ -333,13 +333,13 @@ export default function TopMain({
                                     <div
                                         className={
                                             addClass === true
-                                                ? "flex items-start md:mt-0 mt-5 md:text-[28px] text-[15px] text-gray-200 font-bold duration-700 opacity-100"
-                                                : "flex items-start md:mt-0 mt-5 md:text-[28px] text-[15px] text-gray-200 font-bold duration-700 opacity-0"
+                                                ? "flex md:items-start items-center md:mt-0 mt-5 md:text-[28px] text-[12px] text-gray-200 font-bold duration-700 opacity-100"
+                                                : "flex md:items-start items-center md:mt-0 mt-5 md:text-[28px] text-[12px] text-gray-200 font-bold duration-700 opacity-0"
                                         }
                                     >
                                         <span>
                                             <img
-                                                className="block md:w-[20px] w-[18px] md:h-[20px] h-[18px] mt-[10px]"
+                                                className="block md:w-[20px] w-[18px] md:h-[20px] h-[18px] md:mt-[10px] mt-0"
                                                 src="/calendar--logo.png"
                                             />
                                         </span>
