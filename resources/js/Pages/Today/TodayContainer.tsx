@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Presentation/Header";
 import Sidebar from "../Presentation/Sidebar";
 import TodayQuizzes from "./Presentation/TodayQuizzes";
@@ -8,10 +8,20 @@ export default function TodayContainer(props: any) {
     const { categories, user, allRate, quizzes, todayQuizRate } = props;
     console.log("today quizzez", quizzes);
     console.log("login user", user);
+    const [isHumShow, setIsHumShow] = useState<boolean>();
+    const handleHumClick = () => {
+        setIsHumShow(!isHumShow);
+    };
     return (
         <>
             <div className="flex">
-                <div className="w-[15%] h-screen relative">
+                <div
+                    className={
+                        isHumShow === true
+                            ? "md:w-[15%] w-0 md:block md:left-0 left-0 relative duration-300 z-20"
+                            : "md:w-[15%] w-0 md:block md:left-0 left-[-280px] duration-300 relative"
+                    }
+                >
                     <Sidebar
                         categories={categories}
                         user={user}
@@ -19,13 +29,39 @@ export default function TodayContainer(props: any) {
                     />
                 </div>
 
-                <div className={`bg-today-quiz w-[85%] min-h-screen pb-10`}>
-                    <Header />
-                    <div className="min-h-screen pt-[60px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%] pl-[5%]">
+                <div
+                    className={`bg-today-quiz md:w-[85%] w-full min-h-screen pb-10`}
+                >
+                    <div className="min-h-screen md:pt-[60px] pt-[20px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%] pl-[5%]">
+                        <div
+                            onClick={handleHumClick}
+                            className="w-[40px] h-[40px] m-0 ml-auto block md:hidden relative z-20"
+                        >
+                            {isHumShow === true ? (
+                                <>
+                                    <img src="eye--logo.png" />
+                                </>
+                            ) : (
+                                <>
+                                    <img src="eyeclose--logo.png" />
+                                </>
+                            )}
+                        </div>
+                        <div
+                            onClick={handleHumClick}
+                            className={
+                                isHumShow === true
+                                    ? "bg-black opacity-80 w-screen h-screen fixed top-0 left-0 z-10"
+                                    : "bg-black opacity-0 w-screen h-screen fixed top-0 left-0 -z-10"
+                            }
+                        ></div>
                         <h2 className="maze--title text-[30px] font-bold flex items-start">
-                            <img src="/eye02--logo.png" className="w-[100px]" />
+                            <img
+                                src="/eye02--logo.png"
+                                className="md:w-[100px] md:mt-0 mt-[10px] w-[55px]"
+                            />
                             <div className="ml-10 mt-1">
-                                <span className="maze--title--gra text-[40px] block">
+                                <span className="maze--title--gra md:text-[40px] text-[30px] block">
                                     Today's Quiz
                                 </span>
                                 <p className="text-gray-400 font-bold text-[11px] mt-5">

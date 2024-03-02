@@ -82,20 +82,24 @@ export default function TopComment(props: any) {
                         <></>
                     )}
                 </DrawerTrigger>
-                <DrawerContent className="bg-profile-card border-none min-h-[70%] max-h-[80%] px-[100px] pb-5">
+                <DrawerContent className="bg-profile-card border-none min-h-[70%] md:max-h-[80%] max-h-[90%] md:px-[100px] p-5 pb-5">
                     <DrawerHeader>
-                        <DrawerTitle className="mt-10 text-[30px]">
-                            REVIEWS
+                        <DrawerTitle className="flex items-center md:mt-10 mt-5 md:text-[30px] text-[15px]">
+                            <img
+                                className="md:w-[40px] w-[20px]"
+                                src="voice--logo.png"
+                            />
+                            <p className="ml-5">REVIEWS</p>
                         </DrawerTitle>
                     </DrawerHeader>
-                    <div className="flex justify-between">
-                        <div className="w-[40%] text-gray-400">
+                    <div className="flex flex-wrap justify-between">
+                        <div className="md:w-[40%] text-gray-400">
                             <div className="font-bold mt-5 flex items-center">
                                 <img
                                     className="w-[15px] h-[15px]"
                                     src="/pen--logo.png"
                                 />
-                                <p className="ml-[8px] maze--title">
+                                <p className="ml-[8px] maze--title md:text-[16px] text-[11px]">
                                     {todayQuiz.user.name}
                                 </p>
                             </div>
@@ -111,16 +115,16 @@ export default function TopComment(props: any) {
                                     </div>
                                 ))}
                             </div>
-                            <div className="flex items-center font-bold mt-5 text-[12px]">
-                                <p className="text-[28px]">?</p>
+                            <div className="flex items-center font-bold md:mt-5 mt-1 text-[12px]">
+                                <p className="md:text-[28px] text-[15px]">?</p>
                                 {""}
-                                <p className="ml-[8px] tracking-wider mt-1">
+                                <p className="ml-[8px] tracking-wider mt-1 text-limit">
                                     {todayQuiz.quiz}
                                 </p>
                             </div>
                         </div>
-                        <div className="w-[55%]">
-                            <div className="bg-black min-h-[450px] max-h-[450px] rounded-[20px] overflow-scroll px-5 py-[15px] pb-[50px]">
+                        <div className="md:w-[55%] w-full">
+                            <div className="bg-black min-h-[450px] max-h-[450px] rounded-[20px] overflow-scroll md:px-5 px-[10px] py-[15px] pb-[50px]">
                                 {isShowReplies === true ? (
                                     <div className="">
                                         <p
@@ -223,7 +227,7 @@ export default function TopComment(props: any) {
                                                                 }
                                                             </p>
                                                         </div>
-                                                        <div className="font-bold text-[12px] maze--title text-red-900">
+                                                        <div className="font-bold text-[12px] maze--title text-red-700">
                                                             {comment.replies
                                                                 .length ===
                                                             0 ? (
@@ -269,8 +273,8 @@ export default function TopComment(props: any) {
                                             value={postReply.reply}
                                             className="w-full focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none text-white bg-black rounded-[10px] px-5 py-[15px] border-gray-700 duration-300 block mt-5"
                                         />
-                                        <button className="absolute right-5 bottom-[11px] bg-blue-950 px-5 py-[5px] rounded-[10px]">
-                                            返信する
+                                        <button className="text-[12px] absolute right-5 bottom-[11px] bg-blue-950 px-5 py-[5px] rounded-[10px]">
+                                            reply
                                         </button>
                                     </form>
                                 </>
@@ -287,8 +291,8 @@ export default function TopComment(props: any) {
                                             value={postComment.comment}
                                             className="w-full focus:border-gray-400 focus:ring-0 focus:appearance-none focus:outline-none text-white bg-black rounded-[10px] px-5 py-[15px] border-gray-700 duration-300 block mt-5"
                                         />
-                                        <button className="absolute right-5 bottom-[11px] bg-blue-950 px-5 py-[5px] rounded-[10px]">
-                                            コメントする
+                                        <button className="text-[12px] absolute right-5 bottom-[11px] bg-blue-950 px-5 py-[5px] rounded-[10px]">
+                                            comment
                                         </button>
                                     </form>
                                 </>
