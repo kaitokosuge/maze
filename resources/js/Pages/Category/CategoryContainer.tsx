@@ -9,11 +9,20 @@ import { Link } from "@inertiajs/react";
 
 export default function CategoryContainer(props: any) {
     const { category, quizzes, categories, user, allRate } = props;
-
+    const [isHumShow, setIsHumShow] = useState<boolean>();
+    const handleHumClick = () => {
+        setIsHumShow(!isHumShow);
+    };
     return (
         <>
             <div className="flex">
-                <div className="md:w-[15%] w-0 md:block md:left-0 left-[-280px] relative">
+                <div
+                    className={
+                        isHumShow === true
+                            ? "md:w-[15%] w-0 md:block md:left-0 left-0 relative duration-300 z-20"
+                            : "md:w-[15%] w-0 md:block md:left-0 left-[-280px] duration-300 relative"
+                    }
+                >
                     <Sidebar
                         categories={categories}
                         user={user}
@@ -23,8 +32,29 @@ export default function CategoryContainer(props: any) {
                 <div
                     className={`bg-[#00142C] bg-${category.category_color} md:w-[85%] w-full min-h-screen`}
                 >
-                    <Header />
-                    <div className="pl-[5%] min-h-screen pt-[60px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%]">
+                    <div className="pl-[5%] min-h-screen md:pt-[60px] pt-[20px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%]">
+                        <div
+                            onClick={handleHumClick}
+                            className="w-[40px] h-[40px] m-0 ml-auto block md:hidden relative z-20"
+                        >
+                            {isHumShow === true ? (
+                                <>
+                                    <img src="../eye--logo.png" />
+                                </>
+                            ) : (
+                                <>
+                                    <img src="../eyeclose--logo.png" />
+                                </>
+                            )}
+                        </div>
+                        <div
+                            onClick={handleHumClick}
+                            className={
+                                isHumShow === true
+                                    ? "bg-black opacity-80 w-screen h-screen fixed top-0 left-0 z-10"
+                                    : "bg-black opacity-0 w-screen h-screen fixed top-0 left-0 -z-10"
+                            }
+                        ></div>
                         <div className="flex justify-between">
                             <div className="w-[100px] h-[100px]">
                                 {parse(category.category_img)}
