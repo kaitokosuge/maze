@@ -41,18 +41,50 @@ export default function Edit({
     const handleSetting = () => {
         setIsSetClick(!isSetClick);
     };
+    const [isHumShow, setIsHumShow] = useState<boolean>();
+    const handleHumClick = () => {
+        setIsHumShow(!isHumShow);
+    };
     return (
-        <div className="bg-[#00142C] pl-[40px] flex pr-[40px] pb-[100px]">
-            <div className="w-[15%] h-screen relative">
+        <div className="bg-[#00142C] flex pb-[60px]">
+            <div
+                className={
+                    isHumShow === true
+                        ? "md:w-[15%] w-0 md:block md:left-0 left-0 relative duration-300 z-20"
+                        : "md:w-[15%] w-0 md:block md:left-0 left-[-280px] duration-300 relative"
+                }
+            >
                 <Sidebar
                     categories={categories}
                     user={user}
                     allRate={allRate}
                 />
             </div>
-            <div className="w-[85%] flex justify-between">
-                <div className="pt-[60px] w-[100%]">
-                    <div className="flex justify-between items-center">
+            <div className="md:w-[85%] w-full flex justify-between md:px-[40px] px-[0%]">
+                <div className="md:pt-[60px] pt-[20px] w-[100%]">
+                    <div
+                        onClick={handleHumClick}
+                        className="w-[40px] h-[40px] m-0 ml-auto mr-[5%] block md:hidden relative z-20"
+                    >
+                        {isHumShow === true ? (
+                            <>
+                                <img src="eye--logo.png" />
+                            </>
+                        ) : (
+                            <>
+                                <img src="eyeclose--logo.png" />
+                            </>
+                        )}
+                    </div>
+                    <div
+                        onClick={handleHumClick}
+                        className={
+                            isHumShow === true
+                                ? "bg-black opacity-80 w-screen h-screen fixed top-0 left-0 z-10"
+                                : "bg-black opacity-0 w-screen h-screen fixed top-0 left-0 -z-10"
+                        }
+                    ></div>
+                    <div className="flex justify-between items-center md:px-0 px-[5%]">
                         <h2 className="font-bold text-gray-400 text-[30px]">
                             PROFILE
                         </h2>
@@ -68,15 +100,15 @@ export default function Edit({
                         <div
                             className={
                                 isSetClick === true
-                                    ? "w-[25%] opacity-100 duration-100"
+                                    ? "md:w-[25%] w-[90%] md:ml-0 ml-[5%] opacity-100 duration-100"
                                     : "w-[0%] opacity-0 duration-100"
                             }
                         >
                             <div
                                 className={
                                     isSetClick === true
-                                        ? "sm:p-8 bg-[#140034] shadow rounded-[20px] mt-5"
-                                        : "sm:p-8 bg-[#140034] shadow rounded-[20px] mt-5"
+                                        ? "md:p-8 p-5 bg-[#140034] shadow rounded-[20px] mt-5"
+                                        : "md:p-8 p-5 bg-[#140034] shadow rounded-[20px] mt-5"
                                 }
                             >
                                 <p className="font-bold text-gray-100 text-[30px]">

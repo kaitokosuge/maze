@@ -21,15 +21,15 @@ export default function ProfileData(props: any) {
         <div
             className={
                 isSetClick === true
-                    ? "rounded-[20px] bg-profile w-[70%] p-10 mt-5 duration-100"
-                    : "rounded-[20px] bg-profile w-[100%] px-10 mt-5 duration-100"
+                    ? "rounded-[20px] bg-profile md:w-[70%] w-0 md:p-10 p-0 mt-5 duration-100"
+                    : "rounded-[20px] bg-profile w-[100%] md:px-10 px-[15px] py-[30px] mt-5 duration-100"
             }
         >
             <p
                 className={
                     isSetClick === true
-                        ? "font-bold text-gray-100 text-[30px] opacity-100 duration-300"
-                        : "font-bold text-gray-100 text-[30px] opacity-0 duration-300"
+                        ? "md:block hidden font-bold text-gray-100 text-[30px] opacity-100 duration-300"
+                        : "md:block hidden font-bold text-gray-100 text-[30px] opacity-0 duration-300"
                 }
             >
                 RECORD
@@ -37,20 +37,17 @@ export default function ProfileData(props: any) {
             <div
                 className={
                     isSetClick === true
-                        ? "flex justify-between rounded-[20px] bg-profile-card p-10 profile--card mt-10 duration-300"
-                        : "flex justify-between rounded-[20px] bg-profile-card p-10 profile--card mt-0 duration-300"
+                        ? "flex flex-wrap justify-between rounded-[20px] bg-profile-card md:p-10 p-5 profile--card mt-10 duration-300"
+                        : "flex flex-wrap justify-between rounded-[20px] bg-profile-card md:p-10 p-5 py-10 profile--card  duration-300"
                 }
             >
-                <div className="w-[45%]">
+                <div className="md:w-[45%] w-full">
                     <p
                         style={{ color: `${auth.user.color}` }}
                         className="maze--title font-bold auth--text-2 text-[24px]"
                     >
                         {auth.user.name}
                     </p>
-                    <span className="maze--title text-[10px] text-gray-300">
-                        "Hello world."
-                    </span>
                     {Number(auth.user.isAdmin) === 1 && (
                         <>
                             <p className="maze--title font-bold maze--title--gra text-[24px] mt-5">
@@ -80,8 +77,10 @@ export default function ProfileData(props: any) {
                     />
                 </div>
 
-                <div className="w-[45%]">
-                    <p className="font-bold text-[20px]">All Quiz</p>
+                <div className="md:w-[45%] w-full">
+                    <p className="font-bold text-[20px] md:mt-0 mt-10">
+                        All Quiz Data
+                    </p>
                     <p className="mt-10 font-bold text-[10px] text-gray-600">
                         Count
                     </p>
@@ -106,21 +105,23 @@ export default function ProfileData(props: any) {
                 className={
                     isSetClick === true
                         ? "grid grid-cols-2 gap-5 mt-10"
-                        : "grid grid-cols-3 gap-10 mt-10"
+                        : "grid md:grid-cols-3 grid-cols-2 gap-1 md:gap-10 md:mt-10 mt-1"
                 }
             >
                 {categories.map((category: any, index: number) => (
-                    <div className="rounded-[20px] p-10 profile--card bg-profile-card">
-                        <div className="flex font-bold text-[30px]">
-                            <div className="w-[50px]">
+                    <div className="rounded-[20px] md:p-10 p-[10px] py-5 profile--card bg-profile-card">
+                        <div className="flex font-bold">
+                            <div className="md:w-[50px] w-[30px]">
                                 {parse(category.category_img)}
                             </div>
-                            <p className="ml-5">{category.category}</p>
+                            <p className="md:ml-5 ml-1 md:text-[30px] text-[18px]">
+                                {category.category}
+                            </p>
                         </div>
                         <p className="mt-10 font-bold text-[10px] text-gray-600">
                             Count
                         </p>
-                        <div className="mt-1 font-bold text-[80px] flex items-end">
+                        <div className="mt-1 font-bold md:text-[80px] text-[40px] flex items-end">
                             <p className="leading-none">
                                 {categoryQuizTrueCount[index + 1] ===
                                 undefined ? (
