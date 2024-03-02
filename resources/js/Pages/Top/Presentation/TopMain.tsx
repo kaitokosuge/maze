@@ -141,12 +141,12 @@ export default function TopMain({
                     >
                         {isLiked === true ? (
                             <img
-                                className="md:w-[30px] w-[20px] cursor-pointer"
+                                className="md:w-[30px] w-[16px] cursor-pointer"
                                 src="/red-heart--logo.png"
                             />
                         ) : (
                             <img
-                                className="md:w-[30px] w-[20px] cursor-pointer"
+                                className="md:w-[30px] w-[16px] cursor-pointer"
                                 src="/heart--logo.png"
                             />
                         )}
@@ -167,7 +167,7 @@ export default function TopMain({
                                     <>
                                         <img
                                             onClick={handleClickEye}
-                                            className="duration-200 w-[30px] cursor-pointer"
+                                            className="duration-200 md:w-[30px] w-[16px] cursor-pointer"
                                             src="/eye--logo.png"
                                         />
                                     </>
@@ -175,7 +175,7 @@ export default function TopMain({
                                     <>
                                         <img
                                             onClick={handleClickEye}
-                                            className="duration-200 w-[30px] cursor-pointer"
+                                            className="duration-200 md:w-[30px] w-[16px] cursor-pointer"
                                             src="/eyeclose--logo.png"
                                         />
                                     </>
@@ -199,8 +199,8 @@ export default function TopMain({
                     <>
                         {isEyeClick === true ? (
                             <>
-                                <div className="flex items-center justify-between opacity-0 duration-300">
-                                    <div className="w-[70%] flex items-center">
+                                <div className="flex flex-wrap items-center justify-between opacity-0 duration-300">
+                                    <div className="md:w-[70%] w-full flex flex-wrap items-center">
                                         <p
                                             className={
                                                 addClass === true
@@ -213,7 +213,7 @@ export default function TopMain({
                                         <div
                                             className={
                                                 addClass === true
-                                                    ? "ml-5 flex duration-700 opacity-100 w-[50%] overflow-scroll pb-1"
+                                                    ? "ml-5 flex duration-700 opacity-100 md:w-[50%] w-full md:mt-0 mt-5 overflow-scroll pb-1"
                                                     : "ml-5 flex duration-700 w-[0%] opacity-0"
                                             }
                                         >
@@ -241,7 +241,7 @@ export default function TopMain({
                                     >
                                         <span>
                                             <img
-                                                className="block w-[15px] h-[15px] "
+                                                className="block md:w-[15px] md:h-[15px] w-[10px] h-[10px]"
                                                 src="/pen--logo.png"
                                             />
                                         </span>
@@ -252,13 +252,13 @@ export default function TopMain({
                                     <div
                                         className={
                                             addClass === true
-                                                ? "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-100"
-                                                : "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-0"
+                                                ? "flex items-start md:text-[28px] text-[16px] text-gray-200 font-bold duration-700 opacity-100"
+                                                : "flex items-start md:text-[28px] text-[16px] text-gray-200 font-bold duration-700 opacity-0"
                                         }
                                     >
                                         <span>
                                             <img
-                                                className="block w-[20px] h-[20px] mt-[10px]"
+                                                className="block md:w-[20px] w-[10px] md:h-[20px] h-[10px] mt-[10px]"
                                                 src="/calendar--logo.png"
                                             />
                                         </span>
