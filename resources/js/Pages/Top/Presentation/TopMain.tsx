@@ -273,20 +273,20 @@ export default function TopMain({
                         ) : (
                             <>
                                 <div className="flex flex-wrap items-center justify-between opacity-100 duration-300">
-                                    <div className="md:w-[70%] w-full flex flex-wrap items-center">
+                                    <div className="md:w-[70%] w-full flex flex-wrap items-center justify-between">
                                         <div
                                             className={
                                                 addClass === true
-                                                    ? "flex items-center maze--title md:w-fit w-full font-bold md:text-[30px] text-[20px] text-gray-100 duration-700"
-                                                    : "flex items-center maze--title md:w-fit w-full font-bold md:text-[80px] text-[40px] text-gray-100"
+                                                    ? "flex items-center maze--title w-fit font-bold md:text-[30px] text-[20px] text-gray-100 duration-700"
+                                                    : "flex items-center maze--title w-fit font-bold md:text-[80px] text-[40px] text-gray-100"
                                             }
                                         >
                                             <img
                                                 src="/eye02--logo.png"
                                                 className={
                                                     addClass === true
-                                                        ? "w-[35px] ml-1 duration-700"
-                                                        : "w-[80px] ml-1"
+                                                        ? "w-[35px] ml-[8px] duration-700"
+                                                        : "w-[80px] ml-[8px]"
                                                 }
                                             />
                                             <p>Today's Quiz</p>
@@ -316,8 +316,8 @@ export default function TopMain({
                                     <div
                                         className={
                                             addClass === true
-                                                ? "flex text-[12px] text-gray-300 font-bold duration-500 opacity-100"
-                                                : "flex text-[12px] text-gray-300 font-bold duration-500 opacity-0"
+                                                ? "flex text-[12px] md:mt-0 mt-5 text-gray-300 font-bold duration-500 opacity-100"
+                                                : "flex text-[12px] md:mt-0 mt-5 text-gray-300 font-bold duration-500 opacity-0"
                                         }
                                     >
                                         <span>
@@ -333,13 +333,13 @@ export default function TopMain({
                                     <div
                                         className={
                                             addClass === true
-                                                ? "flex items-start md:text-[28px] text-[16px] text-gray-200 font-bold duration-700 opacity-100"
-                                                : "flex items-start md:text-[28px] text-[16px] text-gray-200 font-bold duration-700 opacity-0"
+                                                ? "flex items-start md:mt-0 mt-5 md:text-[28px] text-[15px] text-gray-200 font-bold duration-700 opacity-100"
+                                                : "flex items-start md:mt-0 mt-5 md:text-[28px] text-[15px] text-gray-200 font-bold duration-700 opacity-0"
                                         }
                                     >
                                         <span>
                                             <img
-                                                className="block md:w-[20px] w-[10px] md:h-[20px] h-[10px] mt-[10px]"
+                                                className="block md:w-[20px] w-[18px] md:h-[20px] h-[18px] mt-[10px]"
                                                 src="/calendar--logo.png"
                                             />
                                         </span>
