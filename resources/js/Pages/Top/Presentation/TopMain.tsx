@@ -151,7 +151,9 @@ export default function TopMain({
                             />
                         )}
 
-                        <p className="ml-5 font-bold">{likeCount}</p>
+                        <p className="ml-5 font-bold md:text-[16px] text-[12px] max-w-[20px]">
+                            {likeCount}
+                        </p>
                     </div>
 
                     {todayQuiz !== null ? (
@@ -167,7 +169,7 @@ export default function TopMain({
                                     <>
                                         <img
                                             onClick={handleClickEye}
-                                            className="duration-200 md:w-[30px] w-[16px] cursor-pointer"
+                                            className="duration-200 md:w-[30px] w-[18px] cursor-pointer"
                                             src="/eye--logo.png"
                                         />
                                     </>
@@ -175,7 +177,7 @@ export default function TopMain({
                                     <>
                                         <img
                                             onClick={handleClickEye}
-                                            className="duration-200 md:w-[30px] w-[16px] cursor-pointer"
+                                            className="duration-200 md:w-[30px] w-[18px] cursor-pointer"
                                             src="/eyeclose--logo.png"
                                         />
                                     </>
@@ -204,8 +206,8 @@ export default function TopMain({
                                         <p
                                             className={
                                                 addClass === true
-                                                    ? "maze--title font-bold md:text-[30px] text-[20px] text-gray-100 duration-700"
-                                                    : "maze--title font-bold md:text-[80px] text-[50px] text-gray-100"
+                                                    ? "maze--title md:w-fit w-full font-bold md:text-[30px] text-[20px] text-gray-100 duration-700"
+                                                    : "maze--title md:w-fit w-full font-bold md:text-[80px] text-[50px] text-gray-100"
                                             }
                                         >
                                             Today's Quiz
