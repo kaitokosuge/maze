@@ -13,7 +13,7 @@ export default function HistoryDesc() {
             </p>
             <p className="text-[14px] mt-5">
                 <span className="maze--title">Today's Quiz</span>
-                は毎日24時に更新されるクイズです。初回解答時の正解率が高いと特別なランクが付与されます。過去のクイズも解くことができます（初回解答時の正解率に関わります）
+                は毎日24時に更新されるクイズです。初回解答時の正解率が高いと特別なランクが付与されます。過去のクイズも解くことができます（初回解答時の正解率に関わります、慎重に解きましょう、、！）
             </p>
             <p className="mt-20 maze--title border-b border-b-pink-950 pb-1">
                 All Quiz
