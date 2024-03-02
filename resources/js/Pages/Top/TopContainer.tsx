@@ -20,14 +20,14 @@ export default function TopContainer({
     return (
         <>
             <div className="flex">
-                <div className="w-[15%] h-screen relative">
+                <div className="md:w-[15%] w-0 md:block md:left-0 left-[-280px] relative">
                     <Sidebar
                         categories={categories}
                         user={user}
                         allRate={allRate}
                     />
                 </div>
-                <div className="w-[85%] relative">
+                <div className="md:w-[85%] w-full">
                     <Header />
                     <TopMain
                         quizzes={quizzes}

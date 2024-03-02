@@ -8,8 +8,8 @@ import HistoryDesc from "./Presentation/HistoryDesc";
 export default function HistoryContainer(props: any) {
     const { categories, user, allRate } = props;
     return (
-        <div className="flex">
-            <div className="w-[15%]">
+        <div className="flex justify-between">
+            <div className="md:w-[15%] w-0 md:block md:left-0 left-[-280px] relative">
                 {user === undefined ? (
                     <>
                         <Sidebar categories={categories} />
@@ -24,12 +24,10 @@ export default function HistoryContainer(props: any) {
                     </>
                 )}
             </div>
-            <div className={`bg-[#00142C]  w-[85%] min-h-screen`}>
-                <Header />
-
-                <div className="pt-[60px] pb-[100px] pl-[40px] pr-[50px]">
+            <div className={`bg-today-quiz md:w-[85%] min-h-screen w-full`}>
+                <div className="pt-[60px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%] pl-[5%]">
                     <div className="flex items-center justify-between">
-                        <p className="maze--title text-[100px] font-bold">
+                        <p className="maze--title md:text-[100px] text-[50px] font-bold">
                             MAZE
                         </p>
                         <div>
@@ -38,13 +36,13 @@ export default function HistoryContainer(props: any) {
                             ) : (
                                 <>
                                     <a
-                                        className=" text-[30px] maze--title"
+                                        className=" md:text-[30px] text-[17px] maze--title"
                                         href="/login"
                                     >
                                         LOGIN
                                     </a>
                                     <a
-                                        className=" text-[30px] maze--title ml-10"
+                                        className="md:text-[30px] text-[17px] maze--title md:ml-10 ml-5"
                                         href="/register"
                                     >
                                         REGISTER

@@ -18,7 +18,7 @@
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
-        <div class="all02 maze--title fixed bg-slate-700 w-screen h-screen z-50 text-center pt-[400px]">MAZEは現在PC版のみのサポートとなっております。しばし待たれよ！！！！！！！🌊🐷🐸👼🦉</div>
+        
         @inertia
     </body>
 </html>

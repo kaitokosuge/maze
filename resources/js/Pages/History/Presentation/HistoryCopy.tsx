@@ -3,10 +3,10 @@ import React from "react";
 
 export default function HistoryCopy() {
     return (
-        <div className="bg-profile-card w-full min-h-[500px] p-20">
+        <div className="bg-profile-card w-full min-h-[500px] p-20 xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%] pl-[5%]">
             <div className="flex items-center mt-10">
                 <img src="maze--b--logo.png" className="w-[50px]" />
-                <h1 className="maze--title text-[45px] font-bold ml-[10px]">
+                <h1 className="maze--title md:text-[45px] text-[28px] font-bold ml-[10px]">
                     MAZE
                 </h1>
             </div>
@@ -15,96 +15,96 @@ export default function HistoryCopy() {
                     <p className="font-bold">menu</p>
                     <Link
                         href="/top"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         HOME→
                     </Link>
                     <Link
                         href="/news"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         NEWS→
                     </Link>
                     <Link
                         href="/"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         RULES→
                     </Link>
                 </div>
 
-                <div className="ml-40">
+                <div className="xl:ml-40 lg:ml-20 md:ml-14 ml-5 ">
                     <p className="font-bold">quiz</p>
                     <Link
                         href="/quiz/1"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         JavaScript→
                     </Link>
                     <Link
                         href="/quiz/2"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         React→
                     </Link>
                     <Link
                         href="/quiz/3"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         Laravel→
                     </Link>
                     <Link
                         href="/quiz/4"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         PHP→
                     </Link>
                 </div>
 
-                <div className="ml-40">
+                <div className="xl:ml-40 lg:ml-20 md:ml-14 ml-5">
                     <p className="font-bold">quiz</p>
                     <Link
                         href="/quiz/5"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         Next.js→
                     </Link>
                     <Link
                         href="/quiz/6"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         Python→
                     </Link>
                     <Link
                         href="/quiz/7"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         django→
                     </Link>
                     <Link
                         href="/quiz/8"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         TypeScript→
                     </Link>
                 </div>
-                <div className="ml-40">
+                <div className="xl:ml-40 md:ml-14 ml-5 lg:ml-20">
                     <p className="font-bold">quiz</p>
                     <Link
                         href="/quiz/9"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         Vue.js→
                     </Link>
                     <Link
                         href="/quiz/10"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         Go→
                     </Link>
                     <Link
                         href="/quiz/11"
-                        className="block font-bold text-[13px] text-gray-400 mt-5"
+                        className="block font-bold md:text-[13px] text-[10px] text-gray-400 mt-5"
                     >
                         FastAPI→
                     </Link>

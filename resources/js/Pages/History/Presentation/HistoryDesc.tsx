@@ -22,33 +22,44 @@ export default function HistoryDesc() {
                 <span className="maze--title">All Quiz</span>
                 は全てのクイズのことを指します。初回解答時の正解率に関係なくクイズの正解割合ごとに下記のランクが付与されます。（プロフィールページで確認できます）
             </p>
-            <div className="flex items-center mt-5">
-                <p className="maze--title font-bold maze--knight--gra text-[34px]">
+            <div className="flex items-center mt-5 md:justify-normal justify-between">
+                <p className="maze--title font-bold maze--knight--gra md:text-[34px] text-[30px]">
                     Knight
                 </p>
-                <p className="ml-10 text-pink-900">→</p>
-                <p className="maze--title font-bold maze--herald--gra text-[34px] ml-10">
+                <p className="md:ml-10 text-pink-900">→</p>
+                <p className="maze--title font-bold maze--herald--gra md:text-[34px] text-[30px] md:ml-10">
                     Herald
                 </p>
-                <p className="ml-10 text-pink-900">→</p>
-                <p className="ml-10 maze--title text-[30px]">???</p>
+                <p className="md:ml-10 text-pink-900">→</p>
+                <p className="md:ml-10 maze--title md:text-[30px] text-[16px]">
+                    ???
+                </p>
             </div>
 
             <p className="maze--title mt-20 border-b border-b-pink-950 pb-1">
                 ver. 0 member
             </p>
             <div className="flex items-center justify-between w-full mt-10">
-                <img src="js--logo.png" className="block w-[3%]" />
-                <img src="react--logo.png" className="block w-[3%]" />
-                <img src="php--logo.png" className="block w-[3%]" />
-                <img src="laravel--logo.png" className="block w-[3%]" />
-                <img src="next--logo.webp" className="block w-[3%]" />
-                <img src="python--logo.png" className="block w-[3%]" />
-                <img src="dj--logo.png" className="block w-[3%]" />
-                <img src="ts--logo.png" className="block w-[3%]" />
-                <img src="vue--logo.png" className="block w-[3%]" />
-                <img src="go--logo.png" className="block w-[3%]" />
-                <img src="fastapi--logo.png" className="block w-[3%]" />
+                <img src="js--logo.png" className="block md:w-[3%] w-[8%]" />
+                <img src="react--logo.png" className="block md:w-[3%] w-[8%]" />
+                <img src="php--logo.png" className="block md:w-[3%] w-[8%]" />
+                <img
+                    src="laravel--logo.png"
+                    className="block md:w-[3%] w-[8%]"
+                />
+                <img src="next--logo.webp" className="block md:w-[3%] w-[8%]" />
+                <img
+                    src="python--logo.png"
+                    className="block md:w-[3%] w-[8%]"
+                />
+                <img src="dj--logo.png" className="block md:w-[3%] w-[8%]" />
+                <img src="ts--logo.png" className="block md:w-[3%] w-[8%]" />
+                <img src="vue--logo.png" className="block md:w-[3%] w-[8%]" />
+                <img src="go--logo.png" className="block md:w-[3%] w-[8%]" />
+                <img
+                    src="fastapi--logo.png"
+                    className="block md:w-[3%] w-[8%]"
+                />
             </div>
 
             <p className="maze--title mt-20 border-b border-b-pink-950 pb-1">
@@ -56,7 +67,7 @@ export default function HistoryDesc() {
             </p>
             <Link
                 href="/top"
-                className="block maze--title text-[130px] maze--title--gra m-auto mt-20 w-fit-content cursor-pointer hover:scale-95 duration-300"
+                className="block maze--title lg:text-[130px] md:text-[50px] text-[40px] maze--title--gra m-auto mt-20 w-fit-content cursor-pointer hover:scale-95 duration-300"
             >
                 Let's play MAZE
             </Link>

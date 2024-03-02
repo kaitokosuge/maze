@@ -21,7 +21,7 @@ export default function TodayContainer(props: any) {
 
                 <div className={`bg-today-quiz w-[85%] min-h-screen pb-10`}>
                     <Header />
-                    <div className="pl-[40px] pr-[50px] pt-[100px]">
+                    <div className="min-h-screen pt-[60px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%] pl-[5%]">
                         <h2 className="maze--title text-[30px] font-bold flex items-start">
                             <img src="/eye02--logo.png" className="w-[100px]" />
                             <div className="ml-10 mt-1">

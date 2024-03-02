@@ -39,7 +39,7 @@ export default function NewsContainer(props: any) {
 
     return (
         <div className="flex">
-            <div className="w-[15%]">
+            <div className="md:w-[15%] w-0 md:block md:left-0 left-[-280px] relative">
                 {user === undefined ? (
                     <>
                         <Sidebar categories={categories} />
@@ -54,9 +54,9 @@ export default function NewsContainer(props: any) {
                     </>
                 )}
             </div>
-            <div className={`bg-[#00142C]  w-[85%] min-h-screen`}>
+            <div className={`bg-[#00142C] md:w-[85%] w-full min-h-screen`}>
                 <Header />
-                <div className="pt-[60px] pb-[100px] pl-[40px] pr-[50px]">
+                <div className="pl-[5%] min-h-screen pt-[60px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%]">
                     <div className="flex items-center justify-between">
                         <p className="font-bold text-[30px]">NEWS</p>
                         <div>

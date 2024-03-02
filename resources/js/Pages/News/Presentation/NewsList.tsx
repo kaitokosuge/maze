@@ -11,7 +11,7 @@ export default function NewsList(props: NewsListProps) {
     const { news, loading } = props;
 
     return (
-        <div className="bg-black px-10 pb-20 pt-5 rounded-[20px] mt-5 min-h-screen">
+        <div className="bg-black md:px-10 px-5 pb-20 md:pt-5 pt-1 rounded-[20px] mt-5 min-h-screen">
             {loading ? (
                 <>
                     <p className="mt-10 font-bold maze--title text-4xl maze--title--gra">

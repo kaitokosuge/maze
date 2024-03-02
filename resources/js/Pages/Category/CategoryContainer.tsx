@@ -13,7 +13,7 @@ export default function CategoryContainer(props: any) {
     return (
         <>
             <div className="flex">
-                <div className="w-[15%]">
+                <div className="md:w-[15%] w-0 md:block md:left-0 left-[-280px] relative">
                     <Sidebar
                         categories={categories}
                         user={user}
@@ -21,10 +21,10 @@ export default function CategoryContainer(props: any) {
                     />
                 </div>
                 <div
-                    className={`bg-[#00142C] bg-${category.category_color} w-[85%] min-h-screen`}
+                    className={`bg-[#00142C] bg-${category.category_color} md:w-[85%] w-full min-h-screen`}
                 >
                     <Header />
-                    <div className="pt-[100px] pb-[100px] pl-[40px] pr-[50px]">
+                    <div className="pl-[5%] min-h-screen pt-[60px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%]">
                         <div className="flex justify-between">
                             <div className="w-[100px] h-[100px]">
                                 {parse(category.category_img)}

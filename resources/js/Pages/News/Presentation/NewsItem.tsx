@@ -14,12 +14,12 @@ export default function NewsItem(props: NewsItemProps) {
     console.log("loading", loading);
     return (
         <>
-            <div className="flex justify-between text-gray-300 mt-10">
+            <div className="flex justify-between text-gray-300 mt-10 flex-wrap">
                 <img
-                    className="rounded-[10px] w-[25%] h-[170px]"
+                    className="rounded-[10px] lg:w-[25%] lg:h-[170px] w-full h-[200px]"
                     src={image.url}
                 />
-                <div className="w-[68%]">
+                <div className="lg:w-[68%] w-full lg:mt-0 mt-5">
                     <h2 className="font-bold text-2xl">{title}</h2>
                     <p className="maze--title mt-1">{date.slice(0, 10)}</p>
                     <p className="text-[11px] font-bold maze--title">

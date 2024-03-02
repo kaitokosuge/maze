@@ -95,7 +95,7 @@ export default function TopMain({
         }
     };
     return (
-        <div className="bg-[#00142C] pt-[60px] pb-[100px] pl-[40px] pr-[50px] min-h-screen">
+        <div className="bg-[#00142C] pl-[5%] min-h-screen pt-[60px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%]">
             <div className="flex justify-between items-center">
                 <h2
                     className={
