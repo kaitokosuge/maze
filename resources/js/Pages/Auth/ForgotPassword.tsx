@@ -19,7 +19,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
     return (
         <GuestLayout>
             <Head title="Forgot Password" />
-            <div className="auth--card bg-[#140034] w-[80%] m-auto px-[40px] pt-[40px] pb-[40px] rounded-[20px] mt-[120px]">
+            <div className="auth--card bg-[#140034] xl:w-[80%] w-full m-auto ml:px-[40px] px-10 pt-[40px] pb-[40px] rounded-[20px] xl:mt-[120px] mt-[20px]">
                 <div className="mb-4 text-sm text-gray-300">
                     パスワードをお忘れの場合、下記よりご登録されたメールアドレスを入力してください。パスワード再設定のリンクを送信いたします。
                 </div>
