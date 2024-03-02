@@ -294,8 +294,8 @@ export default function TopMain({
                                         <div
                                             className={
                                                 addClass === true
-                                                    ? "ml-5 flex duration-700 opacity-100 md:w-[50%] w-full md:mt-0 mt-5 overflow-scroll pb-1"
-                                                    : "ml-5 flex duration-700 w-[0%] opacity-0"
+                                                    ? "md:ml-5 flex duration-700 opacity-100 md:w-[50%] w-full md:mt-0 mt-5 overflow-scroll pb-1"
+                                                    : "md:ml-5 flex duration-700 w-[0%] opacity-0"
                                             }
                                         >
                                             {todayQuiz.categories.map(
