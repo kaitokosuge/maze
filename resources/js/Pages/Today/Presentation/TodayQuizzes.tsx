@@ -228,14 +228,14 @@ export default function TodayQuizzes(props: any) {
                         <div
                             className={
                                 isClick === index
-                                    ? "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-300 md:w-[75%] w-[95%] opacity-100 md:px-[50px] px-[15px] md:py-[60px] py-5 bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
+                                    ? "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-300 md:w-[75%] w-[95%] opacity-100 md:px-[50px] px-[15px] md:py-[60px] py-10 bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
                                     : "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500 md:w-[75%] w-[95%] bg-[#001E41] md:px-[50px] px-[15px] md:py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
                             }
                         >
                             <p className="font-bold md:text-[16px] text-[14px]">
                                 {quiz.quiz}
                             </p>
-                            <div className="mt-10 grid grid-cols-3 gap-5">
+                            <div className="mt-10 grid md:grid-cols-3 grid-cols-1 md:gap-5 gap-[10px]">
                                 {quiz.choices.map(
                                     (choice: any, index: number) => (
                                         <>
