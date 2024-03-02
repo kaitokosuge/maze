@@ -278,7 +278,7 @@ export default function TopMain({
                                             className={
                                                 addClass === true
                                                     ? "flex items-center maze--title md:w-fit w-full font-bold md:text-[30px] text-[20px] text-gray-100 duration-700"
-                                                    : "flex items-center maze--title font-bold md:text-[80px] text-[40px] text-gray-100"
+                                                    : "flex items-center maze--title md:w-fit w-full font-bold md:text-[80px] text-[40px] text-gray-100"
                                             }
                                         >
                                             <img
@@ -294,7 +294,7 @@ export default function TopMain({
                                         <div
                                             className={
                                                 addClass === true
-                                                    ? "ml-5 flex duration-700 opacity-100 md:w-[50%] w-full md:mt-0 mt-5 overflow-scroll pb-1"
+                                                    ? "ml-5 flex duration-700 opacity-100 md:w-[50%] w-[20%] md:mt-0 mt-5 overflow-scroll pb-1"
                                                     : "ml-5 flex duration-700 w-[0%] opacity-0"
                                             }
                                         >
@@ -333,13 +333,13 @@ export default function TopMain({
                                     <div
                                         className={
                                             addClass === true
-                                                ? "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-100"
-                                                : "flex items-start text-[28px] text-gray-200 font-bold duration-700 opacity-0"
+                                                ? "flex items-start md:text-[28px] text-[16px] text-gray-200 font-bold duration-700 opacity-100"
+                                                : "flex items-start md:text-[28px] text-[16px] text-gray-200 font-bold duration-700 opacity-0"
                                         }
                                     >
                                         <span>
                                             <img
-                                                className="block w-[20px] h-[20px] mt-[10px]"
+                                                className="block md:w-[20px] w-[10px] md:h-[20px] h-[10px] mt-[10px]"
                                                 src="/calendar--logo.png"
                                             />
                                         </span>
