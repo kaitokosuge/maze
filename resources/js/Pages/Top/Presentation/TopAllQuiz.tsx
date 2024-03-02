@@ -125,7 +125,7 @@ export default function TopAllQuiz(props: any) {
                         }
                     >
                         <p className="font-bold">{quiz.quiz}</p>
-                        <div className="mt-10 grid grid-cols-3 gap-5">
+                        <div className="mt-10 grid md:grid-cols-3 grid-cols-1 md:gap-5 gap-[10px]">
                             {quiz.choices.map((choice: any, index: number) => (
                                 <>
                                     {quiz.is_user_true.some(
