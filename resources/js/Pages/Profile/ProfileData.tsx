@@ -44,7 +44,7 @@ export default function ProfileData(props: any) {
                 <div className="md:w-[45%] w-full">
                     <p
                         style={{ color: `${auth.user.color}` }}
-                        className="maze--title font-bold auth--text-2 text-[24px]"
+                        className="maze--title font-bold text-[24px]"
                     >
                         {auth.user.name}
                     </p>

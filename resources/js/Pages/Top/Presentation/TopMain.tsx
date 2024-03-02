@@ -120,8 +120,8 @@ export default function TopMain({
                 <h2
                     className={
                         isEyeClick === true
-                            ? "font-bold text-[30px] opacity-0 duration-300"
-                            : "font-bold text-[30px] opacity-100 duration-300 text-gray-500"
+                            ? "font-bold md:text-[30px] text-[18px] opacity-0 duration-300"
+                            : "font-bold md:text-[30px] text-[18px] opacity-100 duration-300 text-gray-500"
                     }
                 >
                     HOME
@@ -141,12 +141,12 @@ export default function TopMain({
                     >
                         {isLiked === true ? (
                             <img
-                                className="w-[30px] cursor-pointer"
+                                className="md:w-[30px] w-[20px] cursor-pointer"
                                 src="/red-heart--logo.png"
                             />
                         ) : (
                             <img
-                                className="w-[30px] cursor-pointer"
+                                className="md:w-[30px] w-[20px] cursor-pointer"
                                 src="/heart--logo.png"
                             />
                         )}
@@ -191,8 +191,8 @@ export default function TopMain({
             <div
                 className={
                     addClass === true
-                        ? "px-10 py-[30px] bg-[#001E41] rounded-[20px] mt-1 duration-300"
-                        : "px-10 py-[30px] bg-[#001E41] rounded-[20px] mt-1 duration-300"
+                        ? "md:px-10 px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-1 duration-300"
+                        : "md:px-10 px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-1 duration-300"
                 }
             >
                 {todayQuiz !== null ? (
@@ -204,8 +204,8 @@ export default function TopMain({
                                         <p
                                             className={
                                                 addClass === true
-                                                    ? "maze--title font-bold text-[30px] text-gray-100 duration-700"
-                                                    : "maze--title font-bold text-[80px] text-gray-100"
+                                                    ? "maze--title font-bold md:text-[30px] text-[20px] text-gray-100 duration-700"
+                                                    : "maze--title font-bold md:text-[80px] text-[50px] text-gray-100"
                                             }
                                         >
                                             Today's Quiz
@@ -226,11 +226,6 @@ export default function TopMain({
                                                                     category.category_img
                                                                 )}
                                                             </div>
-                                                            <p className="ml-1 text-gray-400">
-                                                                {
-                                                                    category.category
-                                                                }
-                                                            </p>
                                                         </div>
                                                     </>
                                                 )
@@ -310,11 +305,6 @@ export default function TopMain({
                                                                     category.category_img
                                                                 )}
                                                             </div>
-                                                            <p className="ml-1 text-gray-400">
-                                                                {
-                                                                    category.category
-                                                                }
-                                                            </p>
                                                         </div>
                                                     </>
                                                 )
@@ -371,8 +361,8 @@ export default function TopMain({
                         <div
                             className={
                                 addClass === true
-                                    ? "mt-10 grid grid-cols-3 gap-5 duration-1000 opacity-100"
-                                    : "mt-10 grid grid-cols-3 gap-20 duration-1000 opacity-0"
+                                    ? "mt-10 grid md:grid-cols-3 grid-cols-1 md:gap-5 gap-[10px] duration-1000 opacity-100"
+                                    : "mt-10 grid md:grid-cols-3 grid-cols-1 md:gap-20 gap-[20px] duration-1000 opacity-0"
                             }
                         >
                             {todayQuiz.choices.map(
@@ -434,7 +424,7 @@ export default function TopMain({
                                 (ob: any) => ob.id === user.id
                             ) === true ? (
                                 <>
-                                    <p className="text-[26px] font-bold text-[#00FFA3]">
+                                    <p className="text-[26px] font-bold text-[#00FFA3] maze--title">
                                         You clear!!!
                                     </p>
                                     <p className="mt-1">{todayQuiz.answer}</p>
@@ -454,7 +444,9 @@ export default function TopMain({
                                             }
                                             className="flex items-center hover:bg-[#2825bf] duration-300 rounded-[10px] m-auto mt-10 bg-[#030086] w-[150px] text-[20px] px-10 py-[10px] font-bold cursor-pointer"
                                         >
-                                            <p className="ml-1">answer</p>
+                                            <p className="ml-1 maze--title">
+                                                answer
+                                            </p>
                                         </button>
                                     )}
                                 </>
@@ -490,7 +482,7 @@ export default function TopMain({
                                             onClick={() =>
                                                 setIsUserQuizAnswer("")
                                             }
-                                            className="hover:bg-[#34ee5c] duration-300 rounded-[10px] block m-auto mt-10 bg-[#009020] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
+                                            className="maze--title hover:bg-[#34ee5c] duration-300 rounded-[10px] block m-auto mt-10 bg-[#009020] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
                                         >
                                             retry
                                         </button>

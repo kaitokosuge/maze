@@ -82,7 +82,7 @@ export default function TopAllQuiz(props: any) {
                         <p className="font-bold text-[12px] text-gray-500">
                             {quiz.categories.map((category: any) => (
                                 <div className="flex items-center mt-[7px]">
-                                    <div className="w-[15px] h-auto">
+                                    <div className="md:block hidden w-[15px] h-auto">
                                         {parse(category.category_img)}
                                     </div>
                                     <p className="font-bold ml-1">
@@ -101,11 +101,11 @@ export default function TopAllQuiz(props: any) {
                             {quiz.is_user_true.some(
                                 (ob: User) => ob.id === user.id
                             ) === true ? (
-                                <p className="font-bold text-[#00FFA3] duration-700">
-                                    done ！！
+                                <p className="font-bold text-[#00FFA3] duration-700 maze--title">
+                                    done ！
                                 </p>
                             ) : (
-                                <p className="font-bold text-[#1b5841]">
+                                <p className="font-bold text-[#1b5841] maze--title">
                                     not done
                                 </p>
                             )}
@@ -114,7 +114,7 @@ export default function TopAllQuiz(props: any) {
                             onClick={() => handleQuizShow(index)}
                             className="text-center hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] md:w-[100px] w-[70px] md:px-5 px-[10px] md:py-[15px] py-[10px] font-bold cursor-pointer"
                         >
-                            <p>open</p>
+                            <p className="maze--title">open</p>
                         </div>
                     </div>
                     <div
@@ -182,7 +182,7 @@ export default function TopAllQuiz(props: any) {
                                 (ob: any) => ob.id === user.id
                             ) === true ? (
                                 <>
-                                    <p className="text-[26px] font-bold text-[#00FFA3]">
+                                    <p className="text-[26px] font-bold text-[#00FFA3] maze--title">
                                         You clear!!!
                                     </p>
                                     <p className="mt-1">{quiz.answer}</p>
@@ -197,7 +197,7 @@ export default function TopAllQuiz(props: any) {
                                             onClick={(e) =>
                                                 handleAnswerQuiz(e, quiz.id)
                                             }
-                                            className="hover:bg-[#2825bf] duration-300 rounded-[10px] block m-auto mt-10 bg-[#030086] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
+                                            className="maze--title hover:bg-[#2825bf] duration-300 rounded-[10px] block m-auto mt-10 bg-[#030086] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
                                         >
                                             answer
                                         </button>
@@ -233,7 +233,7 @@ export default function TopAllQuiz(props: any) {
                                             onClick={() =>
                                                 setIsUserQuizAnswer("")
                                             }
-                                            className="hover:bg-[#34ee5c] duration-300 rounded-[10px] block m-auto mt-10 bg-[#009020] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
+                                            className="maze--title hover:bg-[#34ee5c] duration-300 rounded-[10px] block m-auto mt-10 bg-[#009020] w-[150px] text-[20px] text-center px-10 py-[10px] font-bold cursor-pointer"
                                         >
                                             retry
                                         </button>

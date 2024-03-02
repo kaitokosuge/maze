@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <link rel="icon" type="image/png" href="/maze_logo.png" sizes="32x32" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/maze_logo.png" />
         <title inertia>MAZE</title>
         <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
         <!-- Fonts -->
@@ -17,7 +18,7 @@
         @vite(['resources/js/app.tsx', "resources/js/Pages/{$page['component']}.tsx"])
         @inertiaHead
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased overflow-x-hidden">
         
         @inertia
     </body>
