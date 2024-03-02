@@ -75,11 +75,11 @@ export default function CategoryContainer(props: any) {
                                     href={link.url}
                                     className={
                                         link.active === true
-                                            ? "mr-1 py-1 px-[10px] border border-[#381161] bg-[#381161] block w-content-fit min-w-[30px] text-center rounded-[10px] duration-300 font-bold"
+                                            ? "mr-1 py-1 px-[10px] border border-black bg-black block w-content-fit min-w-[30px] text-center rounded-[10px] duration-300 font-bold"
                                             : "mr-1 py-1 px-[10px] border border-gray-700 block w-content-fit min-w-[30px] text-center rounded-[10px] hover:bg-[#4e0e92] hover:border-[#4e0e92] duration-300 font-bold"
                                     }
                                 >
-                                    <p>
+                                    <p className="md:text-[16px] text-[11px]">
                                         {link.label === "&laquo; Previous" ? (
                                             <>◀︎</>
                                         ) : link.label === "Next &raquo;" ? (

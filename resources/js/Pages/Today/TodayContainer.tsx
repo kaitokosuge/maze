@@ -64,7 +64,7 @@ export default function TodayContainer(props: any) {
                                 <span className="maze--title--gra md:text-[40px] text-[30px] block">
                                     Today's Quiz
                                 </span>
-                                <p className="text-gray-400 font-bold text-[11px] mt-5">
+                                <p className="text-gray-400 font-bold md:text-[11px] text-[8px] mt-5">
                                     <span className="maze--title">
                                         Today's Quiz
                                     </span>

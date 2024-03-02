@@ -168,7 +168,7 @@ export default function TodayQuizzes(props: any) {
                                 </p>
                             </div>
                         </div>
-                        <div className="md:px-5 px-[10px] md:py-[30px] py-[20px] bg-[#001E41] rounded-[20px] mt-1 flex items-center justify-between">
+                        <div className="px-5 md:py-[30px] py-[20px] bg-[#001E41] rounded-[20px] mt-1 flex items-center justify-between">
                             <div
                                 className={
                                     isClick === index
@@ -220,7 +220,7 @@ export default function TodayQuizzes(props: any) {
                             </div>
                             <div
                                 onClick={() => handleQuizShow(index)}
-                                className="text-center hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] w-[100px] md:px-5 md:py-[15px] px-1 py-[10px] font-bold cursor-pointer"
+                                className="maze--title text-center hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] w-[100px] md:px-5 md:py-[15px] px-1 py-[10px] font-bold cursor-pointer"
                             >
                                 open
                             </div>

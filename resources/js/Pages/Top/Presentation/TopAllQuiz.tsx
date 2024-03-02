@@ -82,10 +82,10 @@ export default function TopAllQuiz(props: any) {
                         <p className="font-bold text-[12px] text-gray-500">
                             {quiz.categories.map((category: any) => (
                                 <div className="flex items-center mt-[7px]">
-                                    <div className="md:block hidden w-[15px] h-auto">
+                                    <div className="md:w-[15px] w-[8px] h-auto">
                                         {parse(category.category_img)}
                                     </div>
-                                    <p className="font-bold ml-1">
+                                    <p className="md:block hidden font-bold ml-1">
                                         {category.category}
                                     </p>
                                 </div>
