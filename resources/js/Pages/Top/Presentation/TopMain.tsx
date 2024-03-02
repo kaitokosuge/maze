@@ -206,7 +206,7 @@ export default function TopMain({
                                         <p
                                             className={
                                                 addClass === true
-                                                    ? "maze--title md:w-fit w-full font-bold md:text-[30px] text-[20px] text-gray-100 duration-700"
+                                                    ? "maze--title md:w-fit w-full font-bold md:text-[30px] text-[25px] text-gray-100 duration-700"
                                                     : "maze--title md:w-fit w-full font-bold md:text-[80px] text-[50px] text-gray-100"
                                             }
                                         >
@@ -258,9 +258,9 @@ export default function TopMain({
                                                 : "flex items-start md:text-[28px] text-[16px] text-gray-200 font-bold duration-700 opacity-0"
                                         }
                                     >
-                                        <span>
+                                        <span className="bloxk">
                                             <img
-                                                className="block md:w-[20px] w-[10px] md:h-[20px] h-[10px] mt-[10px]"
+                                                className="block md:w-[20px] w-[15px] md:h-[20px] h-[15px] mt-[10px]"
                                                 src="/calendar--logo.png"
                                             />
                                         </span>
@@ -273,7 +273,7 @@ export default function TopMain({
                         ) : (
                             <>
                                 <div className="flex flex-wrap items-center justify-between opacity-100 duration-300">
-                                    <div className="w-[70%] flex items-center">
+                                    <div className="md:w-[70%] w-full flex flex-wrap items-center">
                                         <div
                                             className={
                                                 addClass === true
@@ -301,7 +301,7 @@ export default function TopMain({
                                             {todayQuiz.categories.map(
                                                 (category: any) => (
                                                     <>
-                                                        <div className="font-bold text-[12px] ml-5 flex items-center">
+                                                        <div className="font-bold text-[12px] md:ml-5 flex items-center justify-between">
                                                             <div className="w-[15px] h-auto">
                                                                 {parse(
                                                                     category.category_img
