@@ -4,7 +4,7 @@ body {
     background: #000238;
     min-height: 100vh;
 }
-.all {
+/* .all {
     @media (max-width: 1150px) {
         display: none;
         color: black;
@@ -15,7 +15,7 @@ body {
     @media (max-width: 1150px) {
         display: block;
     }
-}
+} */
 .bg-first {
     background: linear-gradient(to right, #002248, #004a4f);
 }
