@@ -15,11 +15,14 @@ export default function VerifyEmail({ status }: { status?: string }) {
     return (
         <GuestLayout>
             <Head title="Email Verification" />
-            <div className="auth--card bg-[#000238] w-[80%] m-auto px-[40px] pt-[40px] pb-[40px] rounded-[20px] mt-[120px]">
+            <div className="auth--card bg-[#000238] xl:w-[80%] w-full m-auto xl:px-[40px] px-5 pt-[40px] pb-[40px] rounded-[20px] xl:first:mt-[120px]">
                 <div className="mb-4 text-sm text-gray-300">
                     <div className="flex items-center">
-                        <img className="w-[100px]" src="/maze_logo.png" />
-                        <p className="maze--title font-bold text-4xl">
+                        <img
+                            className="xl:w-[100px] w-[45px]"
+                            src="/maze_logo.png"
+                        />
+                        <p className="maze--title font-bold xl:text-4xl text-[16px]">
                             MAZEへようこそ!!!
                         </p>
                     </div>
@@ -34,7 +37,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
                 )}
 
                 <form onSubmit={submit}>
-                    <div className="mt-4 flex items-center justify-between">
+                    <div className="xl:mt-4 mt-10 flex items-center justify-between">
                         <PrimaryButton disabled={processing}>
                             認証メールを再送する
                         </PrimaryButton>

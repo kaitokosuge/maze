@@ -41,15 +41,15 @@ export default function Register() {
                 onClick={handleClickAdminModal}
                 className={
                     isShowModal === true
-                        ? "opacity-80 bg-black w-[100vw] h-full duration-500 fixed z-50"
-                        : "opacity-0 bg-black w-screen h-full fixed -z-10"
+                        ? "xl:block hidden opacity-80 bg-black w-[100vw] h-full duration-500 fixed z-50"
+                        : "xl:block hidden opacity-0 bg-black w-screen h-full fixed -z-10"
                 }
             ></div>
             <Head title="Register" />
 
             <form
                 onSubmit={submit}
-                className="overflow-hidden auth--card bg-[#140034] w-[60%] m-auto px-[80px] pt-[40px] pb-[40px] rounded-[20px] mt-[120px]"
+                className="overflow-hidden auth--card bg-[#140034] xl:w-[60%] w-full m-auto xl:px-[80px] px-10 pt-[40px] pb-[40px] rounded-[20px] xl:mt-[120px] mt-[50px]"
             >
                 <div className="w-[240%]">
                     <div
@@ -202,7 +202,7 @@ export default function Register() {
 
                 <div className="mt-4">
                     <p
-                        className="cursor-pointer absolute bottom-[60px] right-[7%] font-bold text-white"
+                        className="cursor-pointer absolute xl:bottom-[60px] xl:block hidden right-[7%] font-bold text-white"
                         onClick={handleClickAdminModal}
                     >
                         <span
@@ -216,8 +216,8 @@ export default function Register() {
                     <div
                         className={
                             isShowModal
-                                ? "opacity-100 duration-500 fixed bottom-[100px] right-[100px] z-50"
-                                : "opacity-0 duration-500 absolute bottom-[100px] right-[-500px]"
+                                ? "xl:block hidden opacity-100 duration-500 fixed bottom-[100px] right-[100px] z-50"
+                                : "xl:block hidden opacity-0 duration-500 absolute bottom-[100px] right-[-500px]"
                         }
                     >
                         <div className="bg-colorfull-200 w-[500px] rounded-[20px] px-10 pt-10 pb-10">

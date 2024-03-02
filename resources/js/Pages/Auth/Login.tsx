@@ -44,7 +44,7 @@ export default function Login({
 
             <form
                 onSubmit={submit}
-                className="auth--card bg-[#140034] w-[60%] m-auto px-[80px] pt-[40px] pb-[40px] rounded-[20px] mt-[200px]"
+                className="auth--card bg-[#140034] xl:w-[60%] w-full m-auto xl:px-[80px] px-10 pt-[40px] pb-[40px] rounded-[20px] xl:mt-[200px] mt-[20px]"
             >
                 <div>
                     <InputLabel htmlFor="email" value="Email -メールアドレス" />
@@ -116,7 +116,7 @@ export default function Login({
                     </div>
 
                     <button
-                        className={`bg-blue-800 hover:bg-blue-600 duration-300 rounded-[10px] px-[25px] font-bold p-[10px] text-[15px] text-gray-300 uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition ease-in-out }`}
+                        className={`bg-blue-800 hover:bg-blue-600 duration-300 rounded-[10px] xl:px-[25px] px-5 font-bold p-[10px] text-[15px] text-gray-300 uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition ease-in-out }`}
                         disabled={processing}
                     >
                         ログイン
