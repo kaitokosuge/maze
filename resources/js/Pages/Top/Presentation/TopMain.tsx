@@ -272,13 +272,13 @@ export default function TopMain({
                             </>
                         ) : (
                             <>
-                                <div className="flex items-center justify-between opacity-100 duration-300">
+                                <div className="flex flex-wrap items-center justify-between opacity-100 duration-300">
                                     <div className="w-[70%] flex items-center">
                                         <div
                                             className={
                                                 addClass === true
-                                                    ? "flex items-center maze--title font-bold text-[30px] text-gray-100 duration-700"
-                                                    : "flex items-center maze--title font-bold text-[80px] text-gray-100"
+                                                    ? "flex items-center maze--title md:w-fit w-full font-bold md:text-[30px] text-[20px] text-gray-100 duration-700"
+                                                    : "flex items-center maze--title font-bold md:text-[80px] text-[40px] text-gray-100"
                                             }
                                         >
                                             <img
@@ -294,7 +294,7 @@ export default function TopMain({
                                         <div
                                             className={
                                                 addClass === true
-                                                    ? "ml-5 flex duration-700 opacity-100 w-[50%] overflow-scroll pb-1"
+                                                    ? "ml-5 flex duration-700 opacity-100 md:w-[50%] w-full md:mt-0 mt-5 overflow-scroll pb-1"
                                                     : "ml-5 flex duration-700 w-[0%] opacity-0"
                                             }
                                         >
