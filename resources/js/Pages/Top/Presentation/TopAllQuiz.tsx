@@ -63,7 +63,7 @@ export default function TopAllQuiz(props: any) {
         <div>
             {showQuizzes.data.map((quiz: any, index: number) => (
                 <>
-                    <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
+                    <div className="px-5 md:py-[30px] py-[15px] bg-[#001E41] rounded-[20px] mt-5 flex items-center justify-between">
                         <div
                             className={
                                 isClick === index
@@ -77,7 +77,7 @@ export default function TopAllQuiz(props: any) {
                             }}
                         ></div>
                         <p className="font-bold text-[16px] text-limit">
-                            {index + 1} {quiz.quiz}
+                            {quiz.quiz}
                         </p>
                         <p className="font-bold text-[12px] text-gray-500">
                             {quiz.categories.map((category: any) => (
@@ -91,10 +91,10 @@ export default function TopAllQuiz(props: any) {
                                 </div>
                             ))}
                         </p>
-                        <data className="font-bold text-[12px] text-gray-500">
+                        <data className="hidden md:block font-bold text-[12px] text-gray-500">
                             {quiz.created_at.slice(0, -17)}
                         </data>
-                        <p className="font-bold text-[12px] text-gray-500">
+                        <p className="hidden md:block font-bold text-[12px] text-gray-500">
                             {quiz.user.name}
                         </p>
                         <div>
@@ -112,23 +112,20 @@ export default function TopAllQuiz(props: any) {
                         </div>
                         <div
                             onClick={() => handleQuizShow(index)}
-                            className="text-center hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] w-[100px]  px-5 py-[15px] font-bold cursor-pointer"
+                            className="text-center hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] md:w-[100px] w-[70px] md:px-5 px-[10px] md:py-[15px] py-[10px] font-bold cursor-pointer"
                         >
-                            <img
-                                className="block m-auto w-[20px]"
-                                src="/open--logo.png"
-                            />
+                            <p>open</p>
                         </div>
                     </div>
                     <div
                         className={
                             isClick === index
-                                ? "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-300 w-[75%] opacity-100 px-[50px] py-[60px] bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
-                                : "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500 w-[75%] bg-[#001E41] px-[50px] py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
+                                ? "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-300 md:w-[75%] w-[90%] opacity-100 md:px-[50px] px-[20px] md:py-[60px] py-[30px] bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
+                                : "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500 md:w-[75%] w-[90%] bg-[#001E41] md:px-[50px] px-[20px] py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
                         }
                     >
                         <p className="font-bold">{quiz.quiz}</p>
-                        <div className="mt-10 grid grid-cols-3 gap-5">
+                        <div className="mt-10 grid md:grid-cols-3 grid-cols-1 md:gap-5 gap-[10px]">
                             {quiz.choices.map((choice: any, index: number) => (
                                 <>
                                     {quiz.is_user_true.some(

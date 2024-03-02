@@ -92,8 +92,8 @@ export default function TodayQuizzes(props: any) {
     };
     return (
         <div className="mt-[100px]">
-            <div className="rounded-[20px] bg-profile w-[100%] px-10 py-10 mt-5 duration-100">
-                <div className="rounded-[20px] bg-profile-card p-10 profile--card flex items-center justify-between">
+            <div className="rounded-[20px] bg-profile w-[100%] md:px-10 px-[10px] md:py-10 py-[10px] mt-5 duration-100">
+                <div className="rounded-[20px] bg-profile-card md:p-10 p-[25px] profile--card flex flex-wrap items-center justify-between">
                     <div className="font-bold text-[80px] maze--title maze--title--gra">
                         {rateNum >= 90 && (
                             <p className="maze--title font-bold maze--today--gra text-[34px] mt-5">
@@ -116,7 +116,7 @@ export default function TodayQuizzes(props: any) {
                             </>
                         )}
                     </div>
-                    <div className="w-[70%] bg-black rounded-[10px] mt-5 p-1">
+                    <div className="md:w-[70%] w-full bg-black rounded-[10px] mt-5 p-1">
                         <div
                             className={`bg-first w-[${rateNum}%] h-[30px] rounded-[10px]`}
                         ></div>
@@ -168,7 +168,7 @@ export default function TodayQuizzes(props: any) {
                                 </p>
                             </div>
                         </div>
-                        <div className="px-5 py-[30px] bg-[#001E41] rounded-[20px] mt-1 flex items-center justify-between">
+                        <div className="md:px-5 px-[10px] md:py-[30px] py-[20px] bg-[#001E41] rounded-[20px] mt-1 flex items-center justify-between">
                             <div
                                 className={
                                     isClick === index
@@ -184,7 +184,7 @@ export default function TodayQuizzes(props: any) {
                             <p className="font-bold text-[16px] text-limit">
                                 {quiz.quiz}
                             </p>
-                            <p className="maze--title--gra font-bold text-[30px] maze--title">
+                            <p className="md:block hidden maze--title--gra font-bold text-[30px] maze--title">
                                 TQ
                             </p>
                             <p className="font-bold text-[12px] text-gray-500">
@@ -199,10 +199,10 @@ export default function TodayQuizzes(props: any) {
                                     </div>
                                 ))}
                             </p>
-                            <data className="font-bold text-[12px] text-gray-500">
+                            <data className="md:block hidden font-bold text-[12px] text-gray-500">
                                 {quiz.created_at.slice(0, -17)}
                             </data>
-                            <p className="font-bold text-[12px] text-gray-500">
+                            <p className="md:block hidden font-bold text-[12px] text-gray-500">
                                 {quiz.user.name}
                             </p>
                             <div>
@@ -220,23 +220,22 @@ export default function TodayQuizzes(props: any) {
                             </div>
                             <div
                                 onClick={() => handleQuizShow(index)}
-                                className="text-center hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] w-[100px]  px-5 py-[15px] font-bold cursor-pointer"
+                                className="text-center hover:bg-[#153e6c] duration-300 rounded-[10px] bg-[#002E64] w-[100px] md:px-5 md:py-[15px] px-1 py-[10px] font-bold cursor-pointer"
                             >
-                                <img
-                                    className="block m-auto w-[20px]"
-                                    src="/open--logo.png"
-                                />
+                                open
                             </div>
                         </div>
                         <div
                             className={
                                 isClick === index
-                                    ? "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-300 w-[75%] opacity-100 px-[50px] py-[60px] bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
-                                    : "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500 w-[75%] bg-[#001E41] px-[50px] py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
+                                    ? "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-300 md:w-[75%] w-[95%] opacity-100 md:px-[50px] px-[15px] md:py-[60px] py-10 bg-[#001E41] rounded-[20px] mt-1 items-center justify-between"
+                                    : "max-h-[80%] overflow-scroll fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  duration-500 md:w-[75%] w-[95%] bg-[#001E41] md:px-[50px] px-[15px] md:py-[0px] rounded-[20px] mt-5 opacity-0 items-center justify-between -z-10"
                             }
                         >
-                            <p className="font-bold">{quiz.quiz}</p>
-                            <div className="mt-10 grid grid-cols-3 gap-5">
+                            <p className="font-bold md:text-[16px] text-[14px]">
+                                {quiz.quiz}
+                            </p>
+                            <div className="mt-10 grid md:grid-cols-3 grid-cols-1 md:gap-5 gap-[10px]">
                                 {quiz.choices.map(
                                     (choice: any, index: number) => (
                                         <>
