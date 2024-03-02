@@ -15,16 +15,14 @@ export default function TopMain({
     likescount,
     likeCheck,
     testquiz,
+    handleHumClick,
+    isHumShow,
 }: any) {
-    console.log("main quizzes", quizzes);
-    console.log("quiz paginate", testquiz);
-    console.log("topquiz", todayQuiz);
     const [showQuizzes, setShowQuizzes] = useState(quizzes);
     const [isUserQuizAnswer, setIsUserQuizAnswer] = useState("");
     const [isChoiceClick, setIsChoiceClick] = useState<number[]>([]);
     const handleChangeQuizData = (e: any, choiceId: number) => {
         e.preventDefault();
-        console.log(choiceId);
         setIsChoiceClick(() => {
             if (isChoiceClick.some((id) => id === choiceId) === true) {
                 return isChoiceClick.filter((id) => id !== choiceId);
@@ -48,7 +46,7 @@ export default function TopMain({
                 console.log("error");
             }
         } catch (error) {
-            console.log(error);
+            alert("ページをリロードしてください");
         }
     };
     const [isEyeClick, setIsEyeClick] = useState<boolean>(false);
@@ -76,7 +74,6 @@ export default function TopMain({
     };
     const [likeCount, setLikeCount] = useState<number>(likescount);
     const [isLiked, setIsLiked] = useState<boolean>(likeCheck);
-    console.log("isliked", isLiked);
     const handleLike = async (e: any, id: number) => {
         e.preventDefault();
         const res = await axios.post(`/like/${id}/0`);
@@ -94,8 +91,31 @@ export default function TopMain({
             alert("ページをリロードし再実行してください🙇");
         }
     };
+
     return (
-        <div className="bg-[#00142C] pl-[5%] min-h-screen pt-[60px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%]">
+        <div className="bg-[#00142C] pl-[5%] min-h-screen md:pt-[60px] pt-[20px] pb-[100px] xl:pl-[40px] lg:pl-[100px] md:pl-[20%] pr-[5%]">
+            <div
+                onClick={handleHumClick}
+                className="w-[40px] h-[40px] m-0 ml-auto block md:hidden relative z-20"
+            >
+                {isHumShow === true ? (
+                    <>
+                        <img src="eye--logo.png" />
+                    </>
+                ) : (
+                    <>
+                        <img src="eyeclose--logo.png" />
+                    </>
+                )}
+            </div>
+            <div
+                onClick={handleHumClick}
+                className={
+                    isHumShow === true
+                        ? "bg-black opacity-80 w-screen h-screen fixed top-0 left-0 z-10"
+                        : "bg-black opacity-0 w-screen h-screen fixed top-0 left-0 -z-10"
+                }
+            ></div>
             <div className="flex justify-between items-center">
                 <h2
                     className={
@@ -163,9 +183,7 @@ export default function TopMain({
                             </div>
                         </>
                     ) : (
-                        <>
-                            <p>🍵</p>
-                        </>
+                        <></>
                     )}
                 </div>
             </div>

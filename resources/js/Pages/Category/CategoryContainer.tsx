@@ -33,7 +33,7 @@ export default function CategoryContainer(props: any) {
                                 <h2 className="font-bold text-4xl">
                                     {category.category}
                                 </h2>
-                                <p className="text-gray-500 text-[12px] mt-5">
+                                <p className="text-gray-500 md:text-[12px] text-[7px] mt-5">
                                     {category.category_desc}
                                 </p>
                             </div>

@@ -16,11 +16,20 @@ export default function TopContainer({
     testquiz,
 }: any) {
     const [stateQuizzes, setQuizzes] = useState(quizzes);
-
+    const [isHumShow, setIsHumShow] = useState<boolean>();
+    const handleHumClick = () => {
+        setIsHumShow(!isHumShow);
+    };
     return (
         <>
             <div className="flex">
-                <div className="md:w-[15%] w-0 md:block md:left-0 left-[-280px] relative">
+                <div
+                    className={
+                        isHumShow === true
+                            ? "md:w-[15%] w-0 md:block md:left-0 left-0 relative duration-300 z-20"
+                            : "md:w-[15%] w-0 md:block md:left-0 left-[-280px] duration-300 relative"
+                    }
+                >
                     <Sidebar
                         categories={categories}
                         user={user}
@@ -28,7 +37,6 @@ export default function TopContainer({
                     />
                 </div>
                 <div className="md:w-[85%] w-full">
-                    <Header />
                     <TopMain
                         quizzes={quizzes}
                         todayQuiz={todayQuiz}
@@ -37,6 +45,8 @@ export default function TopContainer({
                         likescount={likescount}
                         likeCheck={likeCheck}
                         testquiz={testquiz}
+                        handleHumClick={handleHumClick}
+                        isHumShow={isHumShow}
                     />
                 </div>
             </div>
