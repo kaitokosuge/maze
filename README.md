@@ -1,8 +1,12 @@
 <h1>MAZE</h1>
+<p>お試しアカウント</p>
+<p>email:<strong>saitamakaitok@gmail.com</strong></p>
+<p>password:<strong>pass0605</strong></p>
 <h2>アプリ概要</h2>
 MAZEはプログラミングのクイズアプリです。
 
 web開発でよく使用される言語、フレームワークをクイズの題材としています。
+<a href="https://maze-p-quiz-272cda03fda0.herokuapp.com/">MAZEのルール→</a>
 
 Today’s Quiz（以下、TQと記載）という毎日24時に更新されるクイズにはコメントといいねをすることができます。
 
